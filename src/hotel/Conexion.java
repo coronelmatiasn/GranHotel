@@ -19,6 +19,7 @@ public class Conexion {
         this.password = password;
         
         try {
+            //cargar las clases de mariadb que implementan JDBC
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -28,7 +29,7 @@ public class Conexion {
     public Connection getConexion() {
         if(conexion == null){
             try {
-                
+                //configuración de la conexion con la base de datos
                 conexion = DriverManager
                            .getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
                                           + "&user=" + usuario + "&password=" + password);
