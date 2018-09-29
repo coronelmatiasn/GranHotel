@@ -33,7 +33,7 @@ public class Conexion {
             try {
                 //configuración de la conexion con la base de datos
                 conexion = DriverManager
-                           .getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
+                           .getConnection(url + dataBase + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
                                           + "&user=" + usuario + "&password=" + password);
                 
             } catch (SQLException ex) {
