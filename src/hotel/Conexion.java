@@ -7,13 +7,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Conexion {
+    private String dataBase;
     private String url;
     private String usuario;
     private String password;
     
     private Connection conexion;
     
-    public Conexion(String url, String usuario, String password) {
+    public Conexion(String dataBase, String url, String usuario, String password) {
+        this.dataBase = dataBase;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
