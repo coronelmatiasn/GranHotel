@@ -5,6 +5,10 @@
  */
 package hotel.vista;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bety Campana
@@ -29,50 +33,152 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         fondo_panel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelCancelar = new javax.swing.JLabel();
+        jLabelReserva = new javax.swing.JLabel();
+        jLabelMinimizar = new javax.swing.JLabel();
+        jLabelHuesped = new javax.swing.JLabel();
+        jLabelHabitacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         fondo_panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga1.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(700, 478));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), null));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 130, 120));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 236, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
-        );
+        jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Hotel Mercedes");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 190, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 480));
+        jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCancelarMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelCancelarMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), null));
+        jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking.png"))); // NOI18N
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelReservaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelReservaMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, 70));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
-        );
+        jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelMinimizarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 460, 480));
+        jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest.png"))); // NOI18N
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelHuespedMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelHuespedMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 70, 80));
+
+        jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king-size-bed.png"))); // NOI18N
+        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelHabitacionMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelHabitacionMouseExited(evt);
+            }
+        });
+        getContentPane().add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, -1, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wallpaper.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseClicked
+       
+        //lo que hace esta linea es al hacer click la imagen cambia a la otra imagen que se encuentra en la carpeta imagen
+        jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_in.png")));
+    }//GEN-LAST:event_jLabelReservaMouseClicked
+
+    private void jLabelCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseClicked
+       
+        
+        
+        jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_in.png")));
+       
+       Icon icono = new ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"));
+       //asigno a la variable dialogoboton el si y no que luego se lo paso a la otra variable resultado
+       int dialogoboton = JOptionPane.YES_NO_OPTION;
+       int resultado = JOptionPane.showConfirmDialog(null, "Desea salir del Menu? ", "Salir",dialogoboton,JOptionPane.QUESTION_MESSAGE,icono);
+       //utilizo el if para hacer una comparacion si el usuario da en si sale de la ventana y si le da no sigue trabajando 
+       if (resultado==0){
+           
+          System.exit(0);
+       }
+      
+      
+    }//GEN-LAST:event_jLabelCancelarMouseClicked
+
+    private void jLabelMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizarMouseClicked
+        
+       
+        this.setState(Menu.ICONIFIED);
+        
+    }//GEN-LAST:event_jLabelMinimizarMouseClicked
+
+    private void jLabelCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseExited
+        
+        jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png")));
+       
+    }//GEN-LAST:event_jLabelCancelarMouseExited
+
+    private void jLabelReservaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseExited
+        jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking.png")));
+    }//GEN-LAST:event_jLabelReservaMouseExited
+
+    private void jLabelHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseClicked
+      jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_in.png")));
+    }//GEN-LAST:event_jLabelHuespedMouseClicked
+
+    private void jLabelHuespedMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseExited
+         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest.png")));
+    }//GEN-LAST:event_jLabelHuespedMouseExited
+
+    private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
+         
+        jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_in.png")));
+    }//GEN-LAST:event_jLabelHabitacionMouseClicked
+
+    private void jLabelHabitacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseExited
+        jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king-size-bed.png")));
+    }//GEN-LAST:event_jLabelHabitacionMouseExited
 
     /**
      * @param args the command line arguments
@@ -111,7 +217,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo_panel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelCancelar;
+    private javax.swing.JLabel jLabelHabitacion;
+    private javax.swing.JLabel jLabelHuesped;
+    private javax.swing.JLabel jLabelMinimizar;
+    private javax.swing.JLabel jLabelReserva;
     // End of variables declaration//GEN-END:variables
 }
