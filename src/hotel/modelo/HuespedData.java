@@ -15,18 +15,14 @@ public class HuespedData {
     private Connection connection = null;
 
     public HuespedData(Conexion conexion) {
-        try {
-            connection = conexion.getConexion();
-        } catch (SQLException ex) {
-            System.out.println("Error al abrir al obtener la conexion");
-        }
+        connection = conexion.getConexion();
     }
     
     public void guardarHuesped (Huesped huesped) {
         try {
             String sql = "INSERT INTO huesped (dni, nombre, domicilio, celular, correo) VALUES ( ? , ? , ? , ? , ? );";
             
-             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt (1, huesped.getDni());
             statement.setString (2, huesped.getNombre());
             statement.setString (3, huesped.getDomicilio());
@@ -34,16 +30,8 @@ public class HuespedData {
             statement.setString (5, huesped.getCorreo());
             
             statement.executeUpdate();
-            
-            ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()) {
-             //Desde aca no se que onda. Seria un huesped.setInt(rs.getInt(1)); ???? 
-               
-             huesped.setId(rs.getInt(1));
-            } else {
-                System.out.println("No se pudo obtener el id luego de insertar un huesped");
-            }
             statement.close();
+            
         }  catch (SQLException ex) {
             System.out.println("Error al insertar un huesped: " + ex.getMessage());
         }
