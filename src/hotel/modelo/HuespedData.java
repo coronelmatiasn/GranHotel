@@ -41,7 +41,7 @@ public class HuespedData {
 
     
 public List <Huesped> obtenerHuesped(){
-       ArrayList <Huesped> huespeds = new ArrayList<>();
+       ArrayList <Huesped> huespedes = new ArrayList<>();
             
 
         try {
@@ -57,13 +57,13 @@ public List <Huesped> obtenerHuesped(){
                 huesped.setCelular(resultSet.getString("celular"));
                 huesped.setCorreo(resultSet.getString("correo"));
 
-                huespeds.add(huesped);
+                huespedes.add(huesped);
             }      
             statement.close();
         } catch (SQLException ex) {
             System.out.println("Error al obtener lista de huesped: " + ex.getMessage());
         }
          
-        return huespeds;
+        return huespedes;
     }
 }
