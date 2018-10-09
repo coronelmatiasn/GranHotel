@@ -33,7 +33,7 @@ public class Habitacion {
         this.piso = piso;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
