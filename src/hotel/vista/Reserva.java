@@ -31,7 +31,7 @@ public class Reserva extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldNombreApeliido = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -42,10 +42,10 @@ public class Reserva extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldDNI = new javax.swing.JTextField();
+        jTextFieldDomicilio = new javax.swing.JTextField();
+        jTextFieldCelular = new javax.swing.JTextField();
+        jTextFieldCorreo = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -55,15 +55,16 @@ public class Reserva extends javax.swing.JFrame {
         jLabelReservar = new javax.swing.JLabel();
         jTextFieldFechaEntrada = new javax.swing.JTextField();
         jTextFieldFechaSalida = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jTextFieldCantidadPersona = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jTextField9 = new javax.swing.JTextField();
+        jTextFieldPrecioTotal = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
+        jLabelReservaBusqueda = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -85,10 +86,10 @@ public class Reserva extends javax.swing.JFrame {
         jLabel4.setText("Nombre y Apellido del Huesped");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 220, 20));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
+        jTextFieldNombreApeliido.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldNombreApeliido.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldNombreApeliido.setBorder(null);
+        jPanel1.add(jTextFieldNombreApeliido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
@@ -141,21 +142,21 @@ public class Reserva extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
+        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldDNI.setBorder(null);
+        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, -1));
+        jTextFieldDomicilio.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldDomicilio.setBorder(null);
+        jPanel1.add(jTextFieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, -1));
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
+        jTextFieldCelular.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCelular.setBorder(null);
+        jPanel1.add(jTextFieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
+        jTextFieldCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCorreo.setBorder(null);
+        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
 
         jSeparator2.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
@@ -189,7 +190,7 @@ public class Reserva extends javax.swing.JFrame {
 
         jLabelCalcularPrecio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelCalcularPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelCalcularPrecio.setText("Calcular Precio");
+        jLabelCalcularPrecio.setText("CALCULAR PRECIO");
         jLabelCalcularPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCalcularPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -199,7 +200,7 @@ public class Reserva extends javax.swing.JFrame {
                 jLabelCalcularPrecioMouseReleased(evt);
             }
         });
-        jPanel1.add(jLabelCalcularPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+        jPanel1.add(jLabelCalcularPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, -1));
 
         jLabelReservar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelReservar.setForeground(new java.awt.Color(0, 0, 0));
@@ -213,7 +214,7 @@ public class Reserva extends javax.swing.JFrame {
                 jLabelReservarMouseReleased(evt);
             }
         });
-        jPanel1.add(jLabelReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, -1, -1));
+        jPanel1.add(jLabelReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         jTextFieldFechaEntrada.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldFechaEntrada.setForeground(new java.awt.Color(0, 0, 0));
@@ -247,18 +248,18 @@ public class Reserva extends javax.swing.JFrame {
         });
         jPanel1.add(jTextFieldFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setBorder(null);
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 60, -1));
+        jTextFieldCantidadPersona.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCantidadPersona.setBorder(null);
+        jPanel1.add(jTextFieldCantidadPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, -1));
 
         jSeparator6.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator6.setForeground(new java.awt.Color(102, 204, 255));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 60, 10));
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setBorder(null);
-        jTextField9.setEnabled(false);
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 40, -1));
+        jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldPrecioTotal.setBorder(null);
+        jTextFieldPrecioTotal.setEnabled(false);
+        jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 40, -1));
 
         jSeparator7.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator7.setForeground(new java.awt.Color(102, 204, 255));
@@ -278,16 +279,58 @@ public class Reserva extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelMenuMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelMenuMouseReleased(evt);
+            }
         });
         jPanel1.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 30, 40));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png"))); // NOI18N
         jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelHabitacionMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelHabitacionMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelHabitacionMouseReleased(evt);
+            }
+        });
         jPanel1.add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 60, 30, 40));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
         jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 110, 40, 40));
+        jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelHuespedMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelHuespedMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelHuespedMouseReleased(evt);
+            }
+        });
+        jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
+
+        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png"))); // NOI18N
+        jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelReservaBusquedaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelReservaBusquedaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelReservaBusquedaMouseReleased(evt);
+            }
+        });
+        jPanel1.add(jLabelReservaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
@@ -446,6 +489,13 @@ public class Reserva extends javax.swing.JFrame {
        AnimationClass huespedd =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
        
+       //mueve el icono buscar reserva  a la izquieda
+       AnimationClass busquedaReserva = new AnimationClass();
+       busquedaReserva.jLabelXRight(-40, 10, 10, 5, jLabelReservaBusqueda);
+       
+       //mueve el icono buscar reserva a la derecha 
+       AnimationClass busquedaReservaa = new AnimationClass();
+       busquedaReservaa.jLabelXLeft(10, -40,10,5, jLabelReservaBusqueda);
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMouseClicked
@@ -453,6 +503,57 @@ public class Reserva extends javax.swing.JFrame {
        menu.setVisible(true);
        dispose();
     }//GEN-LAST:event_jLabelMenuMouseClicked
+
+    private void jLabelMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMousePressed
+         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana_in.png")));
+    }//GEN-LAST:event_jLabelMenuMousePressed
+
+    private void jLabelMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMouseReleased
+        jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png")));
+    }//GEN-LAST:event_jLabelMenuMouseReleased
+
+    private void jLabelHabitacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMousePressed
+       jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king-size_in_ventana.png")));
+    }//GEN-LAST:event_jLabelHabitacionMousePressed
+
+    private void jLabelHabitacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseReleased
+        jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png")));
+    }//GEN-LAST:event_jLabelHabitacionMouseReleased
+
+    private void jLabelHuespedMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMousePressed
+       jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_in_ventana.png")));
+    }//GEN-LAST:event_jLabelHuespedMousePressed
+
+    private void jLabelHuespedMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseReleased
+      jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png")));
+    }//GEN-LAST:event_jLabelHuespedMouseReleased
+
+    private void jLabelHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseClicked
+         Huesped huesped =new Huesped();
+       huesped.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_jLabelHuespedMouseClicked
+
+    private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
+          Habitacion habitacion =new Habitacion();
+      habitacion.setVisible(true);
+       dispose(); 
+    }//GEN-LAST:event_jLabelHabitacionMouseClicked
+
+    private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
+        ReservaBusqueda busqueda=new  ReservaBusqueda();
+      busqueda.setVisible(true);
+       dispose(); 
+
+    }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
+
+    private void jLabelReservaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMousePressed
+       jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva_in.png")));
+    }//GEN-LAST:event_jLabelReservaBusquedaMousePressed
+
+    private void jLabelReservaBusquedaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseReleased
+         jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png")));
+    }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     /**
      * @param args the command line arguments
@@ -510,6 +611,7 @@ public class Reserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
+    private javax.swing.JLabel jLabelReservaBusqueda;
     private javax.swing.JLabel jLabelReservar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -522,14 +624,14 @@ public class Reserva extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldCantidadPersona;
+    private javax.swing.JTextField jTextFieldCelular;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldDNI;
+    private javax.swing.JTextField jTextFieldDomicilio;
     private javax.swing.JTextField jTextFieldFechaEntrada;
     private javax.swing.JTextField jTextFieldFechaSalida;
+    private javax.swing.JTextField jTextFieldNombreApeliido;
+    private javax.swing.JTextField jTextFieldPrecioTotal;
     // End of variables declaration//GEN-END:variables
 }
