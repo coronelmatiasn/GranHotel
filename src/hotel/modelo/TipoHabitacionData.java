@@ -36,15 +36,12 @@ public class TipoHabitacionData {
             System.out.println("Error al insertar un tipo de habitacion: " + ex.getMessage());
         }
     }
-       
-            
-
     
 public List <TipoHabitacion> obtenerTipoHabitacion(){
        ArrayList <TipoHabitacion> tipoHabitaciones = new ArrayList<>();
-            
 
         try {
+            int idTipoDeCama;
             String sql = "SELECT * FROM tipoHabitacion;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -55,6 +52,9 @@ public List <TipoHabitacion> obtenerTipoHabitacion(){
                 tipoHabitacion.setCategoria(resultSet.getString("categoria"));
                 tipoHabitacion.setCantidadMaxPersonas (resultSet.getInt("canttidadMaxPersonas"));
                 tipoHabitacion.setPrecioXNoche (resultSet.getDouble("precioXNoche"));
+                
+                
+                
                 tipoHabitacion.setTipoCama (resultSet.getTipoDeCama ("tipoCama"));
 
                 tipoHabitaciones.add(tipoHabitacion);
