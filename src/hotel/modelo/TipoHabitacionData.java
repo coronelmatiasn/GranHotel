@@ -27,7 +27,7 @@ public class TipoHabitacionData {
             statement.setString (2, tipoHabitacion.getCategoria());
             statement.setInt (3, tipoHabitacion.getCantidadMaxPersonas());
             statement.setDouble (4, tipoHabitacion.getPrecioXNoche());
-            statement.setTipoDeCama (5, tipoHabitacion.getTipoCama());
+            statement.setInt (5, tipoHabitacion.getTipoCama().getId());
             
             statement.executeUpdate();
             statement.close();
@@ -41,22 +41,24 @@ public List <TipoHabitacion> obtenerTipoHabitacion(){
        ArrayList <TipoHabitacion> tipoHabitaciones = new ArrayList<>();
 
         try {
-            int idTipoDeCama;
-            String sql = "SELECT * FROM tipoHabitacion;";
+            String sql = "SELECT h.id_tipo_habitacion, h.categoria_habitacion, h.cantidad_maxima_personas, h.precio_por_noche, h.id_tipo_cama, c.categoria_cama " +
+                         "FROM `tipo de habitacion` h LEFT JOIN `tipo de cama` c ON h.id_tipo_cama = c.id_tipo_cama;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             TipoHabitacion tipoHabitacion;
+            TipoDeCama tipoDeCama;
             while(resultSet.next()){
                 tipoHabitacion = new TipoHabitacion();
-                tipoHabitacion.setId (resultSet.getInt("id"));
-                tipoHabitacion.setCategoria(resultSet.getString("categoria"));
-                tipoHabitacion.setCantidadMaxPersonas (resultSet.getInt("canttidadMaxPersonas"));
-                tipoHabitacion.setPrecioXNoche (resultSet.getDouble("precioXNoche"));
+                tipoDeCama = new TipoDeCama();
                 
-                
-                
-                tipoHabitacion.setTipoCama (resultSet.getTipoDeCama ("tipoCama"));
-
+                tipoDeCama.setId(resultSet.getInt("id_tipo_cama"));
+                tipoDeCama.setCategoria(resultSet.getString("categoria_cama"));
+                        
+                tipoHabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+                tipoHabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+                tipoHabitacion.setCantidadMaxPersonas (resultSet.getInt("cantidad_maxima_personas"));
+                tipoHabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                tipoHabitacion.setTipoCama(tipoDeCama);
                 tipoHabitaciones.add(tipoHabitacion);
             }      
             statement.close();
