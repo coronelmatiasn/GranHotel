@@ -9,16 +9,81 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import AppPackage.AnimationClass;
+import hotel.Conexion;
+import hotel.modelo.Huesped;
+import hotel.modelo.HuespedData;
 import java.awt.Color;
-public class Huesped extends javax.swing.JFrame {
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+public class Huesped_vista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Huesped
-     */
-    public Huesped() {
+private HuespedData huespeddata;
+private Conexion conexion;
+private DefaultTableModel modelo;
+private  ArrayList <Huesped> listahuesped;
+
+    public Huesped_vista() {
         initComponents();
          this.setLocationRelativeTo(null);
+         conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+         huespeddata = new HuespedData(conexion);
+         modelo=new DefaultTableModel();
+         huespeddata=new HuespedData(conexion);
+         listahuesped=(ArrayList)huespeddata.obtenerHuesped();
+         armaCabeceraTabla();
+         
+        
+  
+         
+       
     }
+    
+     public void armaCabeceraTabla(){
+    
+        //Titulos de Columnas
+        ArrayList<Object> columnas=new ArrayList<Object>();
+        columnas.add("DNI");
+        columnas.add("Nombre y Apellido");
+        columnas.add("Domicilio");
+        columnas.add("Celular");
+        columnas.add("Correo");
+        for(Object it:columnas){
+        
+            modelo.addColumn(it);
+        }
+       jTableHuesped.setModel(modelo);
+  }
+     
+     public void borraFilasTabla(){
+
+            int a =modelo.getRowCount()-1;
+            System.out.println("Tabla "+a);
+            for(int i=a;i>=0;i--){
+                modelo.removeRow(i );
+                System.out.println("Tabla "+i);
+            }
+      }
+     
+     
+      public void cargaDatos(){
+            borraFilasTabla();
+        
+        
+         //Obtengo el dni del huesped
+            int dni=Integer.parseInt(jTextFieldDNI.getText());
+            
+        //Llenar filas
+        for(Huesped h:listahuesped){
+        
+            if(h.getDni()==dni){ 
+           modelo.addRow(new Object[]{h.getDni(),h.getNombre(),h.getDomicilio(),h.getCelular(),h.getCorreo()});
+                    
+        }}
+    }
+    
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +103,7 @@ public class Huesped extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldDNI = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableHuesped = new javax.swing.JTable();
         jLabelBuscarHuesped = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelMenu = new javax.swing.JLabel();
@@ -118,7 +183,7 @@ public class Huesped extends javax.swing.JFrame {
         });
         jPanel2.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 190, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableHuesped.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -129,7 +194,7 @@ public class Huesped extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableHuesped);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 700, 230));
 
@@ -137,6 +202,9 @@ public class Huesped extends javax.swing.JFrame {
         jLabelBuscarHuesped.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBuscarHuesped.setText("BUSCAR");
         jLabelBuscarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBuscarHuespedMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabelBuscarHuespedMousePressed(evt);
             }
@@ -298,7 +366,7 @@ public class Huesped extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelReservaMouseReleased
 
     private void jLabelMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizarMouseClicked
-        this.setState(Huesped.ICONIFIED);
+        this.setState(Huesped_vista.ICONIFIED);
     }//GEN-LAST:event_jLabelMinimizarMouseClicked
 
     private void jLabelCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMousePressed
@@ -333,7 +401,7 @@ public class Huesped extends javax.swing.JFrame {
 
     private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
           
-        Habitacion habitacion =new Habitacion();
+        Habitacion_vista habitacion =new Habitacion_vista();
       habitacion.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
@@ -347,16 +415,22 @@ public class Huesped extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-        ReservaBusqueda busqueda=new  ReservaBusqueda();
+        ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
       busqueda.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
 
     private void jLabelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseClicked
-     Reserva reserva=new Reserva();
+     Reserva_vista reserva=new Reserva_vista();
      reserva.setVisible(true);
      dispose();
     }//GEN-LAST:event_jLabelReservaMouseClicked
+
+    private void jLabelBuscarHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarHuespedMouseClicked
+       
+        cargaDatos();
+        
+    }//GEN-LAST:event_jLabelBuscarHuespedMouseClicked
 
     /**
      * @param args the command line arguments
@@ -375,20 +449,21 @@ public class Huesped extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Huesped_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Huesped_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Huesped_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Huesped_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Huesped().setVisible(true);
+                new Huesped_vista().setVisible(true);
             }
         });
     }
@@ -408,7 +483,7 @@ public class Huesped extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHuesped;
     private javax.swing.JTextField jTextFieldDNI;
     // End of variables declaration//GEN-END:variables
 }

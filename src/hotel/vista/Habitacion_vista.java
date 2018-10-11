@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import AppPackage.AnimationClass;
 import java.awt.Color;
-public class Habitacion extends javax.swing.JFrame {
+public class Habitacion_vista extends javax.swing.JFrame {
 
     /**
      * Creates new form Habitacion
      */
-    public Habitacion() {
+    public Habitacion_vista() {
         initComponents();
          this.setLocationRelativeTo(null);
     }
@@ -259,7 +259,7 @@ public class Habitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelHuespedMouseReleased
 
     private void jLabelHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseClicked
-        Huesped huesped =new Huesped();
+        Huesped_vista huesped =new Huesped_vista();
        huesped.setVisible(true);
        dispose();
     }//GEN-LAST:event_jLabelHuespedMouseClicked
@@ -273,7 +273,7 @@ public class Habitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelReservaMouseReleased
 
     private void jLabelMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizarMouseClicked
-         this.setState(Habitacion.ICONIFIED);
+         this.setState(Habitacion_vista.ICONIFIED);
     }//GEN-LAST:event_jLabelMinimizarMouseClicked
 
     private void jLabelCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMousePressed
@@ -300,7 +300,7 @@ public class Habitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCancelarMouseClicked
 
     private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-         ReservaBusqueda busqueda=new  ReservaBusqueda();
+         ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
       busqueda.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
@@ -314,7 +314,7 @@ public class Habitacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     private void jLabelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseClicked
-     Reserva reserva=new Reserva();
+     Reserva_vista reserva=new Reserva_vista();
      reserva.setVisible(true);
      dispose();
      
@@ -337,20 +337,21 @@ public class Habitacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Habitacion_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Habitacion_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Habitacion_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Habitacion_vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Habitacion().setVisible(true);
+                new Habitacion_vista().setVisible(true);
             }
         });
     }
