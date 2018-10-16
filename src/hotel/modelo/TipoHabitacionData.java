@@ -53,7 +53,6 @@ public List <TipoHabitacion> obtenerTipoHabitacion(){
                 
                 tipoDeCama.setId(resultSet.getInt("id_tipo_cama"));
                 tipoDeCama.setCategoria(resultSet.getString("categoria_cama"));
-                        
                 tipoHabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
                 tipoHabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
                 tipoHabitacion.setCantidadMaxPersonas (resultSet.getInt("cantidad_maxima_personas"));

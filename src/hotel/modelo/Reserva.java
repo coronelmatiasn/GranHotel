@@ -1,18 +1,18 @@
 package hotel.modelo;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Reserva {
     private int nroReserva;
     private int cantidadDePersonas;
-    private LocalDate fechaEntrada;
-    private LocalDate fechaSalida;
+    private Date fechaEntrada;
+    private Date fechaSalida;
     private double importeTotal;
     private Huesped huesped;
     private Habitacion habitacion;
     private boolean estado;
 
-    public Reserva(int nroReserva, int cantidadDePersonas, LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal, Huesped huesped, Habitacion habitacion, boolean estado) {
+    public Reserva(int nroReserva, int cantidadDePersonas, Date fechaEntrada, Date fechaSalida, double importeTotal, Huesped huesped, Habitacion habitacion, boolean estado) {
         this.nroReserva = nroReserva;
         this.cantidadDePersonas = cantidadDePersonas;
         this.fechaEntrada = fechaEntrada;
@@ -23,14 +23,14 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public Reserva(LocalDate fechaEntrada, LocalDate fechaSalida, Huesped huesped, Habitacion habitacion) {
+    public Reserva(Date fechaEntrada, Date fechaSalida, Huesped huesped, Habitacion habitacion) {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.huesped = huesped;
         this.habitacion = habitacion;
     }
 
-    public Reserva(int cantidadDePersonas, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    public Reserva(int cantidadDePersonas, Date fechaEntrada, Date fechaSalida) {
         this.cantidadDePersonas = cantidadDePersonas;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
@@ -55,19 +55,19 @@ public class Reserva {
         this.cantidadDePersonas = cantidadDePersonas;
     }
 
-    public LocalDate getFechaEntrada() {
+    public Date getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(LocalDate fechaEntrada) {
+    public void setFechaEntrada(Date fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public LocalDate getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -87,12 +87,15 @@ public class Reserva {
         this.habitacion = habitacion;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+    public void setImporteTotal(double importeTotal){
+        this.importeTotal = importeTotal;
     }
 
     public double getImporteTotal() {
