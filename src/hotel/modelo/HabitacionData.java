@@ -26,7 +26,7 @@ public class HabitacionData {
             statement.setInt (1, habitacion.getNHabitacion());
             statement.setInt (2, habitacion.getPiso());
             statement.setBoolean (3, habitacion.getEstado());
-            statement.setTipoHabitacion (4, habitacion.getTipoHabitacion());
+            statement.setInt (4, habitacion.getTipoHabitacion().getId());
             
             
             statement.executeUpdate();
@@ -45,16 +45,34 @@ public List <Habitacion> obtenerHabitacion(){
             
 
         try {
-            String sql = "SELECT * FROM habitacion;";
+            String sql = "SELECT h.nro_habitacion, h.piso, h.estado, h.id_tipo_habitacion, t.categoria_habitacion, " +
+                         "t.cantidad_maxima_personas, t.precio_por_noche, t.id_tipo_cama, c.categoria_cama " +
+                         "FROM `habitacion` h, `tipo_de_habitacion` t, tipo_de_cama c " + 
+                         "WHERE h.id_tipo_habitacion = t.id_tipo_habitacion AND t.id_tipo_cama = c.id_tipo_cama;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Habitacion habitacion;
+            TipoHabitacion tipoHabitacion;
+            TipoDeCama tipoDeCama;
             while(resultSet.next()){
                 habitacion = new Habitacion();
-                habitacion.setNHabitacion (resultSet.getInt ("nHabitacion"));
+                tipoHabitacion = new TipoHabitacion();
+                tipoDeCama = new TipoDeCama();
+                
+                tipoDeCama.setId(resultSet.getInt("id_tipo_cama"));
+                tipoDeCama.setCategoria(resultSet.getString("categoria_cama"));
+                
+                tipoHabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+                tipoHabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+                tipoHabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+                tipoHabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                
+                habitacion.setNHabitacion (resultSet.getInt ("nro_habitacion"));
                 habitacion.setPiso (resultSet.getInt ("piso"));
                 habitacion.setEstado (resultSet.getBoolean ("estado"));
-                habitacion.setTipoHabitacion (resultSet.getTipoHabitacion ("tipoHabitacion"));
+ 
+                tipoHabitacion.setTipoCama(tipoDeCama);
+                habitacion.setTipoHabitacion (tipoHabitacion);
                 
 
                 habitaciones.add(habitacion);
