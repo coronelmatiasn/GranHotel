@@ -26,11 +26,11 @@ public class Habitacion {
         this.estado = false;
     }
 
-    public int getnHabitacion() {
+    public int getNHabitacion() {
         return nHabitacion;
     }
 
-    public void setnHabitacion(int nHabitacion) {
+    public void setNHabitacion(int nHabitacion) {
         this.nHabitacion = nHabitacion;
     }
 

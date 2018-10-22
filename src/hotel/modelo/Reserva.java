@@ -95,6 +95,9 @@ public class Reserva {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    public void setImporteTotal(double importeTotal){
+        this.importeTotal = importeTotal;
+    }
 
     public double getImporteTotal() {
         return importeTotal;

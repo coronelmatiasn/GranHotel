@@ -13,6 +13,7 @@ package hotel.modelo;
         this.categoria = categoria;
     }
     public TipoDeCama() {
+
     }
 
     public int getId_tipo_cama() {

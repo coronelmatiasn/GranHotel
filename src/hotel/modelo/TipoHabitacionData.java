@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 
+
 public class TipoHabitacionData {
     private Connection connection = null;
     private Conexion conexion;
@@ -21,8 +22,7 @@ public class TipoHabitacionData {
         this.conexion=conexion;
         connection = conexion.getConexion();
     }
-    
-    
+
     public void guardarTipoHabitacion (TipoHabitacion tipoHabitacion) {
         try {
             String sql = "INSERT INTO tipoHabitacion (id, categoria, cantidadMaxPersonas, precioXNoche, tipoDeCama) VALUES ( ? , ? , ? , ? , ? );";
@@ -33,7 +33,7 @@ public class TipoHabitacionData {
             statement.setInt (3, tipoHabitacion.getCantidadMaxPersonas());
             statement.setDouble (4, tipoHabitacion.getPrecioXNoche());
             statement.setInt(5, tipoHabitacion.getTipoCama().getId_tipo_cama());
-            
+   
             statement.executeUpdate();
             statement.close();
             
@@ -41,9 +41,6 @@ public class TipoHabitacionData {
             System.out.println("Error al insertar un tipo de habitacion: " + ex.getMessage());
         }
     }
-       
-            
-
     
 public ArrayList <TipoHabitacion> obtenerTipoHabitacion(){
        ArrayList <TipoHabitacion> tipoHabitaciones = new ArrayList<>();
@@ -62,7 +59,6 @@ public ArrayList <TipoHabitacion> obtenerTipoHabitacion(){
                 tipoHabitacion.setPrecioXNoche (resultSet.getDouble("precio_por_noche"));
                 TipoDeCama tc=buscarTipoCama(resultSet.getInt("id_tipo_cama"));
                
-
                 tipoHabitaciones.add(tipoHabitacion);
             }      
             statement.close();

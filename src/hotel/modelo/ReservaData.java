@@ -1,4 +1,3 @@
-
 package hotel.modelo;
 
 import hotel.Conexion;
@@ -55,6 +54,7 @@ public ArrayList <Reserva> obtenerReserva(){
             Reserva reserva;
             while(resultSet.next()){
                 reserva = new Reserva();
+              
                 reserva.setNroReserva (resultSet.getInt ("nroReserva"));
                 reserva.setCantidadDePersonas (resultSet.getInt ("cantidadDePersonas"));
                 reserva.setFechaEntrada (resultSet.getDate ("fechaEntrada"));
@@ -63,8 +63,6 @@ public ArrayList <Reserva> obtenerReserva(){
                 reserva.setHuesped((Huesped) resultSet.getObject("huesped"));
                 reserva.setHabitacion ((Habitacion) resultSet.getObject ("habitacion"));
                 reserva.setEstado (resultSet.getBoolean ("estado"));
-                
-                
 
                 reservas.add(reserva);
             }      
@@ -75,5 +73,6 @@ public ArrayList <Reserva> obtenerReserva(){
          
         return reservas;
     }
+
 }
 

@@ -1,4 +1,3 @@
-
 package hotel.modelo;
 
 import hotel.Conexion;
@@ -96,5 +95,3 @@ public  TipoDeCama buscarTipoCama(int id){
     }
 
 }
-
-   

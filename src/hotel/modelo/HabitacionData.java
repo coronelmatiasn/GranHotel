@@ -14,13 +14,12 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 
 
-
 public class HabitacionData {
     private Connection connection = null;
     private Conexion conexion; 
     public HabitacionData(Conexion conexion) {
          this.conexion=conexion;
-        connection = conexion.getConexion();
+         connection = conexion.getConexion();
     }
     
     public void guardarHabitacion (Habitacion habitacion) {
@@ -31,7 +30,7 @@ public class HabitacionData {
             statement.setInt (1, habitacion.getnHabitacion());
             statement.setInt (2, habitacion.getPiso());
             statement.setBoolean(3, habitacion.getEstado());
-             statement.setInt(4, habitacion.getTipoHabitacion().getId());
+            statement.setInt(4, habitacion.getTipoHabitacion().getId());
             
             
             statement.executeUpdate();
@@ -75,7 +74,7 @@ public List <Habitacion> obtenerHabitacion(){
 
 
  public Habitacion  buscarHabitacion(int id_tipo_habitacion){
-         Habitacion habitacion=null;
+         Habitacion habitacion = null;
          
          try {
             
@@ -161,8 +160,7 @@ public List <Habitacion> obtenerHabitacion(){
                 habitacion.setPiso (resultSet.getInt ("piso"));
                 habitacion.setEstado (resultSet.getBoolean ("estado"));
                 TipoHabitacion th=buscarTipoHabitacion(id_tipo_habitacion);
-                habitacion.setTipoHabitacion(th);
-                
+                habitacion.setTipoHabitacion(th);                
 
                 habitaciones.add(habitacion);
             }      
@@ -172,17 +170,15 @@ public List <Habitacion> obtenerHabitacion(){
         }
          
         return habitaciones;
-    }
- 
- 
+    } 
  
  public TipoHabitacion buscarTipoHabitacion(int id){
     
-       TipoHabitacionData tc= new  TipoHabitacionData(conexion);
+       TipoHabitacionData tc = new TipoHabitacionData(conexion);
         
-        return tc.buscartipohabitacion(id);
+       return tc.buscartipohabitacion(id);
         
-    }
+ }
  
  public void CuentaHabitacion(boolean estado,int id,JTextField texto){
      int cuenta=0;
@@ -201,7 +197,7 @@ public List <Habitacion> obtenerHabitacion(){
             }
           cuentas=Integer.toString(cuenta);
           texto.setText(cuentas);
-            statement.close();
+          statement.close();
         } catch (SQLException ex) {
             Logger.getLogger(HabitacionData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -258,9 +254,3 @@ public List <Habitacion> obtenerHabitacion(){
     
     
     } 
-     
-     
-     
-   
- 
-
