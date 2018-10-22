@@ -610,7 +610,7 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getnHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
             }
           
           
@@ -633,7 +633,7 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getnHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
             }
           
          
@@ -651,7 +651,7 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             
-            modelo.addRow(new Object[]{m.getnHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
             }
           
           
