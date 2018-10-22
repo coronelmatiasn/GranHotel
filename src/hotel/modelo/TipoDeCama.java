@@ -1,6 +1,6 @@
 package hotel.modelo;
 
-class TipoDeCama {
+ public class TipoDeCama {
     private int id_tipo_cama;
     private String categoria;
 

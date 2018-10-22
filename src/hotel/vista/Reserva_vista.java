@@ -149,7 +149,7 @@ private Conexion conexion;
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
 
         jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
@@ -332,6 +332,7 @@ private Conexion conexion;
         jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
 
         jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png"))); // NOI18N
+        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaBusquedaMouseClicked(evt);

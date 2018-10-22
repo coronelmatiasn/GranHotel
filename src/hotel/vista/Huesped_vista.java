@@ -28,7 +28,6 @@ private  ArrayList <Huesped> listahuesped;
         initComponents();
          this.setLocationRelativeTo(null);
          conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
-         huespeddata = new HuespedData(conexion);
          modelo=new DefaultTableModel();
          huespeddata=new HuespedData(conexion);
          listahuesped=(ArrayList)huespeddata.obtenerHuesped();

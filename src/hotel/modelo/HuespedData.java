@@ -91,7 +91,7 @@ public void borrarHuesped(int dni){
 }
 
 
-public void actualiarHuesped(Huesped huesped){
+public void actualizarHuesped(Huesped huesped){
     
      try {
             

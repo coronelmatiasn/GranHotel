@@ -61,5 +61,40 @@ public List <TipoDeCama> obtenerTipoDeCama(){
          
         return tiposDeCamas;
     }
+
+
+public  TipoDeCama buscarTipoCama(int id){
+    TipoDeCama tipodecama=null;
+    try {
+            
+            String sql = "SELECT * FROM tipo_de_cama WHERE id_tipo_cama =?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
+           
+            
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next()){
+                 tipodecama = new TipoDeCama();
+               tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
+               tipodecama.setCategoria(resultSet.getString("categoria_cama"));
+             
+                
+            }      
+            statement.close();
+            
+            
+            
+            
+    
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar un alumno: " + ex.getMessage());
+        }
+        
+        return tipodecama;
+    }
+
 }
+
    
