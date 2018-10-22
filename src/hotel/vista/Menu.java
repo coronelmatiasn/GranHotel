@@ -212,20 +212,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCancelarMouseReleased
 
     private void jLabelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseClicked
-       Reserva  reserva= new Reserva();
+       Reserva_vista  reserva= new Reserva_vista();
        reserva.setVisible(true);
        dispose();
        
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
     private void jLabelHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseClicked
-       Huesped huesped =new Huesped();
+       Huesped_vista huesped =new Huesped_vista();
       huesped.setVisible(true);
        dispose();
     }//GEN-LAST:event_jLabelHuespedMouseClicked
 
     private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
-         Habitacion habitacion =new Habitacion();
+         Habitacion_vista habitacion =new Habitacion_vista();
       habitacion.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
@@ -239,7 +239,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-        ReservaBusqueda busqueda=new  ReservaBusqueda();
+        ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
       busqueda.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked

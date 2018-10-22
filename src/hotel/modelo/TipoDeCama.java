@@ -1,14 +1,11 @@
 package hotel.modelo;
 
-class TipoDeCama {
-    private int id;
+ public class TipoDeCama {
+    private int id_tipo_cama;
     private String categoria;
 
-    public TipoDeCama() {
-    }
-    
-    public TipoDeCama(int id, String categoria) {
-        this.id = id;
+    public TipoDeCama(int id_tipo_cama, String categoria) {
+        this.id_tipo_cama = id_tipo_cama;
         this.categoria = categoria;
     }
 
@@ -16,12 +13,11 @@ class TipoDeCama {
         this.categoria = categoria;
     }
     
-    public void setId(int id) {
-        this.id = id;
+    public TipoDeCama() {
     }
 
-    public int getId() {
-        return id;
+    public int getId_tipo_cama() {
+        return id_tipo_cama;
     }
 
     public String getCategoria() {
@@ -31,4 +27,8 @@ class TipoDeCama {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public void setId_tipo_cama(int id_tipo_cama) {
+        this.id_tipo_cama = id_tipo_cama;
+    } 
 }
