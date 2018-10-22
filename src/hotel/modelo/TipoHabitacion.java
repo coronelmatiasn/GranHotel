@@ -1,13 +1,13 @@
 package hotel.modelo;
 
-class TipoHabitacion {
+ public class TipoHabitacion {
     private int id;
     private String categoria;
     private int cantidadMaxPersonas;
     private double precioXNoche;
     private TipoDeCama tipoCama;
 
-    public TipoHabitacion(int id, String categoria, int cantidadMaxPersonas, double precioXNoche, TipoDeCama tipoCama) {
+    public TipoHabitacion(int id, String categoria, int cantidadMaxPersonas, double precioXNoche,TipoDeCama tipoCama) {
         this.id = id;
         this.categoria = categoria;
         this.cantidadMaxPersonas = cantidadMaxPersonas;
@@ -15,20 +15,21 @@ class TipoHabitacion {
         this.tipoCama = tipoCama;
     }
 
-    public TipoHabitacion(String categoria, int cantidadMaxPersonas, double precioXNoche, TipoDeCama tipoCama) {
+    public TipoHabitacion(String categoria, int cantidadMaxPersonas, double precioXNoche,TipoDeCama tipoCama) {
         this.categoria = categoria;
         this.cantidadMaxPersonas = cantidadMaxPersonas;
         this.precioXNoche = precioXNoche;
         this.tipoCama = tipoCama;
+    }
+    
+    
+    public TipoHabitacion(int id){
+        this.id=id;
     }
 
     public TipoHabitacion() {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public int getId() {
         return id;
     }
@@ -64,4 +65,9 @@ class TipoHabitacion {
     public void setTipoCama(TipoDeCama tipoCama) {
         this.tipoCama = tipoCama;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 }

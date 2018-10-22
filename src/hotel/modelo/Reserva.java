@@ -1,6 +1,7 @@
 package hotel.modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Reserva {
     private int nroReserva;
@@ -12,7 +13,7 @@ public class Reserva {
     private Habitacion habitacion;
     private boolean estado;
 
-    public Reserva(int nroReserva, int cantidadDePersonas, Date fechaEntrada, Date fechaSalida, double importeTotal, Huesped huesped, Habitacion habitacion, boolean estado) {
+    public Reserva(int nroReserva, int cantidadDePersonas,Date fechaEntrada, Date fechaSalida, double importeTotal, Huesped huesped, Habitacion habitacion, boolean estado) {
         this.nroReserva = nroReserva;
         this.cantidadDePersonas = cantidadDePersonas;
         this.fechaEntrada = fechaEntrada;
@@ -101,4 +102,10 @@ public class Reserva {
     public double getImporteTotal() {
         return importeTotal;
     }
+
+    public void setImporteTotal(double importeTotal) {
+        this.importeTotal = importeTotal;
+    }
+    
+    
 }
