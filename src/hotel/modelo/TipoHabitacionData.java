@@ -157,6 +157,26 @@ public class TipoHabitacionData {
 
         return  tiposHabitacion;
     }
+    
+    public ArrayList<String> obtenerCategorias() {
+        ArrayList<String> categorias = new ArrayList<>();     
+
+        try {
+            String sql = "SELECT DISTINCT categoria FROM tipo_de_habitacion;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                categorias.add(resultSet.getString("categoria"));
+            }      
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener lista tipoHabitaciones: " + ex.getMessage());
+        }
+         
+        return categorias;
+    }
 
     public TipoDeCama buscarTipoCama(int id){
         TipoDeCamaData tc= new TipoDeCamaData(conexion);
