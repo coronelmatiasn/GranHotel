@@ -172,7 +172,7 @@ public class TipoHabitacionData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("Error al obtener lista tipoHabitaciones: " + ex.getMessage());
+            System.out.println("Error al obtener lista de categorías: " + ex.getMessage());
         }
          
         return categorias;
