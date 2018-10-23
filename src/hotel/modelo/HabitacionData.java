@@ -72,14 +72,14 @@ public class HabitacionData {
     }
 
 
-    public Habitacion buscarHabitacion(int id_tipo_habitacion){
+    public Habitacion buscarHabitacion(int id){
         Habitacion habitacion=null;
          
         try {           
-            String sql = "SELECT * FROM habitacion WHERE id_tipo_habitacion = ? ;";
+            String sql = "SELECT * FROM habitacion WHERE nro_habitacion = ? ;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id_tipo_habitacion);           
+            statement.setInt(1, id);           
             
             ResultSet resultSet = statement.executeQuery();
             
@@ -88,7 +88,7 @@ public class HabitacionData {
                 habitacion.setNHabitacion(resultSet.getInt("nro_habitacion"));
                 habitacion.setPiso(resultSet.getInt("piso"));
                 habitacion.setEstado(resultSet.getBoolean("estado"));
-                TipoHabitacion th= buscarTipoHabitacion(id_tipo_habitacion);
+                TipoHabitacion th = buscarTipoHabitacion(resultSet.getInt("id_tipo_habitacion"));
                 habitacion.setTipoHabitacion(th);                  
             }      
             
