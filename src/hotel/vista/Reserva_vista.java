@@ -11,14 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import AppPackage.AnimationClass;
 import hotel.Conexion;
-import hotel.modelo.Huesped;
-import hotel.modelo.HuespedData;
+import hotel.modelo.ReservaData;
+import hotel.modelo.TipoHabitacionData;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class Reserva_vista extends javax.swing.JFrame {
-private HuespedData huespeddata;
+private ReservaData rd;
+private TipoHabitacionData thd;
 private Conexion conexion;
     
     public Reserva_vista() {
@@ -26,7 +27,8 @@ private Conexion conexion;
         this.setLocationRelativeTo(null);
         
         conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
-        huespeddata = new HuespedData(conexion);
+        rd = new ReservaData(conexion);
+        thd = new TipoHabitacionData(conexion);
     }
     
 
@@ -51,7 +53,7 @@ private Conexion conexion;
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxTipoDeHabitacion = new javax.swing.JComboBox<>();
         jTextFieldDNI = new javax.swing.JTextField();
         jTextFieldDomicilio = new javax.swing.JTextField();
         jTextFieldCelular = new javax.swing.JTextField();
@@ -60,9 +62,6 @@ private Conexion conexion;
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabelBuscar = new javax.swing.JLabel();
-        jLabelCalcularPrecio = new javax.swing.JLabel();
-        jLabelReservar = new javax.swing.JLabel();
         jTextFieldFechaEntrada = new javax.swing.JTextField();
         jTextFieldFechaSalida = new javax.swing.JTextField();
         jTextFieldCantidadPersona = new javax.swing.JTextField();
@@ -75,6 +74,8 @@ private Conexion conexion;
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
         jLabelReservaBusqueda = new javax.swing.JLabel();
+        botonCrearReserva = new javax.swing.JButton();
+        botonConfirmar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -89,6 +90,7 @@ private Conexion conexion;
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -146,11 +148,17 @@ private Conexion conexion;
         jLabel12.setText("Precio:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
+        comboBoxTipoDeHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxTipoDeHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        comboBoxTipoDeHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        comboBoxTipoDeHabitacion.setMaximumRowCount(5);
+        comboBoxTipoDeHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar" }));
+        comboBoxTipoDeHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTipoDeHabitacionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboBoxTipoDeHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
 
         jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDNI.setBorder(null);
@@ -183,51 +191,6 @@ private Conexion conexion;
         jSeparator5.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator5.setForeground(new java.awt.Color(102, 204, 255));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 240, 10));
-
-        jLabelBuscar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton_buscar.png"))); // NOI18N
-        jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelBuscarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelBuscarMouseReleased(evt);
-            }
-        });
-        jPanel1.add(jLabelBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 40, -1));
-
-        jLabelCalcularPrecio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelCalcularPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelCalcularPrecio.setText("CALCULAR PRECIO");
-        jLabelCalcularPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelCalcularPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelCalcularPrecioMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelCalcularPrecioMouseReleased(evt);
-            }
-        });
-        jPanel1.add(jLabelCalcularPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, -1));
-
-        jLabelReservar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelReservar.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelReservar.setText("RESERVAR");
-        jLabelReservar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelReservar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelReservarMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelReservarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelReservarMouseReleased(evt);
-            }
-        });
-        jPanel1.add(jLabelReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         jTextFieldFechaEntrada.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldFechaEntrada.setForeground(new java.awt.Color(0, 0, 0));
@@ -269,6 +232,7 @@ private Conexion conexion;
         jSeparator6.setForeground(new java.awt.Color(102, 204, 255));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 60, 10));
 
+        jTextFieldPrecioTotal.setEditable(false);
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPrecioTotal.setBorder(null);
         jTextFieldPrecioTotal.setEnabled(false);
@@ -346,6 +310,28 @@ private Conexion conexion;
         });
         jPanel1.add(jLabelReservaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 40));
 
+        botonCrearReserva.setBackground(new java.awt.Color(255, 255, 255));
+        botonCrearReserva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonCrearReserva.setForeground(new java.awt.Color(0, 0, 0));
+        botonCrearReserva.setText("CREAR RESERVA");
+        botonCrearReserva.setBorder(null);
+        botonCrearReserva.setContentAreaFilled(false);
+        botonCrearReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(botonCrearReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
+
+        botonConfirmar.setBackground(new java.awt.Color(255, 255, 255));
+        botonConfirmar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonConfirmar.setForeground(new java.awt.Color(0, 0, 0));
+        botonConfirmar.setText("CONFIRMAR");
+        botonConfirmar.setBorder(null);
+        botonConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConfirmarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
@@ -404,14 +390,6 @@ private Conexion conexion;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFechaSalidaActionPerformed
 
-    private void jLabelReservarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservarMousePressed
-         jLabelReservar.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelReservarMousePressed
-
-    private void jLabelReservarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservarMouseReleased
-        jLabelReservar.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelReservarMouseReleased
-
     private void jLabelCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMousePressed
      jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel_in.png")));
     }//GEN-LAST:event_jLabelCancelarMousePressed
@@ -438,14 +416,6 @@ private Conexion conexion;
        this.setState(Reserva_vista.ICONIFIED);
     }//GEN-LAST:event_jLabelMinimizarMouseClicked
 
-    private void jLabelBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMousePressed
-        jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton_buscar_in.png")));
-    }//GEN-LAST:event_jLabelBuscarMousePressed
-
-    private void jLabelBuscarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseReleased
-        jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton_buscar.png")));
-    }//GEN-LAST:event_jLabelBuscarMouseReleased
-
     private void jLabelOpcionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelOpcionesMousePressed
        jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_in.png")));
     }//GEN-LAST:event_jLabelOpcionesMousePressed
@@ -453,15 +423,6 @@ private Conexion conexion;
     private void jLabelOpcionesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelOpcionesMouseReleased
        jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png")));
     }//GEN-LAST:event_jLabelOpcionesMouseReleased
-
-    private void jLabelCalcularPrecioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCalcularPrecioMousePressed
-         jLabelCalcularPrecio.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelCalcularPrecioMousePressed
-
-    private void jLabelCalcularPrecioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCalcularPrecioMouseReleased
-         
-        jLabelCalcularPrecio.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelCalcularPrecioMouseReleased
 
     private void jTextFieldFechaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFechaEntradaActionPerformed
         // TODO add your handling code here:
@@ -569,29 +530,13 @@ private Conexion conexion;
          jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png")));
     }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
-    private void jLabelReservarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservarMouseClicked
-        try {
-             String nombreyapellido=jTextFieldNombreApeliido.getText();
-        int dni =Integer.parseInt(jTextFieldDNI.getText());
-        String domicilio=jTextFieldDomicilio.getText();
-        String celular=jTextFieldCelular.getText();
-        String correo=jTextFieldCorreo.getText();
-        
-        Huesped huesped =new Huesped(dni,nombreyapellido,domicilio,celular,correo);
-        huespeddata.guardarHuesped(huesped);
-        
-        JOptionPane.showMessageDialog(null, "Reserva realizada con exito");
-        } catch (Exception e) {
-             
-            
-        }
-       
-        
-       
-        
-        
-        
-    }//GEN-LAST:event_jLabelReservarMouseClicked
+    private void comboBoxTipoDeHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoDeHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTipoDeHabitacionActionPerformed
+
+    private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -632,7 +577,9 @@ private Conexion conexion;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton botonConfirmar;
+    private javax.swing.JButton botonCrearReserva;
+    private javax.swing.JComboBox<String> comboBoxTipoDeHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -643,8 +590,6 @@ private Conexion conexion;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelBuscar;
-    private javax.swing.JLabel jLabelCalcularPrecio;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHabitacion;
     private javax.swing.JLabel jLabelHuesped;
@@ -652,7 +597,6 @@ private Conexion conexion;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReservaBusqueda;
-    private javax.swing.JLabel jLabelReservar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
