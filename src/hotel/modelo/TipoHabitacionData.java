@@ -90,35 +90,72 @@ public class TipoHabitacionData {
     }
 
 
-public  TipoHabitacion buscartipohabitacion(int id){
-    TipoHabitacion tipohabitacion = null;
-    
-    try {  
-        String sql = "SELECT * FROM tipo_de_habitacion WHERE id_tipo_habitacion = ?;";
+    public TipoHabitacion buscartipohabitacion(int id){
+        TipoHabitacion tipohabitacion = null;
 
-        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, id);
+        try {  
+            String sql = "SELECT * FROM tipo_de_habitacion WHERE id_tipo_habitacion = ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
 
 
-        ResultSet resultSet=statement.executeQuery();
+            ResultSet resultSet=statement.executeQuery();
 
-        while(resultSet.next()){
-            tipohabitacion = new TipoHabitacion();
-            tipohabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
-            tipohabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
-            tipohabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
-            tipohabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
-            TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
-            tipohabitacion.setTipoCama(c);
-        }      
-        
-        statement.close();
-            
-    } catch (SQLException ex) {
-        System.out.println("Error al insertar un alumno: " + ex.getMessage());
+            while(resultSet.next()){
+                tipohabitacion = new TipoHabitacion();
+                tipohabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+                tipohabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+                tipohabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+                tipohabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+                tipohabitacion.setTipoCama(c);
+            }      
+
+            statement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar un alumno: " + ex.getMessage());
+        }
+
+        return  tipohabitacion;
     }
-        
-    return  tipohabitacion;
+    
+    public ArrayList<TipoHabitacion> buscartipohabitacion(String categoria, int cantPersonas){
+        TipoHabitacion tipoHabitacion = null;
+        ArrayList<TipoHabitacion> tiposHabitacion = new ArrayList<>();
+
+        try {  
+            String sql = "SELECT * FROM tipo_de_habitacion " + 
+                         "WHERE categoria_habitacion = ? " +
+                         "AND cantidad_maxima_personas >= ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, categoria);
+            statement.setInt(2, cantPersonas);
+
+
+            ResultSet resultSet=statement.executeQuery();
+
+            while(resultSet.next()){
+                tipoHabitacion = new TipoHabitacion();
+                tipoHabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+                tipoHabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+                tipoHabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+                tipoHabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+                tipoHabitacion.setTipoCama(c);
+                
+                tiposHabitacion.add(tipoHabitacion);
+            }      
+
+            statement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar un alumno: " + ex.getMessage());
+        }
+
+        return  tiposHabitacion;
     }
 
     public TipoDeCama buscarTipoCama(int id){

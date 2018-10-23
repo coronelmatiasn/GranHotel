@@ -173,6 +173,13 @@ public class ReservaData {
         return reservas;
     }
     
+    public ArrayList<Habitacion> buscarHabitacionesLibres(int cantidadPersonas, int idTipoHabitacion) {
+        ArrayList<Habitacion> habLibres = new ArrayList<>();
+        
+        String sql = "SELECT * FROM `tipo_de_habitacion` " +
+                     "WHERE cantidad_maxima_personas";
+    }
+    
     private Huesped buscarHuesped(int dni){
         HuespedData h = new HuespedData(conexion);
         

@@ -142,8 +142,7 @@ public class HuespedData {
         ArrayList<Huesped> huespedes = new ArrayList<>();
         Huesped huesped;
          
-        try {
-            
+        try { 
             String sql = "SELECT * FROM huesped WHERE nombre_apellido LIKE ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
