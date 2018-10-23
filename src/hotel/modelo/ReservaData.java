@@ -173,11 +173,47 @@ public class ReservaData {
         return reservas;
     }
     
-    public ArrayList<Habitacion> buscarHabitacionesLibres(int cantidadPersonas, int idTipoHabitacion) {
+    public ArrayList<Habitacion> buscarHabitacionesLibres(String categoria, int cantPersonas) {
         ArrayList<Habitacion> habLibres = new ArrayList<>();
+        ArrayList<TipoHabitacion> tiposHab;
+        Habitacion habitacion;
+        PreparedStatement statement;
         
-        String sql = "SELECT * FROM `tipo_de_habitacion` " +
-                     "WHERE cantidad_maxima_personas";
+        tiposHab = buscarTipoHabitacion(categoria, cantPersonas);
+        
+        String sql = "SELECT * FROM `habitacion` " +
+                     "WHERE id_tipo_habitacion = ?" +
+                     "AND estado = 0;";
+        
+        for(TipoHabitacion th : tiposHab) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, th.getId());
+                
+                ResultSet resultSet = statement.executeQuery();
+                
+                while(resultSet.next()) {
+                    habitacion = new Habitacion();
+
+                    habitacion.setNHabitacion(resultSet.getInt("nro_habitacion"));
+                    habitacion.setPiso(resultSet.getInt("piso"));
+                    habitacion.setEstado(resultSet.getBoolean("estado"));
+                    habitacion.setTipoHabitacion(th);
+
+                    habLibres.add(habitacion);
+                }     
+            } catch (SQLException ex) {
+                Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                
+        return habLibres;
+    }
+    
+    private ArrayList<TipoHabitacion> buscarTipoHabitacion(String categoria, int cantPersonas) {
+        TipoHabitacionData th = new TipoHabitacionData(conexion);
+        
+        return th.buscartipohabitacion(categoria, cantPersonas);
     }
     
     private Huesped buscarHuesped(int dni){
