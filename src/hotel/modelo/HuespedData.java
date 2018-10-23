@@ -70,7 +70,7 @@ public class HuespedData {
     public void borrarHuesped(int dni){
         try {
 
-              String sql = "DELETE FROM huesped WHERE dni =?;";
+              String sql = "DELETE FROM huesped WHERE dni = ?;";
 
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 statement.setInt(1, dni);          
@@ -144,7 +144,7 @@ public class HuespedData {
          
         try {
             
-            String sql = "SELECT * FROM huesped WHERE nombre_apellido = ?;";
+            String sql = "SELECT * FROM huesped WHERE nombre_apellido LIKE '%?%';";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, nombre);  
