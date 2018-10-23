@@ -182,8 +182,8 @@ public class ReservaData {
         tiposHab = buscarTipoHabitacion(categoria, cantPersonas);
         
         String sql = "SELECT * FROM `habitacion` " +
-                     "WHERE id_tipo_habitacion = ?" +
-                     "AND estado = 0;";
+                     "WHERE id_tipo_habitacion = ? " +
+                     "AND estado IS FALSE;";
         
         for(TipoHabitacion th : tiposHab) {
             try {
