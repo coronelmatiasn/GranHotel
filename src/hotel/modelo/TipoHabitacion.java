@@ -7,7 +7,7 @@ public class TipoHabitacion {
     private double precioXNoche;
     private TipoDeCama tipoCama;
 
-    public TipoHabitacion(int id, String categoria, int cantidadMaxPersonas, double precioXNoche,TipoDeCama tipoCama) {
+    public TipoHabitacion(int id, String categoria, int cantidadMaxPersonas, double precioXNoche, TipoDeCama tipoCama) {
         this.id = id;
         this.categoria = categoria;
         this.cantidadMaxPersonas = cantidadMaxPersonas;

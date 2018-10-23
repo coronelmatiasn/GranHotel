@@ -19,11 +19,10 @@ public class TipoDeCamaData {
     
     public void guardarTipoDeCama (TipoDeCama tipoDeCama) {
         try {
-            String sql = "INSERT INTO tipoDeCama (id_tipo_cama, categoria) VALUES ( ? , ?);";
+            String sql = "INSERT INTO tipoDeCama (categoria) VALUES ( ? );";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt (1, tipoDeCama.getId_tipo_cama());
-            statement.setString (2, tipoDeCama.getCategoria());
+            statement.setString (1, tipoDeCama.getCategoria());
           
             statement.executeUpdate();
             statement.close();
@@ -33,8 +32,8 @@ public class TipoDeCamaData {
         }
     }      
     
-public List <TipoDeCama> obtenerTipoDeCama(){
-       ArrayList <TipoDeCama> tiposDeCamas = new ArrayList<>();
+    public List <TipoDeCama> obtenerTipoDeCama(){
+        ArrayList <TipoDeCama> tiposDeCamas = new ArrayList<>();
             
 
         try {
@@ -45,12 +44,12 @@ public List <TipoDeCama> obtenerTipoDeCama(){
             while(resultSet.next()){
                 tipodecama = new TipoDeCama();
                 tipodecama.setId_tipo_cama(resultSet.getInt("id"));
-               tipodecama.setCategoria(resultSet.getString("categoria"));
+                tipodecama.setCategoria(resultSet.getString("categoria"));
             
-
                 tiposDeCamas.add(tipodecama);
             }      
             statement.close();
+            
         } catch (SQLException ex) {
             System.out.println("Error al obtener lista de camas: " + ex.getMessage());
         }
@@ -59,31 +58,23 @@ public List <TipoDeCama> obtenerTipoDeCama(){
     }
 
 
-public  TipoDeCama buscarTipoCama(int id){
-    TipoDeCama tipodecama=null;
+public TipoDeCama buscarTipoCama(int id){
+    TipoDeCama tipodecama = null;
     try {
-            
-            String sql = "SELECT * FROM tipo_de_cama WHERE id_tipo_cama =?;";
+        String sql = "SELECT * FROM tipo_de_cama WHERE id_tipo_cama =?;";
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id);
-           
-            
-            ResultSet resultSet=statement.executeQuery();
-            
-            while(resultSet.next()){
-                 tipodecama = new TipoDeCama();
-               tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
-               tipodecama.setCategoria(resultSet.getString("categoria_cama"));
-             
-                
-            }      
-            statement.close();
-            
-            
-            
-            
-    
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, id);
+
+        ResultSet resultSet=statement.executeQuery();
+
+        while(resultSet.next()){
+            tipodecama = new TipoDeCama();
+            tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
+            tipodecama.setCategoria(resultSet.getString("categoria_cama"));
+        }      
+        statement.close();
+
         } catch (SQLException ex) {
             System.out.println("Error al insertar un alumno: " + ex.getMessage());
         }

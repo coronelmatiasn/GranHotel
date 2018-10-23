@@ -21,7 +21,8 @@ public class HuespedData {
     
     public void guardarHuesped (Huesped huesped) {
         try {
-            String sql = "INSERT INTO huesped (dni, nombre_apellido, domicilio, celular, correo) VALUES ( ? , ? , ? , ? , ? );";
+            String sql = "INSERT INTO huesped (dni, nombre_apellido, domicilio, celular, correo) " + 
+                         "VALUES ( ? , ? , ? , ? , ? );";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt (1, huesped.getDni());
@@ -38,10 +39,9 @@ public class HuespedData {
         }
     }
        
-public ArrayList <Huesped> obtenerHuesped(){
-       ArrayList <Huesped> huespedes = new ArrayList<>();
+    public ArrayList <Huesped> obtenerHuesped(){
+        ArrayList <Huesped> huespedes = new ArrayList<>();
             
-
         try {
             String sql = "SELECT * FROM huesped;";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -57,7 +57,9 @@ public ArrayList <Huesped> obtenerHuesped(){
 
                 huespedes.add(huesped);
             }      
+            
             statement.close();
+            
         } catch (SQLException ex) {
             System.out.println("Error al obtener lista de huesped: " + ex.getMessage());
         }
@@ -65,34 +67,29 @@ public ArrayList <Huesped> obtenerHuesped(){
         return huespedes;
     }
 
-public void borrarHuesped(int dni){
-    try {
-        
-          String sql = "DELETE FROM huesped WHERE dni =?;";
+    public void borrarHuesped(int dni){
+        try {
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, dni);
-           
-            
-            statement.executeUpdate();
-            
-            
-             statement.close();
-    
-    } catch (SQLException ex) {
-        
-       System.out.println("Error al borrar Huesped: " + ex.getMessage());
+              String sql = "DELETE FROM huesped WHERE dni = ?;";
+
+                PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                statement.setInt(1, dni);          
+
+                statement.executeUpdate();
+                statement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar Huesped: " + ex.getMessage());
+        }
+
+
     }
- 
-    
-}
 
 
-public void actualizarHuesped(Huesped huesped){
+    public void actualizarHuesped(Huesped huesped){
     
-     try {
-            
-            String sql = "UPDATE huesped SET nombre_apellido = ?, domicilio = ? ,celular =?, correo=? WHERE dni = ?;";
+     try {  
+            String sql = "UPDATE huesped SET nombre_apellido = ?, domicilio = ? ,celular = ?, correo = ? WHERE dni = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,huesped.getNombre());
@@ -108,44 +105,68 @@ public void actualizarHuesped(Huesped huesped){
             System.out.println("Error al actualizar Huesped " + ex.getMessage());
         }
     
-}
+    }
 
 
-     public Huesped buscarHuesped(int dni){
-         Huesped huesped=null;
+    public Huesped buscarHuesped(int dni){
+        Huesped huesped = null;
          
-         try {
+        try {
             
-            String sql = "SELECT * FROM huesped WHERE dni =?;";
+            String sql = "SELECT * FROM huesped WHERE dni = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, dni);
-           
+            statement.setInt(1, dni);  
             
             ResultSet resultSet=statement.executeQuery();
             
             while(resultSet.next()){
                 huesped = new Huesped();
-                 huesped.setDni(resultSet.getInt("dni"));
-                 huesped.setNombre(resultSet.getString("nombre_apellido"));
-                 huesped.setDomicilio(resultSet.getString("domicilio"));
-                 huesped.setCelular(resultSet.getString("celular"));
-                 huesped.setCorreo(resultSet.getString("correo"));
-                 
-                 
-
-                
+                huesped.setDni(resultSet.getInt("dni"));
+                huesped.setNombre(resultSet.getString("nombre_apellido"));
+                huesped.setDomicilio(resultSet.getString("domicilio"));
+                huesped.setCelular(resultSet.getString("celular"));
+                huesped.setCorreo(resultSet.getString("correo")); 
             }      
+            
             statement.close();
             
-            
-            
-            
-    
         } catch (SQLException ex) {
             System.out.println("Error al buscar el Huesped" + ex.getMessage());
         }
          
-          return huesped;
-     }
+        return huesped;
+    }
+    
+    public ArrayList<Huesped> buscarHuesped(String nombre){
+        ArrayList<Huesped> huespedes = new ArrayList<>();
+        Huesped huesped;
+         
+        try { 
+            String sql = "SELECT * FROM huesped WHERE nombre_apellido LIKE ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, "%" + nombre + "%");  
+            
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next()){
+                huesped = new Huesped();
+                huesped.setDni(resultSet.getInt("dni"));
+                huesped.setNombre(resultSet.getString("nombre_apellido"));
+                huesped.setDomicilio(resultSet.getString("domicilio"));
+                huesped.setCelular(resultSet.getString("celular"));
+                huesped.setCorreo(resultSet.getString("correo")); 
+                
+                huespedes.add(huesped);
+            }      
+            
+            statement.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar el Huesped" + ex.getMessage());
+        }
+         
+        return huespedes;
+    }
 }
