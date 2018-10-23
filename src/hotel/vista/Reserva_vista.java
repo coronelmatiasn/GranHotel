@@ -187,7 +187,7 @@ private Conexion conexion;
         jLabelBuscar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton_buscar.png"))); // NOI18N
-        jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabelBuscarMousePressed(evt);
@@ -201,7 +201,7 @@ private Conexion conexion;
         jLabelCalcularPrecio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelCalcularPrecio.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCalcularPrecio.setText("CALCULAR PRECIO");
-        jLabelCalcularPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCalcularPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCalcularPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabelCalcularPrecioMousePressed(evt);
@@ -215,7 +215,7 @@ private Conexion conexion;
         jLabelReservar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelReservar.setForeground(new java.awt.Color(0, 0, 0));
         jLabelReservar.setText("RESERVAR");
-        jLabelReservar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReservar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReservar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservarMouseClicked(evt);
@@ -287,7 +287,7 @@ private Conexion conexion;
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 60, 10));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -302,7 +302,7 @@ private Conexion conexion;
         jPanel1.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 30, 40));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png"))); // NOI18N
-        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHabitacionMouseClicked(evt);
@@ -317,7 +317,7 @@ private Conexion conexion;
         jPanel1.add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 60, 30, 40));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -332,7 +332,7 @@ private Conexion conexion;
         jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
 
         jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png"))); // NOI18N
-        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaBusquedaMouseClicked(evt);
@@ -352,7 +352,7 @@ private Conexion conexion;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -367,7 +367,7 @@ private Conexion conexion;
         jPanel2.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, -1, 35));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -382,7 +382,7 @@ private Conexion conexion;
         jPanel2.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 6, -1, 35));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);

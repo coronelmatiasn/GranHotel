@@ -23,14 +23,21 @@ public class TipoHabitacionData {
     
     public void guardarTipoHabitacion (TipoHabitacion tipoHabitacion) {
         try {
-            String sql = "INSERT INTO tipoHabitacion (id, categoria, cantidadMaxPersonas, precioXNoche, tipoDeCama) VALUES ( ? , ? , ? , ? , ? );";
+            String sql = "INSERT INTO tipoHabitacion (categoria_habitacion, cantidad_maxima_personas, precio_por_noche, id_tipo_cama) VALUES ( ? , ? , ? , ? );";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt (1, tipoHabitacion.getId());
-            statement.setString (2, tipoHabitacion.getCategoria());
-            statement.setInt (3, tipoHabitacion.getCantidadMaxPersonas());
-            statement.setDouble (4, tipoHabitacion.getPrecioXNoche());
-            statement.setInt(5, tipoHabitacion.getTipoCama().getId_tipo_cama());
+            statement.setString (1, tipoHabitacion.getCategoria());
+            statement.setInt (2, tipoHabitacion.getCantidadMaxPersonas());
+            statement.setDouble (3, tipoHabitacion.getPrecioXNoche());
+            statement.setInt(4, tipoHabitacion.getTipoCama().getId_tipo_cama());
+            
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    tipoHabitacion.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             
             statement.executeUpdate();
             statement.close();
@@ -52,9 +59,9 @@ public class TipoHabitacionData {
                 tipoHabitacion = new TipoHabitacion();
                 tipoHabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
                 tipoHabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
-                tipoHabitacion.setCantidadMaxPersonas (resultSet.getInt("cantidad_maxima_personas"));
-                tipoHabitacion.setPrecioXNoche (resultSet.getDouble("precio_por_noche"));
-                TipoDeCama tc=buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+                tipoHabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+                tipoHabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                TipoDeCama tc = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
                 tipoHabitaciones.add(tipoHabitacion);
             }      
             statement.close();
@@ -65,72 +72,59 @@ public class TipoHabitacionData {
         return tipoHabitaciones;
     }
 
-public void cargarComboxConTipoHabitacion(JComboBox comboxTipo){
-    
-    String sql= "SELECT * FROM tipo_de_habitacion;";
-    
-    try {
-     
-       PreparedStatement statement = connection.prepareStatement(sql);
-       ResultSet resultSet = statement.executeQuery();
-       
-       
-       while(resultSet.next()){
-           
-            comboxTipo.addItem(resultSet.getString("categoria_habitacion"));
-            
-       }
-       statement.close();
-        
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, e);
-        
+    public void cargarComboxConTipoHabitacion(JComboBox comboxTipo){
+        String sql= "SELECT * FROM tipo_de_habitacion;";
+
+        try {
+           PreparedStatement statement = connection.prepareStatement(sql);
+           ResultSet resultSet = statement.executeQuery();
+
+           while(resultSet.next()){
+                comboxTipo.addItem(resultSet.getString("categoria_habitacion"));
+           }
+           statement.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }  
     }
-       
-        }
 
 
 public  TipoHabitacion buscartipohabitacion(int id){
-    TipoHabitacion tipohabitacion=null;
-    try {
-            
-            String sql = "SELECT * FROM tipo_de_habitacion WHERE id_tipo_habitacion =?;";
-
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id);
-           
-            
-            ResultSet resultSet=statement.executeQuery();
-            
-            while(resultSet.next()){
-                 tipohabitacion = new TipoHabitacion();
-               tipohabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
-               tipohabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
-              tipohabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
-               tipohabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
-              TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
-              tipohabitacion.setTipoCama(c);
-                
-            }      
-            statement.close();
-            
-            
-            
-            
+    TipoHabitacion tipohabitacion = null;
     
-        } catch (SQLException ex) {
-            System.out.println("Error al insertar un alumno: " + ex.getMessage());
-        }
+    try {  
+        String sql = "SELECT * FROM tipo_de_habitacion WHERE id_tipo_habitacion = ?;";
+
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, id);
+
+
+        ResultSet resultSet=statement.executeQuery();
+
+        while(resultSet.next()){
+            tipohabitacion = new TipoHabitacion();
+            tipohabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+            tipohabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+            tipohabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+            tipohabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+            TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+            tipohabitacion.setTipoCama(c);
+        }      
         
-        return  tipohabitacion;
+        statement.close();
+            
+    } catch (SQLException ex) {
+        System.out.println("Error al insertar un alumno: " + ex.getMessage());
+    }
+        
+    return  tipohabitacion;
     }
 
- public TipoDeCama buscarTipoCama(int id){
-    
-       TipoDeCamaData tc= new TipoDeCamaData(conexion);
+    public TipoDeCama buscarTipoCama(int id){
+        TipoDeCamaData tc= new TipoDeCamaData(conexion);
         
-        return tc.buscarTipoCama(id);
-        
+        return tc.buscarTipoCama(id);    
     }
 }
 

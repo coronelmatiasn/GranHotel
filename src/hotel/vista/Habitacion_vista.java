@@ -617,7 +617,7 @@ private Conexion conexion;
         }
         
         //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo. 
-         habitaciondata.CuentaHabitacion(true,idtipo, jTextFieldcantidadHabitacion);
+         habitaciondata.cuentaHabitacion(true,idtipo, jTextFieldcantidadHabitacion);
           
       
     
@@ -639,11 +639,11 @@ private Conexion conexion;
          
         }
          //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo
-         habitaciondata.CuentaHabitacion(false,idtipo, jTextFieldcantidadHabitacion);
+         habitaciondata.cuentaHabitacion(false,idtipo, jTextFieldcantidadHabitacion);
           //si  no esta seleccionado ninguno lo que hace esta sentencia es mostrar ocupados y desocupados juntos.
         }else{
             
-           ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTiposinestado(idtipo);
+           ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(idtipo);
            
             //Llenar filas
         for(Habitacion m: listaHabitacion){
