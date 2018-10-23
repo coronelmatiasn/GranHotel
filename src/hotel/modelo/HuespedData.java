@@ -144,10 +144,10 @@ public class HuespedData {
          
         try {
             
-            String sql = "SELECT * FROM huesped WHERE nombre_apellido LIKE '%?%';";
+            String sql = "SELECT * FROM huesped WHERE nombre_apellido LIKE ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, nombre);  
+            statement.setString(1, "%" + nombre + "%");  
             
             ResultSet resultSet=statement.executeQuery();
             
