@@ -13,6 +13,7 @@ import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,7 +60,6 @@ Conexion conexion;
         thd = new TipoHabitacionData(conexion);
         tHCategorias = thd.obtenerCategorias();
         comboBoxTipoDeHabitacion = new javax.swing.JComboBox(tHCategorias.toArray());
-        jTextFieldDNI = new javax.swing.JTextField();
         jTextFieldDomicilio = new javax.swing.JTextField();
         jTextFieldCelular = new javax.swing.JTextField();
         jTextFieldCorreo = new javax.swing.JTextField();
@@ -81,6 +81,8 @@ Conexion conexion;
         jLabelReservaBusqueda = new javax.swing.JLabel();
         botonCrearReserva = new javax.swing.JButton();
         botonConfirmar = new javax.swing.JButton();
+        jTextFieldDNI = new javax.swing.JTextField();
+        validacionDNI = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -163,10 +165,6 @@ Conexion conexion;
             }
         });
         jPanel1.add(comboBoxTipoDeHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
-
-        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldDNI.setBorder(null);
-        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
         jTextFieldDomicilio.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDomicilio.setBorder(null);
@@ -321,6 +319,11 @@ Conexion conexion;
         botonCrearReserva.setBorder(null);
         botonCrearReserva.setContentAreaFilled(false);
         botonCrearReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearReservaActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonCrearReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
 
         botonConfirmar.setBackground(new java.awt.Color(255, 255, 255));
@@ -335,6 +338,16 @@ Conexion conexion;
             }
         });
         jPanel1.add(botonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+
+        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldDNI.setBorder(null);
+        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 110, -1));
+
+        validacionDNI.setBackground(new java.awt.Color(255, 255, 255));
+        validacionDNI.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        validacionDNI.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(validacionDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 200, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
@@ -542,6 +555,18 @@ Conexion conexion;
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
+    private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
+        int dni;  
+        
+        try {
+            dni = Integer.parseInt(jTextFieldDNI.getText());
+            validacionDNI.setText("");
+        } catch(NumberFormatException e) {
+            validacionDNI.setText("ingrese un numero de documento valido");
+        }
+        
+    }//GEN-LAST:event_botonCrearReservaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -622,5 +647,6 @@ Conexion conexion;
     private javax.swing.JTextField jTextFieldFechaSalida;
     private javax.swing.JTextField jTextFieldNombreApeliido;
     private javax.swing.JTextField jTextFieldPrecioTotal;
+    private javax.swing.JLabel validacionDNI;
     // End of variables declaration//GEN-END:variables
 }
