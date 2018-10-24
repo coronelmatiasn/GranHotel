@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import AppPackage.AnimationClass;
 import hotel.Conexion;
+import hotel.modelo.Habitacion;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
 import java.text.ParseException;
@@ -21,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Reserva_vista extends javax.swing.JFrame {
-private ReservaData rd;
 Conexion conexion;
     
     public Reserva_vista() {
@@ -29,7 +29,6 @@ Conexion conexion;
         this.setLocationRelativeTo(null);
         
         Conexion conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
-        rd = new ReservaData(conexion);
     }
     
     /**
@@ -568,15 +567,16 @@ Conexion conexion;
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
-                                                
+            ReservaData rd = new ReservaData(conexion);                                    
             int dni, cantidadDePersonas;
-            String nombre, domicilio, correo, celular;
+            String nombre, domicilio, correo, celular, categoria;
             Date fechaEntrada, fechaSalida;
             
             nombre = jTextFieldNombreApellido.getText();
             domicilio = jTextFieldDomicilio.getText();
             correo = jTextFieldCorreo.getText();
             celular = jTextFieldCelular.getText();
+            categoria = comboBoxTipoDeHabitacion.getSelectedItem().toString();
             
             //validacion para el campo de texto del DNI
             try {
@@ -616,6 +616,15 @@ Conexion conexion;
                 
                 return;
             }
+            
+            ArrayList<Habitacion> h;
+            h = rd.buscarHabitacionesLibres(categoria, cantidadDePersonas);
+            
+//            for(Habitacion hab : h) {
+//                System.out.println(hab.getNHabitacion());
+//                System.out.println(hab.getTipoHabitacion().getTipoCama().getCategoria());
+//                System.out.println(hab.getEstado());
+//            }
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
     /**
