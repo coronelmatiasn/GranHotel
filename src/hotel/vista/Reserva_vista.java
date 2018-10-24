@@ -13,25 +13,24 @@ import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 
 
 public class Reserva_vista extends javax.swing.JFrame {
 private ReservaData rd;
-private TipoHabitacionData thd;
-private Conexion conexion;
+Conexion conexion;
     
     public Reserva_vista() {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        Conexion conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
         rd = new ReservaData(conexion);
-        thd = new TipoHabitacionData(conexion);
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +52,13 @@ private Conexion conexion;
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        comboBoxTipoDeHabitacion = new javax.swing.JComboBox<>();
+        TipoHabitacionData thd;
+        ArrayList<String> tHCategorias;
+
+        conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        thd = new TipoHabitacionData(conexion);
+        tHCategorias = thd.obtenerCategorias();
+        comboBoxTipoDeHabitacion = new javax.swing.JComboBox(tHCategorias.toArray());
         jTextFieldDNI = new javax.swing.JTextField();
         jTextFieldDomicilio = new javax.swing.JTextField();
         jTextFieldCelular = new javax.swing.JTextField();
@@ -152,7 +157,6 @@ private Conexion conexion;
         comboBoxTipoDeHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         comboBoxTipoDeHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxTipoDeHabitacion.setMaximumRowCount(5);
-        comboBoxTipoDeHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar" }));
         comboBoxTipoDeHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxTipoDeHabitacionActionPerformed(evt);
@@ -546,7 +550,8 @@ private Conexion conexion;
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         */        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("windows".equals(info.getName())) {

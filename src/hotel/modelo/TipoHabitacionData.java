@@ -17,7 +17,7 @@ public class TipoHabitacionData {
     private Conexion conexion;
 
     public TipoHabitacionData(Conexion conexion) {
-        this.conexion=conexion;
+        this.conexion = conexion;
         connection = conexion.getConexion();
     }
     
@@ -162,14 +162,15 @@ public class TipoHabitacionData {
         ArrayList<String> categorias = new ArrayList<>();     
 
         try {
-            String sql = "SELECT DISTINCT categoria FROM tipo_de_habitacion;";
+            String sql = "SELECT DISTINCT categoria_habitacion FROM `tipo_de_habitacion`;";
             PreparedStatement statement = connection.prepareStatement(sql);
             
             ResultSet resultSet = statement.executeQuery();
             
             while(resultSet.next()){
-                categorias.add(resultSet.getString("categoria"));
-            }      
+                categorias.add(resultSet.getString("categoria_habitacion"));
+            }
+
             statement.close();
         } catch (SQLException ex) {
             System.out.println("Error al obtener lista de categorías: " + ex.getMessage());
