@@ -13,11 +13,12 @@ import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
-
 
 public class Reserva_vista extends javax.swing.JFrame {
 private ReservaData rd;
@@ -42,7 +43,7 @@ Conexion conexion;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldNombreApeliido = new javax.swing.JTextField();
+        jTextFieldNombreApellido = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -59,7 +60,6 @@ Conexion conexion;
         thd = new TipoHabitacionData(conexion);
         tHCategorias = thd.obtenerCategorias();
         comboBoxTipoDeHabitacion = new javax.swing.JComboBox(tHCategorias.toArray());
-        jTextFieldDNI = new javax.swing.JTextField();
         jTextFieldDomicilio = new javax.swing.JTextField();
         jTextFieldCelular = new javax.swing.JTextField();
         jTextFieldCorreo = new javax.swing.JTextField();
@@ -69,7 +69,7 @@ Conexion conexion;
         jSeparator5 = new javax.swing.JSeparator();
         jTextFieldFechaEntrada = new javax.swing.JTextField();
         jTextFieldFechaSalida = new javax.swing.JTextField();
-        jTextFieldCantidadPersona = new javax.swing.JTextField();
+        jTextFieldCantidadPersonas = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jTextFieldPrecioTotal = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
@@ -81,6 +81,10 @@ Conexion conexion;
         jLabelReservaBusqueda = new javax.swing.JLabel();
         botonCrearReserva = new javax.swing.JButton();
         botonConfirmar = new javax.swing.JButton();
+        jTextFieldDNI = new javax.swing.JTextField();
+        validacionTextDNI = new javax.swing.JLabel();
+        validationTextFecha = new javax.swing.JLabel();
+        validationTextCantidadPersonas = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -103,10 +107,10 @@ Conexion conexion;
         jLabel4.setText("Nombre y Apellido del Huesped");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 220, 20));
 
-        jTextFieldNombreApeliido.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldNombreApeliido.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldNombreApeliido.setBorder(null);
-        jPanel1.add(jTextFieldNombreApeliido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
+        jTextFieldNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldNombreApellido.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldNombreApellido.setBorder(null);
+        jPanel1.add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
@@ -163,10 +167,6 @@ Conexion conexion;
             }
         });
         jPanel1.add(comboBoxTipoDeHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
-
-        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldDNI.setBorder(null);
-        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
         jTextFieldDomicilio.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDomicilio.setBorder(null);
@@ -228,9 +228,9 @@ Conexion conexion;
         });
         jPanel1.add(jTextFieldFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
-        jTextFieldCantidadPersona.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldCantidadPersona.setBorder(null);
-        jPanel1.add(jTextFieldCantidadPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, -1));
+        jTextFieldCantidadPersonas.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCantidadPersonas.setBorder(null);
+        jPanel1.add(jTextFieldCantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, -1));
 
         jSeparator6.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator6.setForeground(new java.awt.Color(102, 204, 255));
@@ -321,6 +321,11 @@ Conexion conexion;
         botonCrearReserva.setBorder(null);
         botonCrearReserva.setContentAreaFilled(false);
         botonCrearReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearReservaActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonCrearReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, -1));
 
         botonConfirmar.setBackground(new java.awt.Color(255, 255, 255));
@@ -335,6 +340,26 @@ Conexion conexion;
             }
         });
         jPanel1.add(botonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+
+        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldDNI.setBorder(null);
+        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 110, -1));
+
+        validacionTextDNI.setBackground(new java.awt.Color(255, 255, 255));
+        validacionTextDNI.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        validacionTextDNI.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(validacionTextDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 200, 20));
+
+        validationTextFecha.setBackground(new java.awt.Color(255, 255, 255));
+        validationTextFecha.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        validationTextFecha.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(validationTextFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 220, 20));
+
+        validationTextCantidadPersonas.setBackground(new java.awt.Color(255, 255, 255));
+        validationTextCantidadPersonas.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        validationTextCantidadPersonas.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(validationTextCantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 90, 10));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
@@ -542,6 +567,57 @@ Conexion conexion;
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
+    private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
+                                                
+            int dni, cantidadDePersonas;
+            String nombre, domicilio, correo, celular;
+            Date fechaEntrada, fechaSalida;
+            
+            nombre = jTextFieldNombreApellido.getText();
+            domicilio = jTextFieldDomicilio.getText();
+            correo = jTextFieldCorreo.getText();
+            celular = jTextFieldCelular.getText();
+            
+            //validacion para el campo de texto del DNI
+            try {
+                dni = Integer.parseInt(jTextFieldDNI.getText());
+                
+                validacionTextDNI.setText("");
+                
+            } catch(NumberFormatException e) {
+                validacionTextDNI.setText("ingrese un numero de documento valido");
+                
+                return;
+            }
+            
+            //validacion para los campos de texto de fechas
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+                
+                fechaEntrada = format.parse(jTextFieldFechaEntrada.getText());
+                fechaSalida = format.parse(jTextFieldFechaSalida.getText());
+                
+                validationTextFecha.setText("");
+                
+            } catch(ParseException ex) {
+                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
+                
+                return;
+            }         
+            
+            //validacion para el campo de texto de numero de personas
+            try {
+                cantidadDePersonas = Integer.parseInt(jTextFieldCantidadPersonas.getText());
+                
+                validationTextCantidadPersonas.setText("");
+                
+            } catch(NumberFormatException e) {
+                validationTextCantidadPersonas.setText("ingrese un numero");
+                
+                return;
+            }
+    }//GEN-LAST:event_botonCrearReservaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -613,14 +689,17 @@ Conexion conexion;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextFieldCantidadPersona;
+    private javax.swing.JTextField jTextFieldCantidadPersonas;
     private javax.swing.JTextField jTextFieldCelular;
     private javax.swing.JTextField jTextFieldCorreo;
     private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JTextField jTextFieldDomicilio;
     private javax.swing.JTextField jTextFieldFechaEntrada;
     private javax.swing.JTextField jTextFieldFechaSalida;
-    private javax.swing.JTextField jTextFieldNombreApeliido;
+    private javax.swing.JTextField jTextFieldNombreApellido;
     private javax.swing.JTextField jTextFieldPrecioTotal;
+    private javax.swing.JLabel validacionTextDNI;
+    private javax.swing.JLabel validationTextCantidadPersonas;
+    private javax.swing.JLabel validationTextFecha;
     // End of variables declaration//GEN-END:variables
 }
