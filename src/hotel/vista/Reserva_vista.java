@@ -628,6 +628,9 @@ Conexion conexion;
             }      
                      
             panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
+            dialog.setSize(400,250);
+            dialog.setResizable(false);
+            
             dialog.add(panel);
             dialog.setVisible(true);
             
