@@ -22,6 +22,7 @@ public class HabitacionPanel extends javax.swing.JPanel {
     private double precioXNoche;
     private int nroHab;
     private boolean botonOk;
+    
     /**
      * Creates new form HabitacionPanel
      */
@@ -48,6 +49,11 @@ public class HabitacionPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(300, 220));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         table.setBackground(new java.awt.Color(255, 255, 255));
         table.setForeground(new java.awt.Color(0, 0, 0));
@@ -63,6 +69,11 @@ public class HabitacionPanel extends javax.swing.JPanel {
 
             tableModel.addRow(row);
         }
+        table.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                tableComponentAdded(evt);
+            }
+        });
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -76,6 +87,7 @@ public class HabitacionPanel extends javax.swing.JPanel {
         confirmar.setText("CONFIRMAR");
         confirmar.setAlignmentX(0.5F);
         confirmar.setBorder(null);
+        confirmar.setEnabled(false);
         confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarActionPerformed(evt);
@@ -120,16 +132,31 @@ public class HabitacionPanel extends javax.swing.JPanel {
             }      
         }
         
+        confirmar.setEnabled(true);
     }//GEN-LAST:event_tableMouseClicked
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         Window win = SwingUtilities.getWindowAncestor(this);
-        botonOk = true;
+        botonOk = true; 
         
         if (win != null) {
            win.dispose();
         }
     }//GEN-LAST:event_confirmarActionPerformed
+
+    private void tableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tableComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableComponentAdded
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        for(int i = 0; i < table.getRowCount(); i++) {
+            if(table.isRowSelected(i)) {
+                return;
+            }
+        }
+        
+        confirmar.setEnabled(false);
+    }//GEN-LAST:event_formMouseClicked
 
     public int getNroHab() {
         return nroHab;
@@ -137,6 +164,10 @@ public class HabitacionPanel extends javax.swing.JPanel {
     
     public double getPrecioXNoche() {
         return precioXNoche;
+    }
+    
+    public void setBotonOk(boolean botonOk) {
+        this.botonOk = botonOk;
     }
     
     public boolean getBotonOk() {

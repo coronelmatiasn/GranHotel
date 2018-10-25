@@ -253,14 +253,14 @@ HuespedData huespedD;
 
         jSeparator6.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator6.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 80, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 100, 10));
 
         jTextFieldPrecioTotal.setEditable(false);
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPrecioTotal.setBorder(null);
         jTextFieldPrecioTotal.setEnabled(false);
         jTextFieldPrecioTotal.setFocusable(false);
-        jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 80, -1));
+        jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 100, -1));
 
         jSeparator7.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator7.setForeground(new java.awt.Color(102, 204, 255));
@@ -354,6 +354,7 @@ HuespedData huespedD;
         botonConfirmar.setText("CONFIRMAR");
         botonConfirmar.setBorder(null);
         botonConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonConfirmar.setEnabled(false);
         botonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonConfirmarActionPerformed(evt);
@@ -651,6 +652,14 @@ HuespedData huespedD;
             
             dialog = dialog = new JDialog(this, "dialog", Dialog.ModalityType.DOCUMENT_MODAL);
             
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    panel.setBotonOk(false);
+                    dialog.dispose();
+                }
+            });
+            
             dialog.setSize(400,250);
             dialog.setResizable(false);
             dialog.setLocationRelativeTo(this);
@@ -673,7 +682,10 @@ HuespedData huespedD;
                 reserva.setEstado(true);
                 
                 jTextFieldPrecioTotal.setText(String.valueOf(reserva.getImporteTotal()));
-            }            
+                botonConfirmar.setEnabled(true);
+            } else {
+                botonConfirmar.setEnabled(false);
+            }           
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
     /**
