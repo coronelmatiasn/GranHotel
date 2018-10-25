@@ -14,12 +14,20 @@ import hotel.Conexion;
 import hotel.modelo.Habitacion;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
+import java.awt.Dialog;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 public class Reserva_vista extends javax.swing.JFrame {
 Conexion conexion;
@@ -567,6 +575,8 @@ Conexion conexion;
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
+            JDialog dialog = new JDialog(this, "dialog", Dialog.ModalityType.DOCUMENT_MODAL);
+            HabitacionPanel panel;
             ReservaData rd = new ReservaData(conexion);                                    
             int dni, cantidadDePersonas;
             String nombre, domicilio, correo, celular, categoria;
@@ -578,33 +588,33 @@ Conexion conexion;
             celular = jTextFieldCelular.getText();
             categoria = comboBoxTipoDeHabitacion.getSelectedItem().toString();
             
-            //validacion para el campo de texto del DNI
-            try {
-                dni = Integer.parseInt(jTextFieldDNI.getText());
-                
-                validacionTextDNI.setText("");
-                
-            } catch(NumberFormatException e) {
-                validacionTextDNI.setText("ingrese un numero de documento valido");
-                
-                return;
-            }
-            
-            //validacion para los campos de texto de fechas
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
-                
-                fechaEntrada = format.parse(jTextFieldFechaEntrada.getText());
-                fechaSalida = format.parse(jTextFieldFechaSalida.getText());
-                
-                validationTextFecha.setText("");
-                
-            } catch(ParseException ex) {
-                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
-                
-                return;
-            }         
-            
+//            //validacion para el campo de texto del DNI
+//            try {
+//                dni = Integer.parseInt(jTextFieldDNI.getText());
+//                
+//                validacionTextDNI.setText("");
+//                
+//            } catch(NumberFormatException e) {
+//                validacionTextDNI.setText("ingrese un numero de documento valido");
+//                
+//                return;
+//            }
+//            
+//            //validacion para los campos de texto de fechas
+//            try {
+//                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+//                
+//                fechaEntrada = format.parse(jTextFieldFechaEntrada.getText());
+//                fechaSalida = format.parse(jTextFieldFechaSalida.getText());
+//                
+//                validationTextFecha.setText("");
+//                
+//            } catch(ParseException ex) {
+//                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
+//                
+//                return;
+//            }         
+//            
             //validacion para el campo de texto de numero de personas
             try {
                 cantidadDePersonas = Integer.parseInt(jTextFieldCantidadPersonas.getText());
@@ -615,11 +625,15 @@ Conexion conexion;
                 validationTextCantidadPersonas.setText("ingrese un numero");
                 
                 return;
-            }
+            }      
+                     
+            panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
+            dialog.add(panel);
+            dialog.setVisible(true);
             
-            ArrayList<Habitacion> h;
-            h = rd.buscarHabitacionesLibres(categoria, cantidadDePersonas);
-            
+//            ArrayList<Habitacion> h;
+//            h = rd.buscarHabitacionesLibres(categoria, cantidadDePersonas);
+//            
 //            for(Habitacion hab : h) {
 //                System.out.println(hab.getNHabitacion());
 //                System.out.println(hab.getTipoHabitacion().getTipoCama().getCategoria());
@@ -627,6 +641,7 @@ Conexion conexion;
 //            }
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
