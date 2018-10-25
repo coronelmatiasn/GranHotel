@@ -6,9 +6,11 @@
 package hotel.vista;
 
 import hotel.modelo.Habitacion;
+import java.awt.Window;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,9 +18,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Fati
  */
 public class HabitacionPanel extends javax.swing.JPanel {
-    ArrayList<Habitacion> habitaciones;
-    double precioXNoche;
-    int nroHab;
+    private ArrayList<Habitacion> habitaciones;
+    private double precioXNoche;
+    private int nroHab;
+    private boolean botonOk;
     /**
      * Creates new form HabitacionPanel
      */
@@ -73,6 +76,11 @@ public class HabitacionPanel extends javax.swing.JPanel {
         confirmar.setText("CONFIRMAR");
         confirmar.setAlignmentX(0.5F);
         confirmar.setBorder(null);
+        confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,6 +105,7 @@ public class HabitacionPanel extends javax.swing.JPanel {
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int row = table.getSelectedRow();
         int columns = table.getColumnCount();
+        
         String columnName;
         
         for(int i = 0; i < columns; i++) {
@@ -110,11 +119,29 @@ public class HabitacionPanel extends javax.swing.JPanel {
                     break;
             }      
         }
-
-        System.out.println(nroHab);
-        System.out.println(precioXNoche);
+        
     }//GEN-LAST:event_tableMouseClicked
 
+    private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
+        Window win = SwingUtilities.getWindowAncestor(this);
+        botonOk = true;
+        
+        if (win != null) {
+           win.dispose();
+        }
+    }//GEN-LAST:event_confirmarActionPerformed
+
+    public int getNroHab() {
+        return nroHab;
+    }
+    
+    public double getPrecioXNoche() {
+        return precioXNoche;
+    }
+    
+    public boolean getBotonOk() {
+        return botonOk;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmar;

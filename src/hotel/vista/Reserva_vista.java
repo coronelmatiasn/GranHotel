@@ -12,28 +12,40 @@ import javax.swing.JOptionPane;
 import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.Habitacion;
+import hotel.modelo.HabitacionData;
+import hotel.modelo.Huesped;
+import hotel.modelo.HuespedData;
+import hotel.modelo.Reserva;
 import hotel.modelo.ReservaData;
 import hotel.modelo.TipoHabitacionData;
 import java.awt.Dialog;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.Date;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Locale;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
+
 
 public class Reserva_vista extends javax.swing.JFrame {
 Conexion conexion;
+JDialog dialog;
+Reserva reserva;
+Huesped huesped;
+Habitacion habitacion;
+HabitacionData hd;
+ReservaData rd;
+HuespedData huespedD;
     
     public Reserva_vista() {
         initComponents();
+        reserva = new Reserva();        
+        rd = new ReservaData(conexion);
+        huespedD = new HuespedData(conexion);
+        
         this.setLocationRelativeTo(null);
         
         Conexion conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
@@ -247,6 +259,7 @@ Conexion conexion;
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPrecioTotal.setBorder(null);
         jTextFieldPrecioTotal.setEnabled(false);
+        jTextFieldPrecioTotal.setFocusable(false);
         jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 40, -1));
 
         jSeparator7.setBackground(new java.awt.Color(102, 204, 255));
@@ -571,16 +584,17 @@ Conexion conexion;
     }//GEN-LAST:event_comboBoxTipoDeHabitacionActionPerformed
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
-        // TODO add your handling code here:
+        huespedD.guardarHuesped(huesped);
+        rd.guardarReserva(reserva);
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
-            JDialog dialog = new JDialog(this, "dialog", Dialog.ModalityType.DOCUMENT_MODAL);
+                   
             HabitacionPanel panel;
             ReservaData rd = new ReservaData(conexion);                                    
             int dni, cantidadDePersonas;
             String nombre, domicilio, correo, celular, categoria;
-            Date fechaEntrada, fechaSalida;
+            LocalDate fechaEntrada, fechaSalida;
             
             nombre = jTextFieldNombreApellido.getText();
             domicilio = jTextFieldDomicilio.getText();
@@ -588,33 +602,33 @@ Conexion conexion;
             celular = jTextFieldCelular.getText();
             categoria = comboBoxTipoDeHabitacion.getSelectedItem().toString();
             
-//            //validacion para el campo de texto del DNI
-//            try {
-//                dni = Integer.parseInt(jTextFieldDNI.getText());
-//                
-//                validacionTextDNI.setText("");
-//                
-//            } catch(NumberFormatException e) {
-//                validacionTextDNI.setText("ingrese un numero de documento valido");
-//                
-//                return;
-//            }
-//            
-//            //validacion para los campos de texto de fechas
-//            try {
-//                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
-//                
-//                fechaEntrada = format.parse(jTextFieldFechaEntrada.getText());
-//                fechaSalida = format.parse(jTextFieldFechaSalida.getText());
-//                
-//                validationTextFecha.setText("");
-//                
-//            } catch(ParseException ex) {
-//                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
-//                
-//                return;
-//            }         
-//            
+            //validacion para el campo de texto del DNI
+            try {
+                dni = Integer.parseInt(jTextFieldDNI.getText());
+                
+                validacionTextDNI.setText("");
+                
+            } catch(NumberFormatException e) {
+                validacionTextDNI.setText("ingrese un numero de documento valido");
+                
+                return;
+            }
+            
+            //validacion para los campos de texto de fechas
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+                
+                fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));
+                fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));;
+                
+                validationTextFecha.setText("");
+                
+            } catch(DateTimeParseException ex) {
+                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
+                
+                return;
+            }         
+            
             //validacion para el campo de texto de numero de personas
             try {
                 cantidadDePersonas = Integer.parseInt(jTextFieldCantidadPersonas.getText());
@@ -626,25 +640,42 @@ Conexion conexion;
                 
                 return;
             }      
-                     
+            
+            huesped = new Huesped(dni, nombre, domicilio, celular, correo);
+            reserva.setHuesped(huesped);
+            reserva.setFechaEntrada(fechaEntrada);
+            reserva.setFechaSalida(fechaSalida);
+            reserva.setCantidadDePersonas(cantidadDePersonas);
+            
             panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
+            
+            dialog = dialog = new JDialog(this, "dialog", Dialog.ModalityType.DOCUMENT_MODAL);
+            
             dialog.setSize(400,250);
             dialog.setResizable(false);
+            dialog.setLocationRelativeTo(this);
             
             dialog.add(panel);
             dialog.setVisible(true);
             
-//            ArrayList<Habitacion> h;
-//            h = rd.buscarHabitacionesLibres(categoria, cantidadDePersonas);
-//            
-//            for(Habitacion hab : h) {
-//                System.out.println(hab.getNHabitacion());
-//                System.out.println(hab.getTipoHabitacion().getTipoCama().getCategoria());
-//                System.out.println(hab.getEstado());
-//            }
+            int nroHabitacion;
+            double precioXNoche;
+            
+            if(panel.getBotonOk()) {
+                nroHabitacion = panel.getNroHab();
+                precioXNoche = panel.getPrecioXNoche();
+                
+                hd = new HabitacionData(conexion);
+                habitacion = hd.buscarHabitacion(nroHabitacion);
+                
+                reserva.setHabitacion(habitacion);
+                reserva.setImporteTotal(rd.calcularPrecio(precioXNoche, fechaEntrada, fechaSalida));      
+                reserva.setEstado(true);
+                
+                jTextFieldPrecioTotal.setText(String.valueOf(reserva.getImporteTotal()));
+            }            
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
