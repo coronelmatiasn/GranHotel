@@ -43,12 +43,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="table">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="tableModel" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String[] col = {&quot;nro&quot;, &quot;piso&quot;, &quot;precio por noche&quot;, &quot;camas&quot;};&#xa;&#xa;DefaultTableModel tableModel = new DefaultTableModel(col, 0);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for(Habitacion h : habitaciones) {&#xa;    Object[] row = {&#xa;        h.getNHabitacion(),&#xa;        h.getPiso(),&#xa;        h.getTipoHabitacion().getPrecioXNoche(),&#xa;        h.getTipoHabitacion().getTipoCama().getCategoria()&#xa;    };&#xa;&#xa;    tableModel.addRow(row);&#xa;}"/>

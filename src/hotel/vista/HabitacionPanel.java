@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HabitacionPanel extends javax.swing.JPanel {
     ArrayList<Habitacion> habitaciones;
+    double precioXNoche;
+    int nroHab;
     /**
      * Creates new form HabitacionPanel
      */
@@ -38,10 +40,10 @@ public class HabitacionPanel extends javax.swing.JPanel {
         String[] col = {"nro", "piso", "precio por noche", "camas"};
 
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         confirmar = new javax.swing.JButton();
 
-        jTable1.setModel(tableModel);
+        table.setModel(tableModel);
         for(Habitacion h : habitaciones) {
             Object[] row = {
                 h.getNHabitacion(),
@@ -52,7 +54,12 @@ public class HabitacionPanel extends javax.swing.JPanel {
 
             tableModel.addRow(row);
         }
-        jScrollPane1.setViewportView(jTable1);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
 
         confirmar.setText("CONFIRMAR");
 
@@ -76,10 +83,24 @@ public class HabitacionPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        int row = table.getSelectedRow();
+        int columns = table.getColumnCount();
+        
+//        for(int i = 0; i < columns; i++) {
+//            
+//            table.getValueAt(row, i);
+//        }
+
+        System.out.println(row);
+        System.out.println(table.getSelectedColumn());
+        System.out.println(columns);
+    }//GEN-LAST:event_tableMouseClicked
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
