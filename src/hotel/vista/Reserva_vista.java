@@ -253,14 +253,14 @@ HuespedData huespedD;
 
         jSeparator6.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator6.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 60, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 80, 10));
 
         jTextFieldPrecioTotal.setEditable(false);
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPrecioTotal.setBorder(null);
         jTextFieldPrecioTotal.setEnabled(false);
         jTextFieldPrecioTotal.setFocusable(false);
-        jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 40, -1));
+        jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 80, -1));
 
         jSeparator7.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator7.setForeground(new java.awt.Color(102, 204, 255));
