@@ -7,7 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import static java.util.concurrent.TimeUnit.DAYS;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,12 +31,22 @@ public class ReservaData {
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt (1, reserva.getCantidadDePersonas());
-            statement.setDate(2, reserva.getFechaEntrada());
-            statement.setDate(3, reserva.getFechaSalida());
+            statement.setDate(2, Date.valueOf(reserva.getFechaEntrada()));
+            statement.setDate(3, Date.valueOf(reserva.getFechaSalida()));
             statement.setDouble (4, reserva.getImporteTotal());
             statement.setObject(5, reserva.getHuesped().getDni());
-            statement.setObject (7, reserva.getHabitacion().getNHabitacion());
-            statement.setBoolean (8, reserva.getEstado());
+            statement.setObject (6, reserva.getHabitacion().getNHabitacion());
+            statement.setBoolean (7, reserva.getEstado());
+            
+            System.out.println(reserva.getCantidadDePersonas());
+            System.out.println(reserva.getFechaEntrada());
+            System.out.println(reserva.getFechaSalida());
+            System.out.println(reserva.getImporteTotal());
+            System.out.println(reserva.getHuesped().getDni());
+            System.out.println(reserva.getHabitacion().getNHabitacion());
+            System.out.println(reserva.getEstado());
+            
+            statement.executeUpdate();
             
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -41,8 +55,7 @@ public class ReservaData {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-          
-            statement.executeUpdate();
+            
             statement.close();
             
         }  catch (SQLException ex) {
@@ -69,8 +82,8 @@ public class ReservaData {
                 
                 reserva.setNroReserva(resultSet.getInt ("nro_reserva"));
                 reserva.setCantidadDePersonas(resultSet.getInt ("cantidad_de_personas"));
-                reserva.setFechaEntrada(resultSet.getDate ("fecha_entrada"));
-                reserva.setFechaSalida(resultSet.getDate ("fecha_salida"));
+                reserva.setFechaEntrada(resultSet.getDate("fecha_entrada").toLocalDate());
+                reserva.setFechaSalida(resultSet.getDate("fecha_salida").toLocalDate());
                 reserva.setImporteTotal(resultSet.getDouble ("importe_total"));
                 reserva.setEstado(resultSet.getBoolean ("estado"));
                 reserva.setHuesped(huesped);
@@ -106,10 +119,10 @@ public class ReservaData {
                 huesped = buscarHuesped(resultSet.getInt("dni"));
                 habitacion = buscarHabitacion(resultSet.getInt("nro_habitacion"));
                 
-                reserva.setNroReserva(resultSet.getInt ("nro_reserva"));
-                reserva.setCantidadDePersonas(resultSet.getInt ("cantidad_de_personas"));
-                reserva.setFechaEntrada(resultSet.getDate ("fecha_entrada"));
-                reserva.setFechaSalida(resultSet.getDate ("fecha_salida"));
+                reserva.setNroReserva(resultSet.getInt("nro_reserva"));
+                reserva.setCantidadDePersonas(resultSet.getInt("cantidad_de_personas"));
+                reserva.setFechaEntrada(resultSet.getDate("fecha_entrada").toLocalDate());
+                reserva.setFechaSalida(resultSet.getDate("fecha_salida").toLocalDate());
                 reserva.setImporteTotal(resultSet.getDouble ("importe_total"));
                 reserva.setEstado(resultSet.getBoolean ("estado"));
                 reserva.setHuesped(huesped);
@@ -153,8 +166,8 @@ public class ReservaData {
 
                     reserva.setNroReserva(resultSet.getInt ("nro_reserva"));
                     reserva.setCantidadDePersonas(resultSet.getInt ("cantidad_de_personas"));
-                    reserva.setFechaEntrada(resultSet.getDate ("fecha_entrada"));
-                    reserva.setFechaSalida(resultSet.getDate ("fecha_salida"));
+                    reserva.setFechaEntrada(resultSet.getDate("fecha_entrada").toLocalDate());
+                    reserva.setFechaSalida(resultSet.getDate("fecha_salida").toLocalDate());
                     reserva.setImporteTotal(resultSet.getDouble ("importe_total"));
                     reserva.setEstado(resultSet.getBoolean ("estado"));
                     reserva.setHuesped(huesped);
@@ -232,5 +245,12 @@ public class ReservaData {
         HabitacionData h = new HabitacionData(conexion);
         
         return h.buscarHabitacion(nro);    
+    }
+    
+    public double calcularPrecio(double precio, LocalDate fechaEntrada, LocalDate fechaSalida) {
+        long dias = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
+        
+        double total = precio * dias;
+        return total;
     }
 }
