@@ -105,7 +105,7 @@ JDialog dialog;
         validacionTextDNI = new javax.swing.JLabel();
         validationTextFecha = new javax.swing.JLabel();
         validationTextCantidadPersonas = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonBuscarReserva = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -397,17 +397,17 @@ JDialog dialog;
         validationTextCantidadPersonas.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(validationTextCantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 90, 10));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("BUSCAR RESERVA");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscarReserva.setBackground(new java.awt.Color(255, 255, 255));
+        botonBuscarReserva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        botonBuscarReserva.setForeground(new java.awt.Color(0, 0, 0));
+        botonBuscarReserva.setText("BUSCAR RESERVA");
+        botonBuscarReserva.setBorder(null);
+        botonBuscarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonBuscarReservaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        jPanel1.add(botonBuscarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
@@ -716,7 +716,7 @@ JDialog dialog;
             }           
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarReservaActionPerformed
         BuscarReservaPanel pBusqueda = new BuscarReservaPanel();
         dialog = new JDialog(this, "Buscar Reserva", Dialog.ModalityType.DOCUMENT_MODAL);
         
@@ -726,7 +726,7 @@ JDialog dialog;
         
         dialog.add(pBusqueda);
         dialog.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonBuscarReservaActionPerformed
 
     private void clearFields() {
         jTextFieldNombreApellido.setText("");
@@ -788,10 +788,10 @@ JDialog dialog;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonBuscarReserva;
     private javax.swing.JButton botonConfirmar;
     private javax.swing.JButton botonCrearReserva;
     private javax.swing.JComboBox<String> comboBoxTipoDeHabitacion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
