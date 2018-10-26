@@ -120,6 +120,7 @@ JDialog dialog;
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -259,9 +260,16 @@ JDialog dialog;
 
         jTextFieldPrecioTotal.setEditable(false);
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldPrecioTotal.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPrecioTotal.setBorder(null);
+        jTextFieldPrecioTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldPrecioTotal.setEnabled(false);
         jTextFieldPrecioTotal.setFocusable(false);
+        jTextFieldPrecioTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPrecioTotalActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextFieldPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 100, -1));
 
         jSeparator7.setBackground(new java.awt.Color(102, 204, 255));
@@ -713,6 +721,10 @@ JDialog dialog;
         dialog.add(pBusqueda);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPrecioTotalActionPerformed
 
     /**
      * @param args the command line arguments
