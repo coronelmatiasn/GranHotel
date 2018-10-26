@@ -38,14 +38,6 @@ public class ReservaData {
             statement.setObject (6, reserva.getHabitacion().getNHabitacion());
             statement.setBoolean (7, reserva.getEstado());
             
-            System.out.println(reserva.getCantidadDePersonas());
-            System.out.println(reserva.getFechaEntrada());
-            System.out.println(reserva.getFechaSalida());
-            System.out.println(reserva.getImporteTotal());
-            System.out.println(reserva.getHuesped().getDni());
-            System.out.println(reserva.getHabitacion().getNHabitacion());
-            System.out.println(reserva.getEstado());
-            
             statement.executeUpdate();
             
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
