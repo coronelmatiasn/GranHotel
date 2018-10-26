@@ -132,6 +132,11 @@ JDialog dialog;
         jTextFieldNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNombreApellido.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNombreApellido.setBorder(null);
+        jTextFieldNombreApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreApellidoActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
@@ -612,6 +617,7 @@ JDialog dialog;
         huespedD.guardarHuesped(huesped);
         rd.guardarReserva(reserva);
         hd.setEstadoHabitacion(reserva.getHabitacion().getNHabitacion(), true);
+        clearFields();
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
@@ -672,7 +678,7 @@ JDialog dialog;
             
             panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
             
-            dialog = dialog = new JDialog(this, "Habitaciones", Dialog.ModalityType.DOCUMENT_MODAL);
+            dialog = new JDialog(this, "Habitaciones", Dialog.ModalityType.DOCUMENT_MODAL);
             
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
@@ -722,9 +728,25 @@ JDialog dialog;
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void clearFields() {
+        jTextFieldNombreApellido.setText("");
+        jTextFieldDNI.setText("");
+        jTextFieldCelular.setText("");
+        jTextFieldCorreo.setText("");
+        jTextFieldDomicilio.setText("");
+        jTextFieldFechaEntrada.setText("");
+        jTextFieldFechaSalida.setText("");
+        jTextFieldCantidadPersonas.setText("");
+        jTextFieldPrecioTotal.setText("");
+    }
+    
     private void jTextFieldPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPrecioTotalActionPerformed
+
+    private void jTextFieldNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreApellidoActionPerformed
 
     /**
      * @param args the command line arguments
