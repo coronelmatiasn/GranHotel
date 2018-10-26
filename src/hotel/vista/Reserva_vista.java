@@ -629,11 +629,9 @@ JDialog dialog;
             }
             
             //validacion para los campos de texto de fechas
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                
-                fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));
-                fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));;
+            try {                
+                fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
                 
                 validationTextFecha.setText("");
                 
