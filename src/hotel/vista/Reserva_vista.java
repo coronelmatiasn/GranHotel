@@ -568,9 +568,9 @@ JDialog dialog;
     }//GEN-LAST:event_jLabelHuespedMouseReleased
 
     private void jLabelHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHuespedMouseClicked
-         Huesped_vista huesped =new Huesped_vista();
-       huesped.setVisible(true);
-       dispose();
+        Huesped_vista huesped = new Huesped_vista();
+        huesped.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabelHuespedMouseClicked
 
     private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
