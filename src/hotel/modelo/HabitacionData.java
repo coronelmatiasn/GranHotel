@@ -225,9 +225,27 @@ public class HabitacionData {
         } catch (SQLException ex) {
             Logger.getLogger(HabitacionData.class.getName()).log(Level.SEVERE, null, ex);
         }
- }   
+    }   
      
-   
+    public void setEstadoHabitacion(int nHabitacion, boolean estado) {
+        PreparedStatement statement;
+        
+        String sql = "UPDATE habitacion SET estado = ? WHERE nro_habitacion = ?;";
+        
+        try {
+            statement = connection.prepareStatement(sql);
+            
+            statement.setBoolean(1, estado);
+            statement.setInt(2, nHabitacion);
+            
+            statement.executeUpdate();
+            
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(HabitacionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void borrarHabitacion(int nro_habitacion){
         try {

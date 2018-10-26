@@ -6,6 +6,7 @@
 package hotel.vista;
 
 import hotel.Conexion;
+import hotel.modelo.HabitacionData;
 import hotel.modelo.Reserva;
 import hotel.modelo.ReservaData;
 import java.util.ArrayList;
@@ -128,6 +129,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ReservaData rd = new ReservaData(conexion);
+        HabitacionData hd = new HabitacionData(conexion);
         int columns = table.getColumnCount();
         int row = table.getSelectedRow();
         String columnName;
@@ -145,8 +147,8 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         
         if(nHab != -1) {
             rd.finalizarReserva(nHab);
+            hd.setEstadoHabitacion(nHab, false);
         }
-        
         
         buscarReservas();
         setTableContent();

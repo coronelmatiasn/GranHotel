@@ -599,8 +599,11 @@ JDialog dialog;
     }//GEN-LAST:event_comboBoxTipoDeHabitacionActionPerformed
 
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
+        hd = new HabitacionData(conexion);
+        
         huespedD.guardarHuesped(huesped);
         rd.guardarReserva(reserva);
+        hd.setEstadoHabitacion(reserva.getHabitacion().getNHabitacion(), true);
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
