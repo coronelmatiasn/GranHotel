@@ -5,17 +5,29 @@
  */
 package hotel.vista;
 
+import hotel.Conexion;
+import hotel.modelo.Reserva;
+import hotel.modelo.ReservaData;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fati
  */
 public class BuscarReservaPanel extends javax.swing.JPanel {
+    private Reserva reserva;
+    private ArrayList<Reserva> lReservas;
+    private Conexion conexion;
+    private DefaultTableModel dataModel;
 
     /**
      * Creates new form BuscarReserva
      */
     public BuscarReservaPanel() {
+        conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
         initComponents();
+        setTableModel();
     }
 
     /**
@@ -30,13 +42,17 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         campoBusqueda = new javax.swing.JTextField();
         botonBusqueda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        table = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
         botonBusqueda.setText("Buscar");
+        botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedaActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,11 +63,14 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
-        jButton1.setText("MODIFICAR RESERVA");
-
-        jButton2.setText("BORRAR RESERVA");
+        jButton2.setText("TERMINAR RESERVA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,12 +85,11 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
                         .addComponent(botonBusqueda))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(116, 116, 116)
+                                .addComponent(jButton2)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,20 +102,102 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton2)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        buscarReservas();
+        setTableContent();
+    }//GEN-LAST:event_botonBusquedaActionPerformed
+
+    private void buscarReservas() {
+        String huesped;
+        ReservaData rd = new ReservaData(conexion);
+        huesped = campoBusqueda.getText();
+        
+        try {
+            int dni = Integer.parseInt(huesped);
+            lReservas = rd.buscarReservasPorHuesped(dni);
+        } catch(NumberFormatException e) {
+            lReservas = rd.buscarReservasPorHuesped(huesped);
+        }
+        
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ReservaData rd = new ReservaData(conexion);
+        int columns = table.getColumnCount();
+        int row = table.getSelectedRow();
+        String columnName;
+        
+        int nHab = -1;
+        
+        for(int i = 0; i < columns; i++) {
+            columnName = table.getColumnName(i);
+            switch(columnName) {
+                case "N°":
+                    nHab = (int) table.getValueAt(row, i);
+                    break;
+            }      
+        }
+        
+        if(nHab != -1) {
+            rd.finalizarReserva(nHab);
+        }
+        
+        
+        buscarReservas();
+        setTableContent();
+    }//GEN-LAST:event_jButton2ActionPerformed
+            
+    private void setTableModel() {
+        String col[] = {
+            "N°", 
+            "Habitacion", 
+            "DNI", 
+            "Huesped", 
+            "Fecha Entrada", 
+            "Fecha Salida", 
+            "Cantidad De Personas", 
+            "Importe",
+            "Estado"
+        };
+        
+        dataModel = new DefaultTableModel(col, 0);
+        
+        table.setModel(dataModel);
+        table.setDragEnabled(false);
+    }
+    
+    private void setTableContent() {
+        for(int i = dataModel.getRowCount(); i > 0; i--) {
+            dataModel.removeRow(i - 1);
+        }
+        
+        for(Reserva r : lReservas) {
+            Object row[] = {
+                r.getNroReserva(), 
+                r.getHabitacion().getNHabitacion(), 
+                r.getHuesped().getDni(),
+                r.getHuesped().getNombre(),
+                r.getFechaEntrada().toString(),
+                r.getFechaSalida().toString(),
+                r.getCantidadDePersonas(),
+                r.getImporteTotal(),
+                r.getEstado() ? "activa" : "inactiva"
+            };
+            
+            dataModel.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JTextField campoBusqueda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

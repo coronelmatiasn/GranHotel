@@ -178,6 +178,25 @@ public class ReservaData {
         return reservas;
     }
     
+    public void finalizarReserva(int nReserva) {
+        PreparedStatement statement;
+        
+        String sql = "UPDATE reserva SET estado = false WHERE nro_reserva = ?;";
+        
+        try {
+            statement = connection.prepareStatement(sql);
+            
+            statement.setInt(1, nReserva);
+            
+            statement.executeUpdate();
+            
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public ArrayList<Habitacion> buscarHabitacionesLibres(String categoria, int cantPersonas) {
         ArrayList<Habitacion> habLibres = new ArrayList<>();
         ArrayList<TipoHabitacion> tiposHab;
