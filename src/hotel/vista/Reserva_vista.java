@@ -28,17 +28,18 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 
 public class Reserva_vista extends javax.swing.JFrame {
 Conexion conexion;
-JDialog dialog;
 Reserva reserva;
 Huesped huesped;
 Habitacion habitacion;
 HabitacionData hd;
 ReservaData rd;
 HuespedData huespedD;
+JDialog dialog;
     
     public Reserva_vista() {
         initComponents();
@@ -104,6 +105,7 @@ HuespedData huespedD;
         validacionTextDNI = new javax.swing.JLabel();
         validationTextFecha = new javax.swing.JLabel();
         validationTextCantidadPersonas = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -201,7 +203,7 @@ HuespedData huespedD;
 
         jSeparator2.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 110, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 110, 10));
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
@@ -365,7 +367,7 @@ HuespedData huespedD;
         jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldDNI.setBorder(null);
-        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 110, -1));
+        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 110, -1));
 
         validacionTextDNI.setBackground(new java.awt.Color(255, 255, 255));
         validacionTextDNI.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
@@ -381,6 +383,18 @@ HuespedData huespedD;
         validationTextCantidadPersonas.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         validationTextCantidadPersonas.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(validationTextCantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 90, 10));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("BUSCAR RESERVA");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
@@ -590,7 +604,6 @@ HuespedData huespedD;
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
-                   
             HabitacionPanel panel;
             ReservaData rd = new ReservaData(conexion);                                    
             int dni, cantidadDePersonas;
@@ -617,7 +630,7 @@ HuespedData huespedD;
             
             //validacion para los campos de texto de fechas
             try {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 
                 fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));
                 fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yy"));;
@@ -650,7 +663,7 @@ HuespedData huespedD;
             
             panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
             
-            dialog = dialog = new JDialog(this, "dialog", Dialog.ModalityType.DOCUMENT_MODAL);
+            dialog = dialog = new JDialog(this, "Habitaciones", Dialog.ModalityType.DOCUMENT_MODAL);
             
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
@@ -687,6 +700,18 @@ HuespedData huespedD;
                 botonConfirmar.setEnabled(false);
             }           
     }//GEN-LAST:event_botonCrearReservaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BuscarReservaPanel pBusqueda = new BuscarReservaPanel();
+        dialog = new JDialog(this, "Buscar Reserva", Dialog.ModalityType.DOCUMENT_MODAL);
+        
+        dialog.setLocationRelativeTo(this);
+        dialog.setResizable(false);
+        dialog.setSize(400, 280);
+        
+        dialog.add(pBusqueda);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -731,6 +756,7 @@ HuespedData huespedD;
     private javax.swing.JButton botonConfirmar;
     private javax.swing.JButton botonCrearReserva;
     private javax.swing.JComboBox<String> comboBoxTipoDeHabitacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
