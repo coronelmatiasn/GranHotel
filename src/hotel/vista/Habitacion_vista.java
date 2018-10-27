@@ -115,7 +115,6 @@ private Conexion conexion;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
-        jLabelReservaBusqueda = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jRadioButtonDesocupado = new javax.swing.JRadioButton();
@@ -139,7 +138,7 @@ private Conexion conexion;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -154,7 +153,7 @@ private Conexion conexion;
         jPanel1.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -163,7 +162,7 @@ private Conexion conexion;
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -217,7 +216,7 @@ private Conexion conexion;
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -232,7 +231,7 @@ private Conexion conexion;
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 40, 30));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -247,7 +246,7 @@ private Conexion conexion;
         jPanel2.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 50, 30, 40));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -260,21 +259,6 @@ private Conexion conexion;
             }
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 40, 40));
-
-        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png"))); // NOI18N
-        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelReservaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 150, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -335,7 +319,7 @@ private Conexion conexion;
         jLabelAgregarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelAgregarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelAgregarHabitacion.setText("Agregar Habitacion");
-        jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelAgregarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelAgregarHabitacionMouseClicked(evt);
@@ -352,7 +336,7 @@ private Conexion conexion;
         jLabelMostrarHabitaciones.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelMostrarHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
         jLabelMostrarHabitaciones.setText("Mostrar Habitaciones");
-        jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMostrarHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMostrarHabitacionesMouseClicked(evt);
@@ -383,7 +367,7 @@ private Conexion conexion;
         jLabelBorrarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelBorrarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBorrarHabitacion.setText("Borrar Habitacion");
-        jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelBorrarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelBorrarHabitacionMouseClicked(evt);
@@ -435,15 +419,7 @@ private Conexion conexion;
        //mueve el icono huesped a la izquierda
        AnimationClass huespedd =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
-       
-       
-        //mueve el icono buscar reserva a la izquieda
-        AnimationClass busquedaReserva = new AnimationClass();
-       busquedaReserva.jLabelXRight(-40, 10, 10, 5, jLabelReservaBusqueda);
-       
-       //mueve el icono buscar reserva  a la derecha 
-       AnimationClass busquedaReservaa = new AnimationClass();
-       busquedaReservaa.jLabelXLeft(10, -40,10,5,jLabelReservaBusqueda);
+             
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMousePressed
@@ -508,20 +484,6 @@ private Conexion conexion;
        }       
 
     }//GEN-LAST:event_jLabelCancelarMouseClicked
-
-    private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-         ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
-      busqueda.setVisible(true);
-       dispose(); 
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
-
-    private void jLabelReservaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMousePressed
-        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva_in.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMousePressed
-
-    private void jLabelReservaBusquedaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseReleased
-       jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     private void jLabelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaMouseClicked
      
@@ -748,7 +710,6 @@ private Conexion conexion;
     private javax.swing.JLabel jLabelMostrarHabitaciones;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
-    private javax.swing.JLabel jLabelReservaBusqueda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonDesocupado;

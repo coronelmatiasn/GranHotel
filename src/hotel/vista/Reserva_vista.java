@@ -98,7 +98,6 @@ JDialog dialog;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
-        jLabelReservaBusqueda = new javax.swing.JLabel();
         botonCrearReserva = new javax.swing.JButton();
         botonConfirmar = new javax.swing.JButton();
         jTextFieldDNI = new javax.swing.JTextField();
@@ -334,21 +333,6 @@ JDialog dialog;
         });
         jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
 
-        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png"))); // NOI18N
-        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseReleased(evt);
-            }
-        });
-        jPanel1.add(jLabelReservaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 40));
-
         botonCrearReserva.setBackground(new java.awt.Color(255, 255, 255));
         botonCrearReserva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botonCrearReserva.setForeground(new java.awt.Color(0, 0, 0));
@@ -540,14 +524,7 @@ JDialog dialog;
        //mueve el icono huesped a la izquierda
        AnimationClass huespedd =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
-       
-       //mueve el icono buscar reserva  a la izquieda
-       AnimationClass busquedaReserva = new AnimationClass();
-       busquedaReserva.jLabelXRight(-40, 10, 10, 5, jLabelReservaBusqueda);
-       
-       //mueve el icono buscar reserva a la derecha 
-       AnimationClass busquedaReservaa = new AnimationClass();
-       busquedaReservaa.jLabelXLeft(10, -40,10,5, jLabelReservaBusqueda);
+
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMouseClicked
@@ -591,21 +568,6 @@ JDialog dialog;
       habitacion.setVisible(true);
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
-
-    private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-        ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
-      busqueda.setVisible(true);
-       dispose(); 
-
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
-
-    private void jLabelReservaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMousePressed
-       jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva_in.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMousePressed
-
-    private void jLabelReservaBusquedaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseReleased
-         jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar_reserva.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
 
     private void comboBoxTipoDeHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoDeHabitacionActionPerformed
         // TODO add your handling code here:
@@ -808,7 +770,6 @@ JDialog dialog;
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
-    private javax.swing.JLabel jLabelReservaBusqueda;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

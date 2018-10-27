@@ -32,7 +32,6 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelReservaBusqueda = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -47,21 +46,6 @@ public class Menu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(700, 478));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.png"))); // NOI18N
-        jLabelReservaBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelReservaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelReservaBusquedaMouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabelReservaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 70, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 130, 130));
@@ -227,20 +211,6 @@ public class Menu extends javax.swing.JFrame {
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
 
-    private void jLabelReservaBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMousePressed
-       jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda_in.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMousePressed
-
-    private void jLabelReservaBusquedaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseReleased
-        jLabelReservaBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda_in.png")));
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseReleased
-
-    private void jLabelReservaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelReservaBusquedaMouseClicked
-        ReservaBusqueda_vista busqueda=new  ReservaBusqueda_vista();
-      busqueda.setVisible(true);
-       dispose(); 
-    }//GEN-LAST:event_jLabelReservaBusquedaMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -285,6 +255,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelHuesped;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelReserva;
-    private javax.swing.JLabel jLabelReservaBusqueda;
     // End of variables declaration//GEN-END:variables
 }

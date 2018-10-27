@@ -44,7 +44,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         botonBusqueda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        botonTerminarReserva = new javax.swing.JButton();
 
         botonBusqueda.setText("Buscar");
         botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
@@ -66,10 +66,10 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table);
 
-        jButton2.setText("TERMINAR RESERVA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonTerminarReserva.setText("TERMINAR RESERVA");
+        botonTerminarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonTerminarReservaActionPerformed(evt);
             }
         });
 
@@ -90,7 +90,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(116, 116, 116)
-                                .addComponent(jButton2)))))
+                                .addComponent(botonTerminarReserva)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,7 +103,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(botonTerminarReserva)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -127,7 +127,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         
     }
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonTerminarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarReservaActionPerformed
         ReservaData rd = new ReservaData(conexion);
         HabitacionData hd = new HabitacionData(conexion);
         int columns = table.getColumnCount();
@@ -138,10 +138,9 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         
         for(int i = 0; i < columns; i++) {
             columnName = table.getColumnName(i);
-            switch(columnName) {
-                case "N°":
-                    nHab = (int) table.getValueAt(row, i);
-                    break;
+            
+            if(columnName.equals("N°")) {
+                nHab = (int) table.getValueAt(row, i);
             }      
         }
         
@@ -152,7 +151,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         
         buscarReservas();
         setTableContent();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonTerminarReservaActionPerformed
             
     private void setTableModel() {
         String col[] = {
@@ -197,8 +196,8 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusqueda;
+    private javax.swing.JButton botonTerminarReserva;
     private javax.swing.JTextField campoBusqueda;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
