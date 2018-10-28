@@ -138,7 +138,7 @@ private Conexion conexion;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -153,7 +153,7 @@ private Conexion conexion;
         jPanel1.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -162,7 +162,7 @@ private Conexion conexion;
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -216,7 +216,7 @@ private Conexion conexion;
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -231,7 +231,7 @@ private Conexion conexion;
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 40, 30));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -246,7 +246,7 @@ private Conexion conexion;
         jPanel2.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 50, 30, 40));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -319,7 +319,7 @@ private Conexion conexion;
         jLabelAgregarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelAgregarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelAgregarHabitacion.setText("Agregar Habitacion");
-        jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelAgregarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelAgregarHabitacionMouseClicked(evt);
@@ -336,7 +336,7 @@ private Conexion conexion;
         jLabelMostrarHabitaciones.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelMostrarHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
         jLabelMostrarHabitaciones.setText("Mostrar Habitaciones");
-        jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMostrarHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMostrarHabitacionesMouseClicked(evt);
@@ -367,7 +367,7 @@ private Conexion conexion;
         jLabelBorrarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelBorrarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBorrarHabitacion.setText("Borrar Habitacion");
-        jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBorrarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelBorrarHabitacionMouseClicked(evt);
@@ -564,7 +564,7 @@ private Conexion conexion;
         if(jRadioButtonDesocupado.isSelected()){
             
           //creamos una lista que va a recibir  los tipos de habitaciones que van a estar desocupadas ya que se le manda un true y el indice que capturamos del combox que sera el id del tipo de habitacion  
-         ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(true,idtipo);
+         ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(false,idtipo);
         
          //Llenar filas
         for(Habitacion m: listaHabitacion){
@@ -572,7 +572,7 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
             }
           
           
@@ -587,7 +587,7 @@ private Conexion conexion;
         }else if (jRadioButtonOcupado.isSelected()){
             
             //creamos una lista que va a recibir  los tipos de habitaciones que van a estar ocupados ya que se le manda un false y el indice que capturamos del combox que sera el id del tipo de habitacion
-             ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(false,idtipo);
+             ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(true,idtipo);
         
          //Llenar filas
         for(Habitacion m: listaHabitacion){
@@ -595,7 +595,7 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
             }
           
          
