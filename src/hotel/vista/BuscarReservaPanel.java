@@ -134,19 +134,24 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         int row = table.getSelectedRow();
         String columnName;
         
-        int nHab = -1;
+        int nReserva = -1;
+        int nHabitacion = -1;
         
         for(int i = 0; i < columns; i++) {
             columnName = table.getColumnName(i);
             
             if(columnName.equals("N°")) {
-                nHab = (int) table.getValueAt(row, i);
-            }      
+                nReserva = (int) table.getValueAt(row, i);
+            }
+            
+            if(columnName.equals("Habitacion")) {
+                nHabitacion = (int) table.getValueAt(row, i);
+            }
         }
         
-        if(nHab != -1) {
-            rd.finalizarReserva(nHab);
-            hd.setEstadoHabitacion(nHab, false);
+        if(nReserva != -1) {
+            rd.finalizarReserva(nReserva);
+            hd.setEstadoHabitacion(nHabitacion, false);
         }
         
         buscarReservas();
