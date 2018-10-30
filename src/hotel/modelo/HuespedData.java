@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class HuespedData {
@@ -107,6 +109,29 @@ public class HuespedData {
     
     }
 
+    public boolean existeHuesped(int dni) {
+        int total = 0;
+
+        try {
+            
+            String sql = "SELECT SUM(dni = ?) AS total FROM huesped";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, dni);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()) {
+                total = resultSet.getInt("total");
+            }
+            
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HuespedData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return total != 0;
+    }
 
     public Huesped buscarHuesped(int dni){
         Huesped huesped = null;
@@ -118,7 +143,7 @@ public class HuespedData {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, dni);  
             
-            ResultSet resultSet=statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
             
             while(resultSet.next()){
                 huesped = new Huesped();

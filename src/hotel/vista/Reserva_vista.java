@@ -126,7 +126,7 @@ JDialog dialog;
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre y Apellido del Huesped");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 220, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 220, 20));
 
         jTextFieldNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNombreApellido.setForeground(new java.awt.Color(0, 0, 0));
@@ -136,17 +136,17 @@ JDialog dialog;
                 jTextFieldNombreApellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
+        jPanel1.add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 270, -1));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
         jSeparator1.setToolTipText("");
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 270, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 270, 10));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("D.N.I");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 50, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -208,7 +208,7 @@ JDialog dialog;
 
         jSeparator2.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 110, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 110, 10));
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
@@ -289,7 +289,7 @@ JDialog dialog;
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 60, 10));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -304,7 +304,7 @@ JDialog dialog;
         jPanel1.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 30, 40));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png"))); // NOI18N
-        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHabitacionMouseClicked(evt);
@@ -319,7 +319,7 @@ JDialog dialog;
         jPanel1.add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 60, 30, 40));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -364,7 +364,12 @@ JDialog dialog;
         jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldDNI.setBorder(null);
-        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 110, -1));
+        jTextFieldDNI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldDNIFocusLost(evt);
+            }
+        });
+        jPanel1.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 110, -1));
 
         validacionTextDNI.setBackground(new java.awt.Color(255, 255, 255));
         validacionTextDNI.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
@@ -399,7 +404,7 @@ JDialog dialog;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -414,7 +419,7 @@ JDialog dialog;
         jPanel2.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, -1, 35));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -429,7 +434,7 @@ JDialog dialog;
         jPanel2.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 6, -1, 35));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -576,7 +581,10 @@ JDialog dialog;
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
         hd = new HabitacionData(conexion);
         
-        huespedD.guardarHuesped(huesped);
+        if(!huespedD.existeHuesped(huesped.getDni())) {
+            huespedD.guardarHuesped(huesped);
+        }
+        
         rd.guardarReserva(reserva);
         hd.setEstadoHabitacion(reserva.getHabitacion().getNHabitacion(), true);
         clearFields();
@@ -709,6 +717,32 @@ JDialog dialog;
     private void jTextFieldNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNombreApellidoActionPerformed
+
+    private void jTextFieldDNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDNIFocusLost
+        int dni;
+        
+        if(!jTextFieldDNI.getText().equals("")){
+            try {
+                dni = Integer.parseInt(jTextFieldDNI.getText());
+                
+                validacionTextDNI.setText("");
+                
+            } catch(NumberFormatException e) {
+                validacionTextDNI.setText("ingrese un numero de documento valido");
+                
+                return;
+            }
+            
+            huesped = huespedD.buscarHuesped(dni);
+            
+            if(huesped != null) {
+                jTextFieldNombreApellido.setText(huesped.getNombre());
+                jTextFieldCelular.setText(huesped.getCelular());
+                jTextFieldCorreo.setText(huesped.getCorreo());
+                jTextFieldDomicilio.setText(huesped.getDomicilio());
+            }
+        }
+    }//GEN-LAST:event_jTextFieldDNIFocusLost
 
     /**
      * @param args the command line arguments
