@@ -515,6 +515,8 @@ private Conexion conexion;
     }//GEN-LAST:event_jRadioButtonDesocupadoActionPerformed
    //BOTON AGREGAR HABITACION
     private void jLabelAgregarHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgregarHabitacionMouseClicked
+        
+        Icon icono = new ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"));
         try {
             
             
@@ -533,7 +535,7 @@ private Conexion conexion;
         habitaciondata.guardarHabitacion(habitacion);
         
             
- JOptionPane.showMessageDialog(null,"Habitacion ingresada con exito");
+ JOptionPane.showMessageDialog(null,"Habitacion ingresada con exito",null,0,icono);
             
             
         } catch (NumberFormatException e) {
