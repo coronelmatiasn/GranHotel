@@ -97,6 +97,7 @@ HuespedData huespedD;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
+        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
         botonCrearReserva = new javax.swing.JButton();
         botonConfirmar = new javax.swing.JButton();
         jTextFieldDNI = new javax.swing.JTextField();
@@ -118,17 +119,13 @@ HuespedData huespedD;
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre y Apellido del Huesped");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 220, 20));
 
-        jTextFieldNombreApellido.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldNombreApellido.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNombreApellido.setBorder(null);
         jTextFieldNombreApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,48 +140,38 @@ HuespedData huespedD;
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 270, 10));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("D.N.I");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 50, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Domicilio");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Correo");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Celular");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Fecha Entrada");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Fecha Salida");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Cantidad de Persona");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Precio:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
 
-        comboBoxTipoDeHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxTipoDeHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        comboBoxTipoDeHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxTipoDeHabitacion.setMaximumRowCount(5);
         comboBoxTipoDeHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,15 +180,12 @@ HuespedData huespedD;
         });
         jPanel1.add(comboBoxTipoDeHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 140, 30));
 
-        jTextFieldDomicilio.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDomicilio.setBorder(null);
         jPanel1.add(jTextFieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, -1));
 
-        jTextFieldCelular.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCelular.setBorder(null);
         jPanel1.add(jTextFieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
 
-        jTextFieldCorreo.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCorreo.setBorder(null);
         jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 240, -1));
 
@@ -221,8 +205,6 @@ HuespedData huespedD;
         jSeparator5.setForeground(new java.awt.Color(102, 204, 255));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 240, 10));
 
-        jTextFieldFechaEntrada.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldFechaEntrada.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldFechaEntrada.setText("DD/MM/AAAA");
         jTextFieldFechaEntrada.setBorder(null);
         jTextFieldFechaEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,8 +219,6 @@ HuespedData huespedD;
         });
         jPanel1.add(jTextFieldFechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 90, -1));
 
-        jTextFieldFechaSalida.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldFechaSalida.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldFechaSalida.setText("DD/MM/AAAA");
         jTextFieldFechaSalida.setBorder(null);
         jTextFieldFechaSalida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,7 +233,6 @@ HuespedData huespedD;
         });
         jPanel1.add(jTextFieldFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
-        jTextFieldCantidadPersonas.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCantidadPersonas.setBorder(null);
         jPanel1.add(jTextFieldCantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, -1));
 
@@ -263,7 +242,6 @@ HuespedData huespedD;
 
         jTextFieldPrecioTotal.setEditable(false);
         jTextFieldPrecioTotal.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldPrecioTotal.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPrecioTotal.setBorder(null);
         jTextFieldPrecioTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldPrecioTotal.setEnabled(false);
@@ -332,9 +310,23 @@ HuespedData huespedD;
         });
         jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
 
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
+            }
+        });
+        jPanel1.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 40));
+
         botonCrearReserva.setBackground(new java.awt.Color(255, 255, 255));
         botonCrearReserva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botonCrearReserva.setForeground(new java.awt.Color(0, 0, 0));
         botonCrearReserva.setText("CREAR RESERVA");
         botonCrearReserva.setBorder(null);
         botonCrearReserva.setContentAreaFilled(false);
@@ -348,7 +340,6 @@ HuespedData huespedD;
 
         botonConfirmar.setBackground(new java.awt.Color(255, 255, 255));
         botonConfirmar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botonConfirmar.setForeground(new java.awt.Color(0, 0, 0));
         botonConfirmar.setText("CONFIRMAR");
         botonConfirmar.setBorder(null);
         botonConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -360,8 +351,6 @@ HuespedData huespedD;
         });
         jPanel1.add(botonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
 
-        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldDNI.setBorder(null);
         jTextFieldDNI.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -387,7 +376,6 @@ HuespedData huespedD;
 
         botonBuscarReserva.setBackground(new java.awt.Color(255, 255, 255));
         botonBuscarReserva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botonBuscarReserva.setForeground(new java.awt.Color(0, 0, 0));
         botonBuscarReserva.setText("BUSCAR RESERVA");
         botonBuscarReserva.setBorder(null);
         botonBuscarReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -403,7 +391,7 @@ HuespedData huespedD;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -418,7 +406,7 @@ HuespedData huespedD;
         jPanel2.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, -1, 35));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -433,7 +421,7 @@ HuespedData huespedD;
         jPanel2.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 6, -1, 35));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -442,7 +430,6 @@ HuespedData huespedD;
         jPanel2.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 6, -1, 35));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("RESERVA");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, 40));
 
@@ -528,6 +515,16 @@ HuespedData huespedD;
        //mueve el icono huesped a la izquierda
        AnimationClass huespedd =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
+       
+        //mueve el icono tipoHabitacion a la derecha
+       AnimationClass tipoHabitacion =new AnimationClass();
+       tipoHabitacion.jLabelXRight(-40, 10, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
+       //mueve el icono tipoHabitacion a la izquierda
+       AnimationClass  tipoHabitacionn =new AnimationClass();
+       tipoHabitacionn.jLabelXLeft(10, -40, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
+      
 
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
@@ -785,6 +782,25 @@ HuespedData huespedD;
         }
     }//GEN-LAST:event_jTextFieldDNIFocusLost
 
+    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
+       
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_in_ventana.png")));
+        
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
+
+    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+        
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png")));
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+
+    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+       Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
+     tipoHabitacionTipoCama.setVisible(true);
+       dispose(); 
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -845,6 +861,7 @@ HuespedData huespedD;
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
+    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

@@ -108,6 +108,7 @@ private  ArrayList <Huesped> listahuesped;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
+        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -156,7 +157,6 @@ private  ArrayList <Huesped> listahuesped;
         jPanel1.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("HUESPED");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 100, -1));
 
@@ -166,13 +166,10 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("D.N.I  Del Huesped");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, -1));
 
-        jTextFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDNI.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldDNI.setBorder(null);
         jTextFieldDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,7 +194,6 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 700, 230));
 
         jLabelBuscarHuesped.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelBuscarHuesped.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBuscarHuesped.setText("BUSCAR");
         jLabelBuscarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBuscarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,6 +258,21 @@ private  ArrayList <Huesped> listahuesped;
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, -1, 40));
 
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
+            }
+        });
+        jPanel2.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 30));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
         pack();
@@ -308,6 +319,16 @@ private  ArrayList <Huesped> listahuesped;
        //mueve el icono reserva a la derecha 
        AnimationClass reservaa = new AnimationClass();
       reservaa.jLabelXLeft(10, -40,10,5, jLabelReserva);
+      
+      
+        //mueve el icono tipoHabitacion a la derecha
+       AnimationClass tipoHabitacion =new AnimationClass();
+       tipoHabitacion.jLabelXRight(-40, 10, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
+       //mueve el icono tipoHabitacion a la izquierda
+       AnimationClass  tipoHabitacionn =new AnimationClass();
+       tipoHabitacionn.jLabelXLeft(10, -40, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
        
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
@@ -394,6 +415,24 @@ private  ArrayList <Huesped> listahuesped;
         
     }//GEN-LAST:event_jLabelBuscarHuespedMouseClicked
 
+    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
+       
+         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_in_ventana.png")));
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
+
+    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+        
+         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png")));
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+
+    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+       
+         Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
+     tipoHabitacionTipoCama.setVisible(true);
+       dispose(); 
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -440,6 +479,7 @@ private  ArrayList <Huesped> listahuesped;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
+    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

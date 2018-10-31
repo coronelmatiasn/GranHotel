@@ -120,6 +120,7 @@ private Conexion conexion;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
+        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jRadioButtonDesocupado = new javax.swing.JRadioButton();
@@ -260,6 +261,21 @@ private Conexion conexion;
             }
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 40, 40));
+
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
+            }
+        });
+        jPanel2.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 150, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel1.setText("Numero de Habitacion");
@@ -409,6 +425,16 @@ private Conexion conexion;
        //mueve el icono huesped a la izquierda
        AnimationClass huespedd =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
+       
+         //mueve el icono tipoHabitacion a la derecha
+       AnimationClass tipoHabitacion =new AnimationClass();
+       tipoHabitacion.jLabelXRight(-40, 10, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
+       //mueve el icono tipoHabitacion a la izquierda
+       AnimationClass  tipoHabitacionn =new AnimationClass();
+       tipoHabitacionn.jLabelXLeft(10, -40, 10, 5,  jLabelTipoHabitacionTipoCama);
+       
+      
              
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
@@ -649,6 +675,28 @@ private Conexion conexion;
         
     }//GEN-LAST:event_jLabelBorrarHabitacionMouseClicked
 
+    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
+        
+        
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_in_ventana.png")));
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
+
+    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+       
+        
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png")));
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+
+    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+       
+         Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
+     tipoHabitacionTipoCama.setVisible(true);
+       dispose(); 
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -702,6 +750,7 @@ private Conexion conexion;
     private javax.swing.JLabel jLabelMostrarHabitaciones;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
+    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonDesocupado;

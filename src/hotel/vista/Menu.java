@@ -32,8 +32,9 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
+        jLabellogo = new javax.swing.JLabel();
+        jLabelNombrePrograma = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
         jLabelMinimizar = new javax.swing.JLabel();
@@ -47,13 +48,27 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 130, 130));
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Tipo_habitacion_tipo_cama_logo.png"))); // NOI18N
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
+            }
+        });
+        getContentPane().add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 70, 80));
 
-        jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Hotel Mercedes");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 190, 50));
+        jLabellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
+        getContentPane().add(jLabellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 130, 130));
+
+        jLabelNombrePrograma.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
+        jLabelNombrePrograma.setText("Hotel Mercedes");
+        getContentPane().add(jLabelNombrePrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, 50));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
         jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -107,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabelHuespedMouseReleased(evt);
             }
         });
-        getContentPane().add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 70, 80));
+        getContentPane().add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 70, 80));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king-size-bed.png"))); // NOI18N
         jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,6 +226,30 @@ public class Menu extends javax.swing.JFrame {
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
 
+    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
+       
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_logo_in.png")));
+        
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
+
+    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+        
+        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_logo.png")));
+        
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
+
+    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+        
+        Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
+     tipoHabitacionTipoCama.setVisible(true);
+       dispose(); 
+        
+        
+        
+    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -248,12 +287,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHabitacion;
     private javax.swing.JLabel jLabelHuesped;
     private javax.swing.JLabel jLabelMinimizar;
+    private javax.swing.JLabel jLabelNombrePrograma;
     private javax.swing.JLabel jLabelReserva;
+    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
+    private javax.swing.JLabel jLabellogo;
     // End of variables declaration//GEN-END:variables
 }
