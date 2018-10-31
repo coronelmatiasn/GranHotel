@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class Reserva_vista extends javax.swing.JFrame {
@@ -39,11 +40,9 @@ Habitacion habitacion;
 HabitacionData hd;
 ReservaData rd;
 HuespedData huespedD;
-JDialog dialog;
     
     public Reserva_vista() {
-        initComponents();
-        reserva = new Reserva();        
+        initComponents();      
         rd = new ReservaData(conexion);
         huespedD = new HuespedData(conexion);
         
@@ -569,9 +568,9 @@ JDialog dialog;
     }//GEN-LAST:event_jLabelHuespedMouseClicked
 
     private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
-          Habitacion_vista habitacion =new Habitacion_vista();
-      habitacion.setVisible(true);
-       dispose(); 
+        Habitacion_vista habitacion =new Habitacion_vista();
+        habitacion.setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
 
     private void comboBoxTipoDeHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoDeHabitacionActionPerformed
@@ -581,22 +580,32 @@ JDialog dialog;
     private void botonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarActionPerformed
         hd = new HabitacionData(conexion);
         
+        //Si no existe el huesped entonces se guarda en la base de datos
         if(!huespedD.existeHuesped(huesped.getDni())) {
             huespedD.guardarHuesped(huesped);
         }
         
+        //se guarda la reserva y el estado de la habitacion pasa a ser ocupado
         rd.guardarReserva(reserva);
         hd.setEstadoHabitacion(reserva.getHabitacion().getNHabitacion(), true);
-        clearFields();
+        
+        //se vacian todos los campos y los objetos
+        limpiarCampos();
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
     private void botonCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearReservaActionPerformed
-            HabitacionPanel panel;
-            ReservaData rd = new ReservaData(conexion);                                    
             int dni, cantidadDePersonas;
+            int nroHabitacion;
+            double precioXNoche;
             String nombre, domicilio, correo, celular, categoria;
             LocalDate fechaEntrada, fechaSalida;
-            
+            HabitacionPanel panel;
+            JDialog dialog;
+        
+            reserva = new Reserva();
+            huesped = new Huesped();
+
+            //Se reciben los datos de los campos del formulario
             nombre = jTextFieldNombreApellido.getText();
             domicilio = jTextFieldDomicilio.getText();
             correo = jTextFieldCorreo.getText();
@@ -605,24 +614,29 @@ JDialog dialog;
             
             //validacion para el campo de texto del DNI
             try {
+                //se trata de convertir el texto del campo de dni a numero
                 dni = Integer.parseInt(jTextFieldDNI.getText());
                 
                 validacionTextDNI.setText("");
                 
             } catch(NumberFormatException e) {
+                //si no es posible se le pide al usuario que ingrese un numero
                 validacionTextDNI.setText("ingrese un numero de documento valido");
                 
                 return;
             }
             
             //validacion para los campos de texto de fechas
-            try {                
+            try {
+                //se trata de convertir los campos de fechas a LocalDate
+                //usando el patron "dd/MM/yyyy" (d = dia, M = mes, y = año)
                 fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
                 
                 validationTextFecha.setText("");
                 
             } catch(DateTimeParseException ex) {
+                //si no es posible se le pide al usuario que ingrese una fecha valida
                 validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
                 
                 return;
@@ -630,26 +644,39 @@ JDialog dialog;
             
             //validacion para el campo de texto de numero de personas
             try {
+                //se trata de convertir los datos del campo de cantidad de personas a numero
                 cantidadDePersonas = Integer.parseInt(jTextFieldCantidadPersonas.getText());
                 
                 validationTextCantidadPersonas.setText("");
                 
             } catch(NumberFormatException e) {
+                //si no es posible se le pide al usuario que ingrese un numero
                 validationTextCantidadPersonas.setText("ingrese un numero");
                 
                 return;
             }      
             
-            huesped = new Huesped(dni, nombre, domicilio, celular, correo);
+            //se cargan los datos del huesped en un objeto de la clase Huesped
+            huesped.setDni(dni);
+            huesped.setNombre(nombre);
+            huesped.setDomicilio(domicilio);
+            huesped.setCelular(celular);
+            huesped.setCorreo(correo);
+            
+            //se cargan los datos de la reserva en un objeto de la clase Reserva
             reserva.setHuesped(huesped);
             reserva.setFechaEntrada(fechaEntrada);
             reserva.setFechaSalida(fechaSalida);
             reserva.setCantidadDePersonas(cantidadDePersonas);
             
+            
             panel = new HabitacionPanel(rd.buscarHabitacionesLibres(categoria, cantidadDePersonas));
             
-            dialog = new JDialog(this, "Habitaciones", Dialog.ModalityType.DOCUMENT_MODAL);
+            //crea una ventana JDialog con la tabla de habitaciones
+            //y especifica el ancho y el alto
+            dialog = crearJDialog(panel, "Habitaciones", 400, 250);
             
+            //añade un listener para cuando la ventana se cierra sin clickear el boton confirmar
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -658,28 +685,27 @@ JDialog dialog;
                 }
             });
             
-            dialog.setSize(400,250);
-            dialog.setResizable(false);
-            dialog.setLocationRelativeTo(this);
-            
-            dialog.add(panel);
+            //muestra la ventana
             dialog.setVisible(true);
             
-            int nroHabitacion;
-            double precioXNoche;
-            
+            //si la ventana se cerro usando el boton confirmar el bloque de codido dentro del if se ejecuta
             if(panel.getBotonOk()) {
                 nroHabitacion = panel.getNroHab();
                 precioXNoche = panel.getPrecioXNoche();
                 
+                //se guarda la habitacion seleccionada en un objeto
                 hd = new HabitacionData(conexion);
                 habitacion = hd.buscarHabitacion(nroHabitacion);
                 
+                //se guarda la habitacion en la reserva
                 reserva.setHabitacion(habitacion);
+                //se calcula el precio total de la habitacion
                 reserva.setImporteTotal(rd.calcularPrecio(precioXNoche, fechaEntrada, fechaSalida));      
                 reserva.setEstado(true);
                 
+                //se muestra el precio total en el campo de precio total del formulario
                 jTextFieldPrecioTotal.setText(String.valueOf(reserva.getImporteTotal()));
+                //el boton confirmar se puede clickear
                 botonConfirmar.setEnabled(true);
             } else {
                 botonConfirmar.setEnabled(false);
@@ -687,18 +713,14 @@ JDialog dialog;
     }//GEN-LAST:event_botonCrearReservaActionPerformed
 
     private void botonBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarReservaActionPerformed
+        //crea un panel de busqueda de reservas y lo inserta en una ventana JDialog
         BuscarReservaPanel pBusqueda = new BuscarReservaPanel();
-        dialog = new JDialog(this, "Buscar Reserva", Dialog.ModalityType.DOCUMENT_MODAL);
+        JDialog dialog = crearJDialog(pBusqueda, "Buscar Reserva", 400, 280);
         
-        dialog.setLocationRelativeTo(this);
-        dialog.setResizable(false);
-        dialog.setSize(400, 280);
-        
-        dialog.add(pBusqueda);
         dialog.setVisible(true);
     }//GEN-LAST:event_botonBuscarReservaActionPerformed
 
-    private void clearFields() {
+    private void limpiarCampos() {
         jTextFieldNombreApellido.setText("");
         jTextFieldDNI.setText("");
         jTextFieldCelular.setText("");
@@ -708,6 +730,21 @@ JDialog dialog;
         jTextFieldFechaSalida.setText("");
         jTextFieldCantidadPersonas.setText("");
         jTextFieldPrecioTotal.setText("");
+        huesped = null;
+        reserva = null;
+        habitacion = null;
+    }
+    
+    private JDialog crearJDialog(JPanel panel, String titulo, int w, int h) {
+            JDialog dialog = new JDialog(this, titulo, Dialog.ModalityType.DOCUMENT_MODAL); 
+            
+            dialog.setSize(w, h);
+            dialog.setResizable(false);
+            dialog.setLocationRelativeTo(this);
+            
+            dialog.add(panel);
+            
+            return dialog;
     }
     
     private void jTextFieldPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioTotalActionPerformed
@@ -721,7 +758,9 @@ JDialog dialog;
     private void jTextFieldDNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDNIFocusLost
         int dni;
         
+        //si el campo de dni contiene algun texto, el bloque de codigo dentro del if se ejecuta
         if(!jTextFieldDNI.getText().equals("")){
+            //validacion del campo de dni
             try {
                 dni = Integer.parseInt(jTextFieldDNI.getText());
                 
@@ -733,9 +772,11 @@ JDialog dialog;
                 return;
             }
             
-            huesped = huespedD.buscarHuesped(dni);
             
-            if(huesped != null) {
+            //si el huesped existe se rellenan los campos relacionados a datos del huesped automaticamente
+            if(huespedD.existeHuesped(dni)) {
+                huesped = huespedD.buscarHuesped(dni);
+                
                 jTextFieldNombreApellido.setText(huesped.getNombre());
                 jTextFieldCelular.setText(huesped.getCelular());
                 jTextFieldCorreo.setText(huesped.getCorreo());
