@@ -33,6 +33,11 @@ private Conexion conexion;
         //esta sentencia lo que hace es que al largar la vista se centra en la pantalla.
         this.setLocationRelativeTo(null);
         
+        
+        buttonGroupDesocupadoOcupadoTodos.add(jRadioTodos);
+        buttonGroupDesocupadoOcupadoTodos.add(jRadioButtonOcupado);
+        buttonGroupDesocupadoOcupadoTodos.add(jRadioButtonDesocupado);
+        
         try {
             //se crea una conexion del tipo Conexion donde se especifica la base donde se va a conectar.
             conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
@@ -101,7 +106,7 @@ private Conexion conexion;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupOcupadoDesocupado = new javax.swing.ButtonGroup();
+        buttonGroupDesocupadoOcupadoTodos = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelMinimizar = new javax.swing.JLabel();
@@ -129,6 +134,7 @@ private Conexion conexion;
         jLabel6 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabelBorrarHabitacion = new javax.swing.JLabel();
+        jRadioTodos = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -177,7 +183,6 @@ private Conexion conexion;
         jPanel1.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("HABITACIONES");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
@@ -187,17 +192,13 @@ private Conexion conexion;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tipo De Habitacion");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
-        jComboBoxTipoHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jComboBoxTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipoHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar..." }));
         jPanel2.add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 140, 30));
 
-        jTableHabitaciones.setBackground(new java.awt.Color(255, 255, 255));
         jTableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -261,19 +262,15 @@ private Conexion conexion;
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Numero de Habitacion");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Piso");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
 
         jRadioButtonDesocupado.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroupOcupadoDesocupado.add(jRadioButtonDesocupado);
         jRadioButtonDesocupado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jRadioButtonDesocupado.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButtonDesocupado.setText("Desocupado");
         jRadioButtonDesocupado.setBorder(null);
         jRadioButtonDesocupado.addActionListener(new java.awt.event.ActionListener() {
@@ -284,9 +281,7 @@ private Conexion conexion;
         jPanel2.add(jRadioButtonDesocupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         jRadioButtonOcupado.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroupOcupadoDesocupado.add(jRadioButtonOcupado);
         jRadioButtonOcupado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jRadioButtonOcupado.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButtonOcupado.setText("Ocupado");
         jRadioButtonOcupado.setBorder(null);
         jRadioButtonOcupado.addActionListener(new java.awt.event.ActionListener() {
@@ -294,17 +289,13 @@ private Conexion conexion;
                 jRadioButtonOcupadoActionPerformed(evt);
             }
         });
-        jPanel2.add(jRadioButtonOcupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 90, -1));
+        jPanel2.add(jRadioButtonOcupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 80, -1));
 
-        jTextFieldPiso.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPiso.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextFieldPiso.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPiso.setBorder(null);
         jPanel2.add(jTextFieldPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 40, -1));
 
-        jTextFieldNumeroHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNumeroHabitacion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextFieldNumeroHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNumeroHabitacion.setBorder(null);
         jPanel2.add(jTextFieldNumeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 50, -1));
 
@@ -317,7 +308,6 @@ private Conexion conexion;
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 50, 10));
 
         jLabelAgregarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelAgregarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelAgregarHabitacion.setText("Agregar Habitacion");
         jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelAgregarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -334,7 +324,6 @@ private Conexion conexion;
         jPanel2.add(jLabelAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
 
         jLabelMostrarHabitaciones.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelMostrarHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
         jLabelMostrarHabitaciones.setText("Mostrar Habitaciones");
         jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMostrarHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -350,13 +339,10 @@ private Conexion conexion;
         });
         jPanel2.add(jLabelMostrarHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 150, -1));
 
-        jTextFieldcantidadHabitacion.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldcantidadHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldcantidadHabitacion.setBorder(null);
         jPanel2.add(jTextFieldcantidadHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 30, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Cantidad de Habitacion:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
@@ -365,7 +351,6 @@ private Conexion conexion;
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 30, 10));
 
         jLabelBorrarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelBorrarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBorrarHabitacion.setText("Borrar Habitacion");
         jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBorrarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -380,6 +365,11 @@ private Conexion conexion;
             }
         });
         jPanel2.add(jLabelBorrarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
+
+        jRadioTodos.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioTodos.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jRadioTodos.setText("Todos");
+        jPanel2.add(jRadioTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 70, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -581,7 +571,7 @@ private Conexion conexion;
         }
         
         //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo. 
-         habitaciondata.cuentaHabitacion(true,idtipo, jTextFieldcantidadHabitacion);
+         habitaciondata.cuentaHabitacion(false,idtipo, jTextFieldcantidadHabitacion);
           
       
     
@@ -600,12 +590,12 @@ private Conexion conexion;
             modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
             }
           
-         
+        
         }
-         //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo
-         habitaciondata.cuentaHabitacion(false,idtipo, jTextFieldcantidadHabitacion);
+          //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo
+         habitaciondata.cuentaHabitacion(true,idtipo, jTextFieldcantidadHabitacion);
           //si  no esta seleccionado ninguno lo que hace esta sentencia es mostrar ocupados y desocupados juntos.
-        }else{
+        }else if(jRadioTodos.isSelected()){
             
            ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(idtipo);
            
@@ -615,14 +605,14 @@ private Conexion conexion;
             //Comparo por los id o sobreescribo el método equals 
             if(m.getTipoHabitacion().getId()==idtipo){
             
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado(),m.getTipoHabitacion().getCategoria()});
+            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
             }
           
-          
+           
         }
         
+        habitaciondata.CuentaHabitacionsinestado(idtipo, jTextFieldcantidadHabitacion);
         
-         habitaciondata.CuentaHabitacionsinestado(idtipo, jTextFieldcantidadHabitacion);
           
             
            
@@ -696,7 +686,7 @@ private Conexion conexion;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupOcupadoDesocupado;
+    private javax.swing.ButtonGroup buttonGroupDesocupadoOcupadoTodos;
     private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -716,6 +706,7 @@ private Conexion conexion;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonDesocupado;
     private javax.swing.JRadioButton jRadioButtonOcupado;
+    private javax.swing.JRadioButton jRadioTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
