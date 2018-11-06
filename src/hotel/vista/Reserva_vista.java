@@ -330,7 +330,7 @@ HuespedData huespedD;
         botonCrearReserva.setText("CREAR RESERVA");
         botonCrearReserva.setBorder(null);
         botonCrearReserva.setContentAreaFilled(false);
-        botonCrearReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botonCrearReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCrearReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCrearReservaActionPerformed(evt);

@@ -6,6 +6,11 @@
 package hotel.vista;
 
 import AppPackage.AnimationClass;
+import hotel.Conexion;
+import hotel.modelo.TipoDeCama;
+import hotel.modelo.TipoDeCamaData;
+import hotel.modelo.TipoHabitacion;
+import hotel.modelo.TipoHabitacionData;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -16,16 +21,44 @@ import javax.swing.JOptionPane;
  */
 public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tipo_habitacion_tipo_cama_vista
-     */
+  private  Conexion conexion;
+  private TipoHabitacionData tipohabitaciondata;
+  private TipoHabitacion tipohabitacion;
+  private TipoDeCamaData tipocamadata;
+  private TipoDeCama tipodecama;
+ 
     public Tipo_habitacion_tipo_cama_vista() {
         initComponents();
         
         //esta sentencia lo que hace es que al largar la vista se centra en la pantalla.
         this.setLocationRelativeTo(null);
+        
+        conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        
+        tipohabitaciondata= new TipoHabitacionData(conexion);
+        
+        tipocamadata = new  TipoDeCamaData(conexion);
+        
+       tipocamadata.cargarComboxConTipodeCama(jComboBoxTipoCama);
+       
+       
     }
+    
 
+    
+    private void limpiarCampos() {
+      jTextFieldTipoHabitacion.setText("");
+      jTextFieldCantidadPersona.setText("");
+      jTextFielPrecio.setText("");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,10 +78,19 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jLabelHuesped = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
+        jTextFieldTipoHabitacion = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jTextFieldCantidadPersona = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFielPrecio = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonAgregarTipoHabitacion = new javax.swing.JButton();
+        jComboBoxTipoCama = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(700, 490));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
@@ -162,7 +204,44 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 140, 40, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
+        jTextFieldTipoHabitacion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextFieldTipoHabitacion.setBorder(null);
+        jPanel2.add(jTextFieldTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 170, -1));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setText("Tipo Habitacion");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 110, -1));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 170, 10));
+        jPanel2.add(jTextFieldCantidadPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 170, -1));
+
+        jLabel2.setText("cantidad maxima persona");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        jPanel2.add(jTextFielPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 180, -1));
+
+        jLabel3.setText("Precio");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
+
+        jButtonAgregarTipoHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAgregarTipoHabitacion.setText("Agregar tipo habitacion");
+        jButtonAgregarTipoHabitacion.setBorder(null);
+        jButtonAgregarTipoHabitacion.setBorderPainted(false);
+        jButtonAgregarTipoHabitacion.setContentAreaFilled(false);
+        jButtonAgregarTipoHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAgregarTipoHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarTipoHabitacionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonAgregarTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, -1));
+
+        jComboBoxTipoCama.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxTipoCama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        jPanel2.add(jComboBoxTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, -1));
+
+        jLabel5.setText("Tipo De Cama");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 80, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -320,6 +399,29 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
      dispose();
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
+    private void jButtonAgregarTipoHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarTipoHabitacionActionPerformed
+      try{
+      String nombreTipoHabitacion = jTextFieldTipoHabitacion.getText();
+      int cantidadPersonasMaxima= Integer.parseInt(jTextFieldCantidadPersona.getText());
+      double precio = Integer.parseInt(jTextFielPrecio.getText());
+      TipoDeCama idTipoCama=new TipoDeCama((int)jComboBoxTipoCama.getSelectedIndex());
+      
+      tipohabitacion = new TipoHabitacion(nombreTipoHabitacion,cantidadPersonasMaxima,precio,idTipoCama); 
+      
+      tipohabitaciondata.guardarTipoHabitacion(tipohabitacion);
+      
+      limpiarCampos();
+      
+      JOptionPane.showMessageDialog(null,"Tipo Habitacion ingresada con exito");
+      
+      }catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null,"Erro al guardar la Tipo Habitacion: "+ e);
+             }
+        
+        
+    }//GEN-LAST:event_jButtonAgregarTipoHabitacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,7 +458,13 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgregarTipoHabitacion;
+    private javax.swing.JComboBox<String> jComboBoxTipoCama;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHabitacion;
     private javax.swing.JLabel jLabelHuesped;
@@ -366,5 +474,9 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelReserva;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextFielPrecio;
+    private javax.swing.JTextField jTextFieldCantidadPersona;
+    private javax.swing.JTextField jTextFieldTipoHabitacion;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,12 @@ package hotel.modelo;
     
     public TipoDeCama() {
     }
+    
+    public TipoDeCama(int id_tipo_cama){ 
+    
+    this.id_tipo_cama=id_tipo_cama;
+    
+    }
 
     public int getId_tipo_cama() {
         return id_tipo_cama;

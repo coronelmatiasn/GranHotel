@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 public class TipoDeCamaData {
@@ -81,5 +83,25 @@ public TipoDeCama buscarTipoCama(int id){
         
         return tipodecama;
     }
+
+
+public void cargarComboxConTipodeCama(JComboBox comboxTipo){
+        String sql= "SELECT * FROM tipo_de_cama;";
+
+        try {
+           PreparedStatement statement = connection.prepareStatement(sql);
+           ResultSet resultSet = statement.executeQuery();
+
+           while(resultSet.next()){
+                comboxTipo.addItem(resultSet.getString("categoria_cama"));
+           }
+           statement.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }  
+    }
+
+
 
 }
