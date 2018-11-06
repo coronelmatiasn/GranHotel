@@ -22,30 +22,23 @@ public class TipoHabitacionData {
     }
     
     public void guardarTipoHabitacion (TipoHabitacion tipoHabitacion) {
-        try {
-            String sql = "INSERT INTO tipoHabitacion (categoria_habitacion, cantidad_maxima_personas, precio_por_noche, id_tipo_cama) VALUES ( ? , ? , ? , ? );";
-            
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString (1, tipoHabitacion.getCategoria());
-            statement.setInt (2, tipoHabitacion.getCantidadMaxPersonas());
-            statement.setDouble (3, tipoHabitacion.getPrecioXNoche());
-            statement.setInt(4, tipoHabitacion.getTipoCama().getId_tipo_cama());
-            
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    tipoHabitacion.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
-                }
-            }
-            
+        
+ try {
+           String sql = "INSERT INTO tipo_de_Habitacion (categoria_habitacion, cantidad_maxima_personas, precio_por_noche, id_tipo_cama) VALUES ( ? , ? , ? , ? );";
+           
+           PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           statement.setString (1, tipoHabitacion.getCategoria());
+           statement.setInt (2, tipoHabitacion.getCantidadMaxPersonas());
+           statement.setDouble (3, tipoHabitacion.getPrecioXNoche());
+           statement.setInt(4, tipoHabitacion.getTipoCama().getId_tipo_cama());
+           
             statement.executeUpdate();
-            statement.close();
-            
-        }  catch (SQLException ex) {
-            System.out.println("Error al insertar un tipo de habitacion: " + ex.getMessage());
-        }
-    }          
+           statement.close();
+           
+       }  catch (SQLException ex) {
+           System.out.println("Error al insertar tipo de habitacion: " + ex.getMessage());
+       }
+    }
  
     public ArrayList <TipoHabitacion> obtenerTipoHabitacion(){
         ArrayList <TipoHabitacion> tipoHabitaciones = new ArrayList<>();     
