@@ -78,14 +78,12 @@ public TipoDeCama buscarTipoCama(int id){
         statement.close();
 
         } catch (SQLException ex) {
-            System.out.println("Error al insertar un alumno: " + ex.getMessage());
+            System.out.println("Error al ingresar tipo de cama : " + ex.getMessage());
         }
         
         return tipodecama;
     }
-
-
-public void cargarComboxConTipodeCama(JComboBox comboxTipo){
+       public void cargarComboxConTipoCama(JComboBox comboxTipo){
         String sql= "SELECT * FROM tipo_de_cama;";
 
         try {
@@ -99,9 +97,9 @@ public void cargarComboxConTipodeCama(JComboBox comboxTipo){
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-        }  
-    }
+        } 
 
 
+        }
+       }
 
-}
