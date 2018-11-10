@@ -45,8 +45,8 @@ public class HabitacionData {
             
 
     
-    public List <Habitacion> obtenerHabitacion(){
-        ArrayList <Habitacion> habitaciones = new ArrayList<>();
+    public ArrayList<Habitacion> obtenerHabitaciones(){
+        ArrayList<Habitacion> habitaciones = new ArrayList<>();
             
         try {
             String sql = "SELECT * FROM habitacion;";

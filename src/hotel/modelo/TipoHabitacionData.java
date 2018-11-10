@@ -65,24 +65,6 @@ public class TipoHabitacionData {
         return tipoHabitaciones;
     }
 
-    public void cargarComboxConTipoHabitacion(JComboBox comboxTipo){
-        String sql= "SELECT * FROM tipo_de_habitacion;";
-
-        try {
-           PreparedStatement statement = connection.prepareStatement(sql);
-           ResultSet resultSet = statement.executeQuery();
-
-           while(resultSet.next()){
-                comboxTipo.addItem(resultSet.getString("categoria_habitacion"));
-           }
-           statement.close();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }  
-    }
-
-
     public TipoHabitacion buscartipohabitacion(int id){
         TipoHabitacion tipohabitacion = null;
 

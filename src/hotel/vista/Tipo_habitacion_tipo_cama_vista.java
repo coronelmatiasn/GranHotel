@@ -93,7 +93,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpcion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionMouseClicked(evt);
@@ -108,7 +108,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel1.add(jLabelOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -117,7 +117,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -141,7 +141,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -156,7 +156,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 30, 30));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -171,7 +171,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel2.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 50, 30, 40));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png"))); // NOI18N
-        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHabitacionMouseClicked(evt);
@@ -186,7 +186,7 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jPanel2.add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 30, 30));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -200,7 +200,9 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 140, 40, 40));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Tipo De Cama");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 110, 30));
 
@@ -208,48 +210,59 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 280, 10));
 
+        jTextFieldPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldPrecio.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPrecio.setBorder(null);
         jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPrecioActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 280, 20));
+        jPanel2.add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 280, 20));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Precio");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 50, 30));
 
+        jTextFieldTipoHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldTipoHabitacion.setBorder(null);
         jTextFieldTipoHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTipoHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 300, 20));
+        jPanel2.add(jTextFieldTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 300, 20));
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 280, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 280, 10));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cantidad Maxima de Personas");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
 
+        jTextFieldCantidadMaximaDePersonas.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCantidadMaximaDePersonas.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldCantidadMaximaDePersonas.setBorder(null);
         jTextFieldCantidadMaximaDePersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidadMaximaDePersonasActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldCantidadMaximaDePersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 280, 20));
+        jPanel2.add(jTextFieldCantidadMaximaDePersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 280, 20));
 
         jSeparator4.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator4.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 280, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 280, -1));
 
         jButtonAgregarTipoHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAgregarTipoHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButtonAgregarTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAgregarTipoHabitacion.setText("Agregar Tipo Habitacion");
         jButtonAgregarTipoHabitacion.setBorder(null);
         jButtonAgregarTipoHabitacion.setContentAreaFilled(false);
@@ -259,15 +272,19 @@ public class Tipo_habitacion_tipo_cama_vista extends javax.swing.JFrame {
                 jButtonAgregarTipoHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonAgregarTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+        jPanel2.add(jButtonAgregarTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
 
+        jComboBoxTipoCama.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoCama.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxTipoCama.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipoCama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         jPanel2.add(jComboBoxTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 110, 30));
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Tipo Habitación");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 

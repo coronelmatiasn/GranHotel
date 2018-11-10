@@ -12,9 +12,9 @@ import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.Habitacion;
 import hotel.modelo.HabitacionData;
+import hotel.modelo.Reserva;
 import hotel.modelo.TipoHabitacion;
 import hotel.modelo.TipoHabitacionData;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +23,8 @@ public class Habitacion_vista extends javax.swing.JFrame {
 private Conexion conexion;
  private TipoHabitacionData tipohabitaciondata;
  private HabitacionData habitaciondata;
- private DefaultTableModel modelo;
+ private DefaultTableModel dataModel;
+ private ArrayList<Habitacion> habitaciones;
       
  
     public Habitacion_vista() {
@@ -33,61 +34,61 @@ private Conexion conexion;
         //esta sentencia lo que hace es que al largar la vista se centra en la pantalla.
         this.setLocationRelativeTo(null);
         
-        
-        buttonGroupDesocupadoOcupadoTodos.add(jRadioTodos);
-        buttonGroupDesocupadoOcupadoTodos.add(jRadioButtonOcupado);
-        buttonGroupDesocupadoOcupadoTodos.add(jRadioButtonDesocupado);
-        
         try {
             //se crea una conexion del tipo Conexion donde se especifica la base donde se va a conectar.
             conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
             //se crea un objeto de tipohabitacion data y se manda como parametro la conexion previamente creada.
             tipohabitaciondata = new TipoHabitacionData(conexion);
             //se crea un objeto de habitaciondata y tambien se manda como parametro la conexion previamente creada
-            habitaciondata=new HabitacionData(conexion); 
-            //se crea un objeto del tipo defaulttablemodel esto nos permitira modelar la tabla cuando se inicie la vista.
-            modelo=new DefaultTableModel();
-            //este nos permite cargar los tipo de habitacion en el combox cuando se inicie la vista
-            tipohabitaciondata.cargarComboxConTipoHabitacion(jComboBoxTipoHabitacion);
-            //este metodo nos arma la cabecera con los nombres de la columna
-            armaCabeceraTabla();
+            habitaciondata=new HabitacionData(conexion);
+            
+            habitaciones = habitaciondata.obtenerHabitaciones();
+            crearModeloDeTabla();
+            setearContenidoDeTabla();
             
         } catch (Exception e) {
             
            JOptionPane.showMessageDialog(null,"se produjo un error al conectar con la base de datos: " + e);
-        }
-        
-        
-       
-       
+        } 
     }
-       public void armaCabeceraTabla(){
-           
-            //Titulos de Columnas
-        ArrayList<Object> columnas=new ArrayList<Object>();
-        columnas.add("Numero de Habitacion");
-        columnas.add("Piso");
-        columnas.add("Estado");
-        columnas.add("Tipo de Habitacion");
-        for(Object it:columnas){
-        
-            modelo.addColumn(it);
+        private void crearModeloDeTabla() {
+            //guarda los nombres de las columnas en un array
+            String col[] = {
+                "N°", 
+                "Piso", 
+                "Estado", 
+                "Categoria", 
+                "Precio", 
+                "Camas"
+            };
+
+            //crea un modelo de tabla usando los nombres del array creado y 0 filas
+            dataModel = new DefaultTableModel(col, 0);
+
+            //añade el modelo a la tabla
+            jTableHabitaciones.setModel(dataModel);
         }
-       jTableHabitaciones.setModel(modelo);
-       }
-       
-       public void borraFilasTabla(){
-           
-           int a =modelo.getRowCount()-1;
-           
-            System.out.println("Tabla "+a);
-            
-            for(int i=a;i>=0;i--){
-                modelo.removeRow(i );
-                System.out.println("Tabla "+i);
-            }
-           
-       }
+
+     private void setearContenidoDeTabla() {
+         //se elimina todo el contenido de la tabla si es que hay
+         for(int i = dataModel.getRowCount(); i > 0; i--) {
+             dataModel.removeRow(i - 1);
+         }
+
+         //se inserta el contenido nuevo fila por fila
+         for(Habitacion h : habitaciones) {
+             Object row[] = {
+                 h.getNHabitacion(), 
+                 h.getPiso(), 
+                 h.getEstado() ? "ocupada" : "desocupada",
+                 h.getTipoHabitacion().getCategoria(),
+                 h.getTipoHabitacion().getPrecioXNoche(),
+                 h.getTipoHabitacion().getTipoCama().getCategoria()
+             };
+
+             dataModel.addRow(row);
+         }
+    }
        
        
        
@@ -106,7 +107,6 @@ private Conexion conexion;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupDesocupadoOcupadoTodos = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelMinimizar = new javax.swing.JLabel();
@@ -123,19 +123,14 @@ private Conexion conexion;
         jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButtonDesocupado = new javax.swing.JRadioButton();
-        jRadioButtonOcupado = new javax.swing.JRadioButton();
         jTextFieldPiso = new javax.swing.JTextField();
         jTextFieldNumeroHabitacion = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabelAgregarHabitacion = new javax.swing.JLabel();
-        jLabelMostrarHabitaciones = new javax.swing.JLabel();
-        jTextFieldcantidadHabitacion = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        btnAgregarHabitacion = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabelBorrarHabitacion = new javax.swing.JLabel();
-        jRadioTodos = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -145,7 +140,7 @@ private Conexion conexion;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -160,7 +155,7 @@ private Conexion conexion;
         jPanel1.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -169,7 +164,7 @@ private Conexion conexion;
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -184,6 +179,7 @@ private Conexion conexion;
         jPanel1.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("HABITACIONES");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
@@ -192,14 +188,20 @@ private Conexion conexion;
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tipo De Habitacion");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
 
+        jComboBoxTipoHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipoHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccionar..." }));
-        jPanel2.add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 140, 30));
+        jPanel2.add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 75, 140, -1));
 
+        jTableHabitaciones.setBackground(new java.awt.Color(255, 255, 255));
+        jTableHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
         jTableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -218,7 +220,7 @@ private Conexion conexion;
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -233,7 +235,7 @@ private Conexion conexion;
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 40, 30));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -248,7 +250,7 @@ private Conexion conexion;
         jPanel2.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 50, 30, 40));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -263,7 +265,7 @@ private Conexion conexion;
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 40, 40));
 
         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
-        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTipoHabitacionTipoCamaMouseClicked(evt);
@@ -277,41 +279,27 @@ private Conexion conexion;
         });
         jPanel2.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 150, 40, 40));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Numero de Habitacion");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Piso");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, 20));
 
-        jRadioButtonDesocupado.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButtonDesocupado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jRadioButtonDesocupado.setText("Desocupado");
-        jRadioButtonDesocupado.setBorder(null);
-        jRadioButtonDesocupado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonDesocupadoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jRadioButtonDesocupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
-
-        jRadioButtonOcupado.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButtonOcupado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jRadioButtonOcupado.setText("Ocupado");
-        jRadioButtonOcupado.setBorder(null);
-        jRadioButtonOcupado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonOcupadoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jRadioButtonOcupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 80, -1));
-
+        jTextFieldPiso.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPiso.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextFieldPiso.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPiso.setBorder(null);
         jPanel2.add(jTextFieldPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 40, -1));
 
+        jTextFieldNumeroHabitacion.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNumeroHabitacion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextFieldNumeroHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNumeroHabitacion.setBorder(null);
         jPanel2.add(jTextFieldNumeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 50, -1));
 
@@ -323,69 +311,33 @@ private Conexion conexion;
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 50, 10));
 
-        jLabelAgregarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelAgregarHabitacion.setText("Agregar Habitacion");
-        jLabelAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelAgregarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelAgregarHabitacionMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelAgregarHabitacionMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelAgregarHabitacionMouseReleased(evt);
+        btnAgregarHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        btnAgregarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAgregarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarHabitacion.setText("AGREGAR HABITACION");
+        btnAgregarHabitacion.setBorder(null);
+        btnAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(jLabelAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
+        jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
-        jLabelMostrarHabitaciones.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelMostrarHabitaciones.setText("Mostrar Habitaciones");
-        jLabelMostrarHabitaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelMostrarHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMostrarHabitacionesMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelMostrarHabitacionesMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelMostrarHabitacionesMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelMostrarHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 150, -1));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("FILTRAR:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jTextFieldcantidadHabitacion.setBorder(null);
-        jPanel2.add(jTextFieldcantidadHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 30, -1));
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setText("Cantidad de Habitacion:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.setBorder(null);
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 150, -1));
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 30, 10));
-
-        jLabelBorrarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelBorrarHabitacion.setText("Borrar Habitacion");
-        jLabelBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelBorrarHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelBorrarHabitacionMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelBorrarHabitacionMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelBorrarHabitacionMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelBorrarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
-
-        jRadioTodos.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioTodos.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jRadioTodos.setText("Todos");
-        jPanel2.add(jRadioTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 70, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 150, 10));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -512,169 +464,6 @@ private Conexion conexion;
      
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
-    private void jRadioButtonOcupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOcupadoActionPerformed
-       
-    }//GEN-LAST:event_jRadioButtonOcupadoActionPerformed
-
-    private void jLabelAgregarHabitacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgregarHabitacionMousePressed
-        jLabelAgregarHabitacion.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelAgregarHabitacionMousePressed
-
-    private void jLabelAgregarHabitacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgregarHabitacionMouseReleased
-         jLabelAgregarHabitacion.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelAgregarHabitacionMouseReleased
-
-    private void jRadioButtonDesocupadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDesocupadoActionPerformed
-      
-          
-    
-    }//GEN-LAST:event_jRadioButtonDesocupadoActionPerformed
-   //BOTON AGREGAR HABITACION
-    private void jLabelAgregarHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgregarHabitacionMouseClicked
-        
-        Icon icono = new ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"));
-        try {
-            
-            
-       //creamos una variable de tipo int que recibe el numero de la habitacion que se escribe en el texfiel de la interfaz, como al ser de tipo String lo que capta el texfiel se transforma con la sentencia parceint a un numero.     
-        int nro_habitacion=Integer.parseInt(jTextFieldNumeroHabitacion.getText());
-       // lo mismo que el numero de habitacion nada mas que en este caso se guarda el numero del piso
-        int piso=Integer.parseInt(jTextFieldNumeroHabitacion.getText());
-      // se crea un objeto del tipo tipohabitacion que recibe como parametro el id que es captado del combox.
-        TipoHabitacion th=new TipoHabitacion((int) jComboBoxTipoHabitacion.getSelectedIndex());
-      // se crea una variable de tipo boolean y se le asigna false ya que al agregar una habitacion por defecto su estado es false 
-        boolean estado=false;
-      
-       // luego de crear todas las variables se crea un objeto de tipo habitacion y se manda los parametro para construirlo.
-       Habitacion habitacion=new Habitacion(nro_habitacion,piso,estado,th);
-        //luego de haber creado el objeto habitacion, utilizando habitaciondata creado previamente al principio del programa se llama el procedimiento guardarhabitacion que toma como parametro una habitacion ya previamente creada.   
-        habitaciondata.guardarHabitacion(habitacion);
-        
-            
- JOptionPane.showMessageDialog(null,"Habitacion ingresada con exito",null,0,icono);
-            
-            
-        } catch (NumberFormatException e) {
-            
-            JOptionPane.showMessageDialog(null,"Erro al guardar Habitacion: "+ e);
-            
-            
-        }
-       
-        
-    }//GEN-LAST:event_jLabelAgregarHabitacionMouseClicked
-     //AL PRESIONAR EL BOTON MOSTRAR REALIZA LA SIGUIENTE ACCION
-    private void jLabelMostrarHabitacionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMostrarHabitacionesMousePressed
-         jLabelMostrarHabitaciones.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelMostrarHabitacionesMousePressed
-    //AL SOLTAR EL BOTON MOSTRAR REALIZA LA SIGUIENTE ACCION
-    private void jLabelMostrarHabitacionesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMostrarHabitacionesMouseReleased
-       jLabelMostrarHabitaciones.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelMostrarHabitacionesMouseReleased
-    // BOTON MOSTRAR HABITACION.
-    private void jLabelMostrarHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMostrarHabitacionesMouseClicked
-        //este metodo hace que cada vez que aprietes el boton borre las filas que se encuentran en la tabla 
-        borraFilasTabla();
-        
-       //obtenemos el indice del elemento que tenemos cargado en el combox.
-        int idtipo = jComboBoxTipoHabitacion.getSelectedIndex();
-    //abrimos una condicion en donde vemos si el radiobuttondesocupado esta seleccionado entonces hacemos la siguientes setencias.
-        if(jRadioButtonDesocupado.isSelected()){
-            
-          //creamos una lista que va a recibir  los tipos de habitaciones que van a estar desocupadas ya que se le manda un true y el indice que capturamos del combox que sera el id del tipo de habitacion  
-         ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(false,idtipo);
-        
-         //Llenar filas
-        for(Habitacion m: listaHabitacion){
-        
-            //Comparo por los id o sobreescribo el método equals 
-            if(m.getTipoHabitacion().getId()==idtipo){
-            //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
-            }
-          
-          
-        }
-        
-        //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo. 
-         habitaciondata.cuentaHabitacion(false,idtipo, jTextFieldcantidadHabitacion);
-          
-      
-    
-    //abrimos otro if  en donde vemos si el radiobuttonocupado esta seleccionado entonces hacemos la siguientes setencias.
-        }else if (jRadioButtonOcupado.isSelected()){
-            
-            //creamos una lista que va a recibir  los tipos de habitaciones que van a estar ocupados ya que se le manda un false y el indice que capturamos del combox que sera el id del tipo de habitacion
-             ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(true,idtipo);
-        
-         //Llenar filas
-        for(Habitacion m: listaHabitacion){
-        
-            //Comparo por los id o sobreescribo el método equals 
-            if(m.getTipoHabitacion().getId()==idtipo){
-            //lleno las filas con los elementos obtenidos de la base de datos.
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
-            }
-          
-        
-        }
-          //este metodo recibe como parametro el estado de la habitacion ,id_tipo_habitacion(idtipo)y el texfiel donde se visualiza el numero de habitaciones de ese tipo
-         habitaciondata.cuentaHabitacion(true,idtipo, jTextFieldcantidadHabitacion);
-          //si  no esta seleccionado ninguno lo que hace esta sentencia es mostrar ocupados y desocupados juntos.
-        }else if(jRadioTodos.isSelected()){
-            
-           ArrayList <Habitacion> listaHabitacion=habitaciondata.obtenerHabitacionPorTipo(idtipo);
-           
-            //Llenar filas
-        for(Habitacion m: listaHabitacion){
-        
-            //Comparo por los id o sobreescribo el método equals 
-            if(m.getTipoHabitacion().getId()==idtipo){
-            
-            modelo.addRow(new Object[]{m.getNHabitacion(),m.getPiso(),m.getEstado()?"Ocupada":"libre",m.getTipoHabitacion().getCategoria()});
-            }
-          
-           
-        }
-        
-        habitaciondata.CuentaHabitacionsinestado(idtipo, jTextFieldcantidadHabitacion);
-        
-          
-            
-           
-        }
-      
-     
-    }//GEN-LAST:event_jLabelMostrarHabitacionesMouseClicked
-      //AL PRESIONAR EL BOTON BORRAR REALIZA LA SIGUIENTE ACCION
-    private void jLabelBorrarHabitacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarHabitacionMousePressed
-      
-        //pintamos la letra de  gris al hacer clik 
-        jLabelBorrarHabitacion.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelBorrarHabitacionMousePressed
-    //AL SOLTAR BOTON BORRAR REALIZA LA SIGUIENTE ACCION
-    private void jLabelBorrarHabitacionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarHabitacionMouseReleased
-       //pintamos la letra de color negro al soltar el clik
-        jLabelBorrarHabitacion.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelBorrarHabitacionMouseReleased
-   //BOTON BORRAR HABITACION
-    private void jLabelBorrarHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarHabitacionMouseClicked
-        try {
-         //obtenemos el numero de habitacion y lo transformamos en int con la sentencia integer.parseint ya que es un String lo que que toma del textfiel.  
-        int nro_habitacion=Integer.parseInt(jTextFieldNumeroHabitacion.getText());
-        //llamamos al procedimiento de la clase habitaciondata que toma el nro_habitacion.
-        habitaciondata.borrarHabitacion(nro_habitacion);
-        // largamos un mensaje que fue borrado con exito.
-        JOptionPane.showMessageDialog(null, "Habitacion borrada con exito");
-        
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al borrar Habitacion: "+ e);
-           
-        }
-        
-        
-    }//GEN-LAST:event_jLabelBorrarHabitacionMouseClicked
-
     private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
         
         
@@ -691,11 +480,15 @@ private Conexion conexion;
 
     private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
        
-         Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
-     tipoHabitacionTipoCama.setVisible(true);
-       dispose(); 
+        Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
+        tipoHabitacionTipoCama.setVisible(true);
+        dispose(); 
         
     }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
+
+    private void btnAgregarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarHabitacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -734,36 +527,30 @@ private Conexion conexion;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupDesocupadoOcupadoTodos;
+    private javax.swing.JButton btnAgregarHabitacion;
     private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelAgregarHabitacion;
-    private javax.swing.JLabel jLabelBorrarHabitacion;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHuesped;
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelMinimizar;
-    private javax.swing.JLabel jLabelMostrarHabitaciones;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
     private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButtonDesocupado;
-    private javax.swing.JRadioButton jRadioButtonOcupado;
-    private javax.swing.JRadioButton jRadioTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTableHabitaciones;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldNumeroHabitacion;
     private javax.swing.JTextField jTextFieldPiso;
-    private javax.swing.JTextField jTextFieldcantidadHabitacion;
     // End of variables declaration//GEN-END:variables
 
   
