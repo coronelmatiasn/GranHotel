@@ -26,17 +26,16 @@ private  ArrayList <Huesped> listahuesped;
 
     public Huesped_vista() {
         initComponents();
-         this.setLocationRelativeTo(null);
-         conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
-         modelo=new DefaultTableModel();
-         huespeddata=new HuespedData(conexion);
-         listahuesped=(ArrayList)huespeddata.obtenerHuesped();
-         armaCabeceraTabla();
-         
-        
-  
-         
-       
+        this.setLocationRelativeTo(null);
+        conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        modelo=new DefaultTableModel();
+        huespeddata=new HuespedData(conexion);
+        listahuesped=(ArrayList)huespeddata.obtenerHuesped();
+        armaCabeceraTabla();
+
+        MoveMouseListener mml = new MoveMouseListener(jPanel1);
+        jPanel1.addMouseListener(mml);
+        jPanel1.addMouseMotionListener(mml);
     }
     
      public void armaCabeceraTabla(){

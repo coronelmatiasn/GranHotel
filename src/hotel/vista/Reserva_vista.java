@@ -49,6 +49,10 @@ HuespedData huespedD;
         this.setLocationRelativeTo(null);
         
         Conexion conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        
+        MoveMouseListener mml = new MoveMouseListener(jPanel1);
+        jPanel1.addMouseListener(mml);
+        jPanel1.addMouseMotionListener(mml);
     }
     
     /**
