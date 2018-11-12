@@ -15,16 +15,18 @@ import hotel.modelo.HabitacionData;
 import hotel.modelo.Reserva;
 import hotel.modelo.TipoHabitacion;
 import hotel.modelo.TipoHabitacionData;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Habitacion_vista extends javax.swing.JFrame {
 private Conexion conexion;
- private TipoHabitacionData tipohabitaciondata;
- private HabitacionData habitaciondata;
- private DefaultTableModel dataModel;
- private ArrayList<Habitacion> habitaciones;
+private TipoHabitacionData tipohabitaciondata;
+private HabitacionData habitaciondata;
+private DefaultTableModel dataModel;
+private ArrayList<Habitacion> habitaciones;
       
  
     public Habitacion_vista() {
@@ -49,6 +51,10 @@ private Conexion conexion;
         initComponents();
         crearModeloDeTabla();
         setearContenidoDeTabla(); 
+        
+        MoveMouseListener mml = new MoveMouseListener(jPanel1);
+        jPanel1.addMouseListener(mml);
+        jPanel1.addMouseMotionListener(mml);
     }
     
     private void crearModeloDeTabla() {
@@ -511,7 +517,9 @@ private Conexion conexion;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Habitacion_vista().setVisible(true);
+                Habitacion_vista hv = new Habitacion_vista();
+
+                hv.setVisible(true);
             }
         });
     }
