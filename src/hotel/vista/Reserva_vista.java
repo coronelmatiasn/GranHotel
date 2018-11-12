@@ -311,7 +311,7 @@ HuespedData huespedD;
         jPanel1.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 105, 40, 40));
 
         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
-        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTipoHabitacionTipoCamaMouseClicked(evt);
@@ -391,7 +391,7 @@ HuespedData huespedD;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -406,7 +406,7 @@ HuespedData huespedD;
         jPanel2.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, -1, 35));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -421,7 +421,7 @@ HuespedData huespedD;
         jPanel2.add(jLabelCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 6, -1, 35));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
