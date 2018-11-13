@@ -32,7 +32,6 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
         jLabellogo = new javax.swing.JLabel();
         jLabelNombrePrograma = new javax.swing.JLabel();
         jLabelCancelar = new javax.swing.JLabel();
@@ -41,6 +40,11 @@ public class Menu extends javax.swing.JFrame {
         jLabelHuesped = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -48,27 +52,12 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Tipo_habitacion_tipo_cama_logo.png"))); // NOI18N
-        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 70, 80));
-
         jLabellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
-        getContentPane().add(jLabellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 130, 130));
+        getContentPane().add(jLabellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 130, 130));
 
         jLabelNombrePrograma.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 18)); // NOI18N
         jLabelNombrePrograma.setText("Hotel Mercedes");
-        getContentPane().add(jLabelNombrePrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, 50));
+        getContentPane().add(jLabelNombrePrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 180, 50));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
         jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,7 +87,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabelReservaMouseReleased(evt);
             }
         });
-        getContentPane().add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 70, 80));
+        getContentPane().add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 70, 80));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
         jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
                 jLabelHuespedMouseReleased(evt);
             }
         });
-        getContentPane().add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 70, 80));
+        getContentPane().add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 70, 80));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king-size-bed.png"))); // NOI18N
         jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,10 +126,31 @@ public class Menu extends javax.swing.JFrame {
                 jLabelHabitacionMouseReleased(evt);
             }
         });
-        getContentPane().add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, -1, 50));
+        getContentPane().add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, -1, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wallpaper.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 700, 500));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setText("Reservas");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel2.setText("Huesped");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel3.setText("Habitaciones");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
+
+        jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 60, 10));
+
+        jSeparator2.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 60, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 90, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,30 +236,6 @@ public class Menu extends javax.swing.JFrame {
        dispose(); 
     }//GEN-LAST:event_jLabelHabitacionMouseClicked
 
-    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
-       
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_logo_in.png")));
-        
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
-
-    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-        
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_logo.png")));
-        
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-
-    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-        
-        Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
-     tipoHabitacionTipoCama.setVisible(true);
-       dispose(); 
-        
-        
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -287,13 +273,17 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHabitacion;
     private javax.swing.JLabel jLabelHuesped;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelNombrePrograma;
     private javax.swing.JLabel jLabelReserva;
-    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JLabel jLabellogo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }
