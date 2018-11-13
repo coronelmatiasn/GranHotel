@@ -171,6 +171,7 @@ private ArrayList<Habitacion> habitaciones;
     private void initComponents() {
 
         filterGroup = new javax.swing.ButtonGroup();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelMinimizar = new javax.swing.JLabel();
@@ -203,6 +204,8 @@ private ArrayList<Habitacion> habitaciones;
         nHabValidacion = new javax.swing.JLabel();
         btnBorrarHabitacion = new javax.swing.JButton();
         btnModificarHabitacion = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -791,6 +794,7 @@ private ArrayList<Habitacion> habitaciones;
     private javax.swing.JComboBox<String> comboBoxEstado;
     private javax.swing.JTextField filterField;
     private javax.swing.ButtonGroup filterGroup;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

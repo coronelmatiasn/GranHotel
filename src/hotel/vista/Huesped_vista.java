@@ -107,7 +107,6 @@ private  ArrayList <Huesped> listahuesped;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
-        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -117,7 +116,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -132,7 +131,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel1.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -141,7 +140,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -194,7 +193,7 @@ private  ArrayList <Huesped> listahuesped;
 
         jLabelBuscarHuesped.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabelBuscarHuesped.setText("BUSCAR");
-        jLabelBuscarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelBuscarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelBuscarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelBuscarHuespedMouseClicked(evt);
@@ -213,7 +212,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 190, 10));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -228,7 +227,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, -1, 30));
 
         jLabelHabitacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/double-king_ventana.png"))); // NOI18N
-        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHabitacionMouseClicked(evt);
@@ -243,7 +242,7 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.add(jLabelHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 60, 40, 30));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -256,21 +255,6 @@ private  ArrayList <Huesped> listahuesped;
             }
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, -1, 40));
-
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
-        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 160, 40, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -308,7 +292,6 @@ private  ArrayList <Huesped> listahuesped;
        //mueve el icono habitacion a la derecha
        AnimationClass habitacionn =new AnimationClass();
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHabitacion);
-       
 
        
       //mueve el icono reserva a la izquieda
@@ -318,17 +301,6 @@ private  ArrayList <Huesped> listahuesped;
        //mueve el icono reserva a la derecha 
        AnimationClass reservaa = new AnimationClass();
       reservaa.jLabelXLeft(10, -40,10,5, jLabelReserva);
-      
-      
-        //mueve el icono tipoHabitacion a la derecha
-       AnimationClass tipoHabitacion =new AnimationClass();
-       tipoHabitacion.jLabelXRight(-40, 10, 10, 5,  jLabelTipoHabitacionTipoCama);
-       
-       //mueve el icono tipoHabitacion a la izquierda
-       AnimationClass  tipoHabitacionn =new AnimationClass();
-       tipoHabitacionn.jLabelXLeft(10, -40, 10, 5,  jLabelTipoHabitacionTipoCama);
-       
-       
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMousePressed
@@ -414,24 +386,6 @@ private  ArrayList <Huesped> listahuesped;
         
     }//GEN-LAST:event_jLabelBuscarHuespedMouseClicked
 
-    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
-       
-         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_in_ventana.png")));
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
-
-    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-        
-         jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png")));
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-
-    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-       
-         Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
-     tipoHabitacionTipoCama.setVisible(true);
-       dispose(); 
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -478,7 +432,6 @@ private  ArrayList <Huesped> listahuesped;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
-    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
