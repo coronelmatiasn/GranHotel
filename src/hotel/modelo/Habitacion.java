@@ -10,7 +10,7 @@ public class Habitacion {
         this.estado = false;
     }
     
-    public Habitacion(int nHabitacion, int piso,boolean estado, TipoHabitacion  tipohabitacion) {
+    public Habitacion(int nHabitacion, int piso, TipoHabitacion tipohabitacion) {
         this.estado = false;
         this.nHabitacion = nHabitacion;
         this.piso = piso;

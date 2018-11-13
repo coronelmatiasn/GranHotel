@@ -41,9 +41,22 @@ public class HabitacionData {
             System.out.println("Error al insertar habitacion: " + ex.getMessage());
         }
     }
-       
-            
 
+    public void modificarHabitacion(int nHabitacion, Habitacion habitacion) {
+        try {
+            String sql = "UPDATE `habitacion` SET `piso` = ?, `id_tipo_habitacion` = ? WHERE nro_habitacion = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, habitacion.getPiso());
+            statement.setInt(2, habitacion.getTipoHabitacion().getId());
+            statement.setInt(3, habitacion.getNHabitacion());            
+            
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar habitacion: " + ex.getMessage());
+        }
+    }
     
     public ArrayList<Habitacion> obtenerHabitaciones(){
         ArrayList<Habitacion> habitaciones = new ArrayList<>();
@@ -260,6 +273,30 @@ public class HabitacionData {
         } catch (SQLException ex) {
            System.out.println("Error al borrar Habitacion: " + ex.getMessage());
         }
+    }
+    
+    public boolean existeHabitacion(int nHabitacion) {
+        int total = 0;
+
+        try {
+            
+            String sql = "SELECT SUM(nro_habitacion = ?) AS total FROM habitacion";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, nHabitacion);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()) {
+                total = resultSet.getInt("total");
+            }
+            
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HuespedData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return total != 0;
     }
 } 
 

@@ -12,17 +12,14 @@ import AppPackage.AnimationClass;
 import hotel.Conexion;
 import hotel.modelo.Habitacion;
 import hotel.modelo.HabitacionData;
-import hotel.modelo.Reserva;
 import hotel.modelo.TipoHabitacion;
 import hotel.modelo.TipoHabitacionData;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.text.WordUtils;
 
 
 public class Habitacion_vista extends javax.swing.JFrame {
@@ -147,6 +144,16 @@ private ArrayList<Habitacion> habitaciones;
         
         setearContenidoDeTabla(fHabitaciones);
     }
+    
+    private ArrayList<String> crearDataComboBox() {
+        ArrayList<String> listaCategorias = (ArrayList) tipohabitaciondata
+            .obtenerCategorias()
+            .stream()
+            .map(c -> WordUtils.capitalizeFully(c))
+            .collect(Collectors.toList());
+        
+        return listaCategorias;
+    }
 
     /**
     * This method is called from within the constructor to initialize the form.
@@ -165,9 +172,7 @@ private ArrayList<Habitacion> habitaciones;
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        ArrayList<String> lCat = new ArrayList<>();
-        lCat = tipohabitaciondata.obtenerCategorias();
-        jComboBoxTipoHabitacion = new javax.swing.JComboBox(lCat.toArray());
+        jComboBoxTipoHabitacion = new javax.swing.JComboBox(crearDataComboBox().toArray());
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHabitaciones = new javax.swing.JTable();
         jLabelMenu = new javax.swing.JLabel();
@@ -188,6 +193,8 @@ private ArrayList<Habitacion> habitaciones;
         rBCategoria1 = new javax.swing.JRadioButton();
         rBNumero1 = new javax.swing.JRadioButton();
         comboBoxEstado = new javax.swing.JComboBox<>();
+        pisoValidacion = new javax.swing.JLabel();
+        nHabValidacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -344,6 +351,11 @@ private ArrayList<Habitacion> habitaciones;
         jTextFieldNumeroHabitacion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextFieldNumeroHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNumeroHabitacion.setBorder(null);
+        jTextFieldNumeroHabitacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNumeroHabitacionFocusLost(evt);
+            }
+        });
         jPanel2.add(jTextFieldNumeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 50, -1));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
@@ -460,6 +472,14 @@ private ArrayList<Habitacion> habitaciones;
         });
         jPanel2.add(comboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 120, -1));
 
+        pisoValidacion.setBackground(new java.awt.Color(255, 255, 255));
+        pisoValidacion.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel2.add(pisoValidacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 90, 20));
+
+        nHabValidacion.setBackground(new java.awt.Color(255, 255, 255));
+        nHabValidacion.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel2.add(nHabValidacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 90, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
         pack();
@@ -575,7 +595,42 @@ private ArrayList<Habitacion> habitaciones;
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
     private void btnAgregarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabitacionActionPerformed
-        // TODO add your handling code here:
+        int nroHabitacion, piso;
+        String categoria;
+        TipoHabitacion tipoHabitacion;
+        
+        try {
+            nroHabitacion = Integer.parseInt(jTextFieldNumeroHabitacion.getText());
+            
+            nHabValidacion.setText("");
+        } catch (NumberFormatException e) {
+            nHabValidacion.setText("Inserte un número");
+            
+            return;
+        }
+        
+        try {
+            piso = Integer.parseInt(jTextFieldPiso.getText());
+            
+            pisoValidacion.setText("");
+        } catch (NumberFormatException e) {
+            pisoValidacion.setText("Inserte un número");
+            
+            return;
+        }
+        
+        categoria = jComboBoxTipoHabitacion.getSelectedItem().toString();
+        tipoHabitacion = tipohabitaciondata.buscartipohabitacion(categoria);
+        
+        if(btnAgregarHabitacion.getText().equals("AGREGAR HABITACION")) {
+            habitaciondata.guardarHabitacion(new Habitacion(nroHabitacion, piso, tipoHabitacion));
+        } else {
+            habitaciondata.modificarHabitacion(nroHabitacion, new Habitacion(nroHabitacion, piso, tipoHabitacion));
+        }
+  
+        habitaciones = habitaciondata.obtenerHabitaciones();
+        
+        filtrarHabitaciones();      
     }//GEN-LAST:event_btnAgregarHabitacionActionPerformed
 
     private void comboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEstadoActionPerformed
@@ -597,6 +652,26 @@ private ArrayList<Habitacion> habitaciones;
     private void rBPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBPisoActionPerformed
         filtrarHabitaciones();
     }//GEN-LAST:event_rBPisoActionPerformed
+
+    private void jTextFieldNumeroHabitacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNumeroHabitacionFocusLost
+        int nroHabitacion;
+        
+        try {
+            nroHabitacion = Integer.parseInt(jTextFieldNumeroHabitacion.getText());
+            
+            nHabValidacion.setText("");
+        } catch (NumberFormatException e) {
+            nHabValidacion.setText("Inserte un número");
+            
+            return;
+        }
+        
+        if(habitaciondata.existeHabitacion(nroHabitacion)) {
+            btnAgregarHabitacion.setText("MODIFICAR HABITACION");
+        } else {
+            btnAgregarHabitacion.setText("AGREGAR HABITACION");
+        }
+    }//GEN-LAST:event_jTextFieldNumeroHabitacionFocusLost
 
     /**
      * @param args the command line arguments
@@ -662,6 +737,8 @@ private ArrayList<Habitacion> habitaciones;
     private javax.swing.JTable jTableHabitaciones;
     private javax.swing.JTextField jTextFieldNumeroHabitacion;
     private javax.swing.JTextField jTextFieldPiso;
+    private javax.swing.JLabel nHabValidacion;
+    private javax.swing.JLabel pisoValidacion;
     private javax.swing.JRadioButton rBCategoria1;
     private javax.swing.JRadioButton rBNumero1;
     private javax.swing.JRadioButton rBPiso;

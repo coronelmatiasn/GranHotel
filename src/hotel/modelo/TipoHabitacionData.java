@@ -96,6 +96,37 @@ public class TipoHabitacionData {
         return  tipohabitacion;
     }
     
+    public TipoHabitacion buscartipohabitacion(String categoria){
+        TipoHabitacion tipohabitacion = null;
+
+        try {  
+            String sql = "SELECT * FROM tipo_de_habitacion WHERE categoria_habitacion = ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, categoria);
+
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                tipohabitacion = new TipoHabitacion();
+                tipohabitacion.setId(resultSet.getInt("id_tipo_habitacion"));
+                tipohabitacion.setCategoria(resultSet.getString("categoria_habitacion"));
+                tipohabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
+                tipohabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
+                TipoDeCama c = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+                tipohabitacion.setTipoCama(c);
+            }      
+
+            statement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar tipo de habitacion: " + ex.getMessage());
+        }
+
+        return  tipohabitacion;
+    }
+    
     public ArrayList<TipoHabitacion> buscartipohabitacion(String categoria, int cantPersonas){
         TipoHabitacion tipoHabitacion = null;
         ArrayList<TipoHabitacion> tiposHabitacion = new ArrayList<>();
