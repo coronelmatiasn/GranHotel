@@ -18,6 +18,10 @@ import hotel.modelo.TipoHabitacionData;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -50,7 +54,7 @@ private ArrayList<Habitacion> habitaciones;
         
         initComponents();
         crearModeloDeTabla();
-        setearContenidoDeTabla(); 
+        setearContenidoDeTabla(this.habitaciones); 
         
         MoveMouseListener mml = new MoveMouseListener(jPanel1);
         jPanel1.addMouseListener(mml);
@@ -75,7 +79,7 @@ private ArrayList<Habitacion> habitaciones;
         jTableHabitaciones.setModel(dataModel);
     }
 
-    private void setearContenidoDeTabla() {
+    private void setearContenidoDeTabla(ArrayList<Habitacion> habitaciones) {
         //se elimina todo el contenido de la tabla si es que hay
         for(int i = dataModel.getRowCount(); i > 0; i--) {
             dataModel.removeRow(i - 1);
@@ -95,6 +99,54 @@ private ArrayList<Habitacion> habitaciones;
             dataModel.addRow(row);
         }
     }
+    
+    public void filtrarHabitaciones() {
+        ArrayList<Habitacion> fHabitaciones;
+        String input = filterField.getText().toLowerCase();
+        String estado = comboBoxEstado.getSelectedItem().toString();
+        
+        fHabitaciones = habitaciones;
+        
+        if(!estado.toLowerCase().equals("estado")) {
+            if(estado.toLowerCase().equals("ocupada")) {
+                fHabitaciones = (ArrayList) fHabitaciones.stream().filter(p -> p.getEstado()).collect(Collectors.toList());
+            } else {
+                fHabitaciones = (ArrayList) fHabitaciones.stream().filter(p -> !p.getEstado()).collect(Collectors.toList());
+            }
+        }
+
+        if(!input.equals("")) {
+            String rb = filterGroup.getSelection().getActionCommand().toLowerCase();
+            
+            switch(rb) {
+                case "precio":      fHabitaciones = (ArrayList) fHabitaciones
+                                        .stream()
+                                        .filter(h -> Double.toString(h.getTipoHabitacion().getPrecioXNoche()).contains(input))
+                                        .collect(Collectors.toList());
+                                    break;
+                                
+                case "categoria":   fHabitaciones = (ArrayList) fHabitaciones
+                                        .stream()
+                                        .filter(h -> h.getTipoHabitacion().getCategoria().toLowerCase().contains(input))
+                                        .collect(Collectors.toList());
+                                    break;
+                                    
+                case "numero":      fHabitaciones = (ArrayList) fHabitaciones
+                                        .stream()
+                                        .filter(h -> Integer.toString(h.getNHabitacion()).contains(input))
+                                        .collect(Collectors.toList());
+                                    break;
+                                    
+                case "piso":        fHabitaciones = (ArrayList) fHabitaciones
+                                        .stream()
+                                        .filter(h -> Integer.toString(h.getPiso()).contains(input))
+                                        .collect(Collectors.toList());
+                                    break;
+            }
+        }
+        
+        setearContenidoDeTabla(fHabitaciones);
+    }
 
     /**
     * This method is called from within the constructor to initialize the form.
@@ -105,6 +157,7 @@ private ArrayList<Habitacion> habitaciones;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filterGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabelOpciones = new javax.swing.JLabel();
         jLabelMinimizar = new javax.swing.JLabel();
@@ -120,7 +173,6 @@ private ArrayList<Habitacion> habitaciones;
         jLabelMenu = new javax.swing.JLabel();
         jLabelHuesped = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
-        jLabelTipoHabitacionTipoCama = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldPiso = new javax.swing.JTextField();
@@ -128,9 +180,14 @@ private ArrayList<Habitacion> habitaciones;
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         btnAgregarHabitacion = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        filterField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        rBPiso = new javax.swing.JRadioButton();
+        rBPrecio1 = new javax.swing.JRadioButton();
+        rBCategoria1 = new javax.swing.JRadioButton();
+        rBNumero1 = new javax.swing.JRadioButton();
+        comboBoxEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -212,8 +269,10 @@ private ArrayList<Habitacion> habitaciones;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableHabitaciones.setCellSelectionEnabled(true);
         jTableHabitaciones.setEnabled(false);
         jTableHabitaciones.setGridColor(new java.awt.Color(102, 204, 255));
+        jTableHabitaciones.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableHabitaciones);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
@@ -263,21 +322,6 @@ private ArrayList<Habitacion> habitaciones;
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, 40, 40));
 
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png"))); // NOI18N
-        jLabelTipoHabitacionTipoCama.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelTipoHabitacionTipoCama.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelTipoHabitacionTipoCamaMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelTipoHabitacionTipoCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 150, 40, 40));
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -323,20 +367,98 @@ private ArrayList<Habitacion> habitaciones;
         });
         jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("FILTRAR:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 150, -1));
+        filterField.setBackground(new java.awt.Color(255, 255, 255));
+        filterField.setForeground(new java.awt.Color(0, 0, 0));
+        filterField.setBorder(null);
+        jPanel2.add(filterField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 70, -1));
+        filterField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                filtrarHabitaciones();
+            }
+            public void removeUpdate(DocumentEvent e) {
+                filtrarHabitaciones();
+            }
+            public void insertUpdate(DocumentEvent e) {
+                filtrarHabitaciones();
+            }
+        });
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 150, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 70, 10));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("FILTRAR:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        rBPiso.setBackground(new java.awt.Color(255, 255, 255));
+        filterGroup.add(rBPiso);
+        rBPiso.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        rBPiso.setForeground(new java.awt.Color(0, 0, 0));
+        rBPiso.setText("Piso");
+        rBPiso.setToolTipText("");
+        rBPiso.setActionCommand(rBPiso.getText());
+        rBPiso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBPisoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rBPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
+
+        rBPrecio1.setBackground(new java.awt.Color(255, 255, 255));
+        filterGroup.add(rBPrecio1);
+        rBPrecio1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        rBPrecio1.setForeground(new java.awt.Color(0, 0, 0));
+        rBPrecio1.setSelected(true);
+        rBPrecio1.setText("Precio");
+        rBPrecio1.setActionCommand(rBPrecio1.getText());
+        rBPrecio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBPrecio1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rBPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+
+        rBCategoria1.setBackground(new java.awt.Color(255, 255, 255));
+        filterGroup.add(rBCategoria1);
+        rBCategoria1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        rBCategoria1.setForeground(new java.awt.Color(0, 0, 0));
+        rBCategoria1.setText("Categoria");
+        rBCategoria1.setToolTipText("");
+        rBCategoria1.setActionCommand(rBCategoria1.getText());
+        rBCategoria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBCategoria1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rBCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        rBNumero1.setBackground(new java.awt.Color(255, 255, 255));
+        filterGroup.add(rBNumero1);
+        rBNumero1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
+        rBNumero1.setForeground(new java.awt.Color(0, 0, 0));
+        rBNumero1.setText("Numero");
+        rBNumero1.setToolTipText("");
+        rBNumero1.setActionCommand(rBNumero1.getText());
+        rBNumero1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBNumero1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rBNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+
+        comboBoxEstado.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxEstado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        comboBoxEstado.setForeground(new java.awt.Color(0, 0, 0));
+        comboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "Ocupada", "Desocupada" }));
+        comboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxEstadoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 120, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -375,15 +497,7 @@ private ArrayList<Habitacion> habitaciones;
        
        //mueve el icono huesped a la izquierda
        AnimationClass huespedd =new AnimationClass();
-       menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);
-       
-         //mueve el icono tipoHabitacion a la derecha
-       AnimationClass tipoHabitacion =new AnimationClass();
-       tipoHabitacion.jLabelXRight(-40, 10, 10, 5,  jLabelTipoHabitacionTipoCama);
-       
-       //mueve el icono tipoHabitacion a la izquierda
-       AnimationClass  tipoHabitacionn =new AnimationClass();
-       tipoHabitacionn.jLabelXLeft(10, -40, 10, 5,  jLabelTipoHabitacionTipoCama);    
+       menuu.jLabelXLeft(10, -40, 10, 5, jLabelHuesped);   
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMousePressed
@@ -460,31 +574,29 @@ private ArrayList<Habitacion> habitaciones;
      
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
-    private void jLabelTipoHabitacionTipoCamaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMousePressed
-        
-        
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_in_ventana.png")));
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMousePressed
-
-    private void jLabelTipoHabitacionTipoCamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-       
-        
-        jLabelTipoHabitacionTipoCama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tipo_habitacion_tipo_cama_ventana.png")));
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseReleased
-
-    private void jLabelTipoHabitacionTipoCamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-       
-        Tipo_habitacion_tipo_cama_vista tipoHabitacionTipoCama =new Tipo_habitacion_tipo_cama_vista();
-        tipoHabitacionTipoCama.setVisible(true);
-        dispose(); 
-        
-    }//GEN-LAST:event_jLabelTipoHabitacionTipoCamaMouseClicked
-
     private void btnAgregarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabitacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarHabitacionActionPerformed
+
+    private void comboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEstadoActionPerformed
+        filtrarHabitaciones();
+    }//GEN-LAST:event_comboBoxEstadoActionPerformed
+
+    private void rBPrecio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBPrecio1ActionPerformed
+        filtrarHabitaciones();
+    }//GEN-LAST:event_rBPrecio1ActionPerformed
+
+    private void rBCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBCategoria1ActionPerformed
+        filtrarHabitaciones();  
+    }//GEN-LAST:event_rBCategoria1ActionPerformed
+
+    private void rBNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBNumero1ActionPerformed
+        filtrarHabitaciones();
+    }//GEN-LAST:event_rBNumero1ActionPerformed
+
+    private void rBPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBPisoActionPerformed
+        filtrarHabitaciones();
+    }//GEN-LAST:event_rBPisoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -526,19 +638,21 @@ private ArrayList<Habitacion> habitaciones;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarHabitacion;
+    private javax.swing.JComboBox<String> comboBoxEstado;
+    private javax.swing.JTextField filterField;
+    private javax.swing.ButtonGroup filterGroup;
     private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHuesped;
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelMinimizar;
     private javax.swing.JLabel jLabelOpciones;
     private javax.swing.JLabel jLabelReserva;
-    private javax.swing.JLabel jLabelTipoHabitacionTipoCama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -546,9 +660,12 @@ private ArrayList<Habitacion> habitaciones;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTableHabitaciones;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldNumeroHabitacion;
     private javax.swing.JTextField jTextFieldPiso;
+    private javax.swing.JRadioButton rBCategoria1;
+    private javax.swing.JRadioButton rBNumero1;
+    private javax.swing.JRadioButton rBPiso;
+    private javax.swing.JRadioButton rBPrecio1;
     // End of variables declaration//GEN-END:variables
 
   
