@@ -70,7 +70,13 @@ private ArrayList<Habitacion> habitaciones;
         };
 
         //crea un modelo de tabla usando los nombres del array creado y 0 filas
-        dataModel = new DefaultTableModel(col, 0);
+        //sobreescribe el metodo isCellEditable para que retorne false en todas las celdas y no se puedan editar
+        dataModel = new DefaultTableModel(col, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         //añade el modelo a la tabla
         jTableHabitaciones.setModel(dataModel);
@@ -277,9 +283,8 @@ private ArrayList<Habitacion> habitaciones;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableHabitaciones.setCellSelectionEnabled(true);
-        jTableHabitaciones.setEnabled(false);
         jTableHabitaciones.setGridColor(new java.awt.Color(102, 204, 255));
+        jTableHabitaciones.setRowSelectionAllowed(true);
         jTableHabitaciones.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableHabitaciones);
 
@@ -673,11 +678,7 @@ private ArrayList<Habitacion> habitaciones;
         
         try {
             nroHabitacion = Integer.parseInt(jTextFieldNumeroHabitacion.getText());
-            
-            nHabValidacion.setText("");
         } catch (NumberFormatException e) {
-            nHabValidacion.setText("Inserte un número");
-            
             return;
         }
         
