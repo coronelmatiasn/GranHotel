@@ -290,6 +290,11 @@ private ArrayList<Habitacion> habitaciones;
         ));
         jTableHabitaciones.setGridColor(new java.awt.Color(102, 204, 255));
         jTableHabitaciones.getTableHeader().setReorderingAllowed(false);
+        jTableHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableHabitacionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableHabitaciones);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
@@ -748,6 +753,31 @@ private ArrayList<Habitacion> habitaciones;
         
         filtrarHabitaciones();      
     }//GEN-LAST:event_btnModificarHabitacionActionPerformed
+
+    private void jTableHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHabitacionesMouseClicked
+        int nHab, piso;
+        String categoria;
+        if(jTableHabitaciones.getSelectedRow() != -1) {
+            int row = jTableHabitaciones.getSelectedRow();
+        
+            nHab = (int) jTableHabitaciones.getValueAt(row, 0);
+            piso = (int) jTableHabitaciones.getValueAt(row, 1);
+            categoria = (String) jTableHabitaciones.getValueAt(row, 3);
+
+            jTextFieldNumeroHabitacion.setText(Integer.toString(nHab));
+            jTextFieldPiso.setText(Integer.toString(piso));
+            jComboBoxTipoHabitacion.setSelectedItem(WordUtils.capitalizeFully(categoria));
+
+            btnModificarHabitacion.setEnabled(true);
+            btnBorrarHabitacion.setEnabled(true);
+            btnAgregarHabitacion.setEnabled(false);
+        } else {
+            btnModificarHabitacion.setEnabled(false);
+            btnBorrarHabitacion.setEnabled(false);
+            btnAgregarHabitacion.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_jTableHabitacionesMouseClicked
 
     /**
      * @param args the command line arguments
