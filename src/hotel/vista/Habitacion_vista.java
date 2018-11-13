@@ -195,6 +195,7 @@ private ArrayList<Habitacion> habitaciones;
         comboBoxEstado = new javax.swing.JComboBox<>();
         pisoValidacion = new javax.swing.JLabel();
         nHabValidacion = new javax.swing.JLabel();
+        btnBorrarHabitacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -377,7 +378,7 @@ private ArrayList<Habitacion> habitaciones;
                 btnAgregarHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+        jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
         filterField.setBackground(new java.awt.Color(255, 255, 255));
         filterField.setForeground(new java.awt.Color(0, 0, 0));
@@ -479,6 +480,20 @@ private ArrayList<Habitacion> habitaciones;
         nHabValidacion.setBackground(new java.awt.Color(255, 255, 255));
         nHabValidacion.setForeground(new java.awt.Color(255, 0, 0));
         jPanel2.add(nHabValidacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 90, 20));
+
+        btnBorrarHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        btnBorrarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnBorrarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrarHabitacion.setText("BORRAR HABITACION");
+        btnBorrarHabitacion.setBorder(null);
+        btnBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBorrarHabitacion.setEnabled(false);
+        btnBorrarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarHabitacionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBorrarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -668,10 +683,19 @@ private ArrayList<Habitacion> habitaciones;
         
         if(habitaciondata.existeHabitacion(nroHabitacion)) {
             btnAgregarHabitacion.setText("MODIFICAR HABITACION");
+            btnBorrarHabitacion.setEnabled(true);
         } else {
             btnAgregarHabitacion.setText("AGREGAR HABITACION");
+            btnBorrarHabitacion.setEnabled(false);
         }
     }//GEN-LAST:event_jTextFieldNumeroHabitacionFocusLost
+
+    private void btnBorrarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarHabitacionActionPerformed
+        habitaciondata.borrarHabitacion(Integer.parseInt(jTextFieldNumeroHabitacion.getText()));
+        
+        habitaciones = habitaciondata.obtenerHabitaciones();
+        filtrarHabitaciones();
+    }//GEN-LAST:event_btnBorrarHabitacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -713,6 +737,7 @@ private ArrayList<Habitacion> habitaciones;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarHabitacion;
+    private javax.swing.JButton btnBorrarHabitacion;
     private javax.swing.JComboBox<String> comboBoxEstado;
     private javax.swing.JTextField filterField;
     private javax.swing.ButtonGroup filterGroup;
