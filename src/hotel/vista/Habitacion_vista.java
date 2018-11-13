@@ -202,6 +202,7 @@ private ArrayList<Habitacion> habitaciones;
         pisoValidacion = new javax.swing.JLabel();
         nHabValidacion = new javax.swing.JLabel();
         btnBorrarHabitacion = new javax.swing.JButton();
+        btnModificarHabitacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -257,6 +258,7 @@ private ArrayList<Habitacion> habitaciones;
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 60));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setEnabled(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -284,7 +286,6 @@ private ArrayList<Habitacion> habitaciones;
             }
         ));
         jTableHabitaciones.setGridColor(new java.awt.Color(102, 204, 255));
-        jTableHabitaciones.setRowSelectionAllowed(true);
         jTableHabitaciones.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableHabitaciones);
 
@@ -383,7 +384,7 @@ private ArrayList<Habitacion> habitaciones;
                 btnAgregarHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
         filterField.setBackground(new java.awt.Color(255, 255, 255));
         filterField.setForeground(new java.awt.Color(0, 0, 0));
@@ -498,7 +499,21 @@ private ArrayList<Habitacion> habitaciones;
                 btnBorrarHabitacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBorrarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+        jPanel2.add(btnBorrarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+
+        btnModificarHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificarHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnModificarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificarHabitacion.setText("MODIFICAR HABITACION");
+        btnModificarHabitacion.setBorder(null);
+        btnModificarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarHabitacion.setEnabled(false);
+        btnModificarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarHabitacionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -642,11 +657,7 @@ private ArrayList<Habitacion> habitaciones;
         categoria = jComboBoxTipoHabitacion.getSelectedItem().toString();
         tipoHabitacion = tipohabitaciondata.buscartipohabitacion(categoria);
         
-        if(btnAgregarHabitacion.getText().equals("AGREGAR HABITACION")) {
-            habitaciondata.guardarHabitacion(new Habitacion(nroHabitacion, piso, tipoHabitacion));
-        } else {
-            habitaciondata.modificarHabitacion(nroHabitacion, new Habitacion(nroHabitacion, piso, tipoHabitacion));
-        }
+        habitaciondata.guardarHabitacion(new Habitacion(nroHabitacion, piso, tipoHabitacion));
   
         habitaciones = habitaciondata.obtenerHabitaciones();
         
@@ -683,10 +694,12 @@ private ArrayList<Habitacion> habitaciones;
         }
         
         if(habitaciondata.existeHabitacion(nroHabitacion)) {
-            btnAgregarHabitacion.setText("MODIFICAR HABITACION");
+            btnModificarHabitacion.setEnabled(true);
             btnBorrarHabitacion.setEnabled(true);
+            btnAgregarHabitacion.setEnabled(false);
         } else {
-            btnAgregarHabitacion.setText("AGREGAR HABITACION");
+            btnAgregarHabitacion.setEnabled(true);
+            btnModificarHabitacion.setEnabled(false);
             btnBorrarHabitacion.setEnabled(false);
         }
     }//GEN-LAST:event_jTextFieldNumeroHabitacionFocusLost
@@ -697,6 +710,41 @@ private ArrayList<Habitacion> habitaciones;
         habitaciones = habitaciondata.obtenerHabitaciones();
         filtrarHabitaciones();
     }//GEN-LAST:event_btnBorrarHabitacionActionPerformed
+
+    private void btnModificarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarHabitacionActionPerformed
+        int nroHabitacion, piso;
+        String categoria;
+        TipoHabitacion tipoHabitacion;
+        
+        try {
+            nroHabitacion = Integer.parseInt(jTextFieldNumeroHabitacion.getText());
+            
+            nHabValidacion.setText("");
+        } catch (NumberFormatException e) {
+            nHabValidacion.setText("Inserte un número");
+            
+            return;
+        }
+        
+        try {
+            piso = Integer.parseInt(jTextFieldPiso.getText());
+            
+            pisoValidacion.setText("");
+        } catch (NumberFormatException e) {
+            pisoValidacion.setText("Inserte un número");
+            
+            return;
+        }
+        
+        categoria = jComboBoxTipoHabitacion.getSelectedItem().toString();
+        tipoHabitacion = tipohabitaciondata.buscartipohabitacion(categoria);
+        
+        habitaciondata.modificarHabitacion(nroHabitacion, new Habitacion(nroHabitacion, piso, tipoHabitacion));
+  
+        habitaciones = habitaciondata.obtenerHabitaciones();
+        
+        filtrarHabitaciones();      
+    }//GEN-LAST:event_btnModificarHabitacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -739,6 +787,7 @@ private ArrayList<Habitacion> habitaciones;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarHabitacion;
     private javax.swing.JButton btnBorrarHabitacion;
+    private javax.swing.JButton btnModificarHabitacion;
     private javax.swing.JComboBox<String> comboBoxEstado;
     private javax.swing.JTextField filterField;
     private javax.swing.ButtonGroup filterGroup;
