@@ -138,6 +138,11 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         campoCategoria.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         campoCategoria.setForeground(new java.awt.Color(0, 0, 0));
         campoCategoria.setBorder(null);
+        campoCategoria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoCategoriaFocusLost(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
@@ -206,12 +211,19 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         btnBorrar.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrar.setText("BORRAR");
         btnBorrar.setBorder(null);
+        btnBorrar.setEnabled(false);
 
         btnModificar.setBackground(new java.awt.Color(255, 255, 255));
         btnModificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(0, 0, 0));
         btnModificar.setText("MODIFICAR");
         btnModificar.setBorder(null);
+        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         cantPersonasValidacion.setBackground(new java.awt.Color(255, 255, 255));
         cantPersonasValidacion.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -332,6 +344,59 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         
         setearContenidoDeTabla(thd.obtenerTipoHabitacion());
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void campoCategoriaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCategoriaFocusLost
+        String categoria;
+        
+        categoria = campoCategoria.getText();
+        
+        if(thd.existeTipoHabitacion(categoria)) {
+            btnModificar.setEnabled(true);
+            btnBorrar.setEnabled(true);
+            btnAgregar.setEnabled(false);
+        } else {
+            btnModificar.setEnabled(false);
+            btnBorrar.setEnabled(false);
+            btnAgregar.setEnabled(true);
+        }
+    }//GEN-LAST:event_campoCategoriaFocusLost
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        TipoHabitacion th;
+        TipoDeCama tc;
+        String categoria;
+        int cantPersonas;
+        double precio;
+        
+        try {
+            cantPersonas = Integer.parseInt(campoCantPersonas.getText());
+            
+            cantPersonasValidacion.setText("");
+        } catch(NumberFormatException e) {
+            cantPersonasValidacion.setText("Inserte un numero");
+            
+            return;
+        }
+        
+        try {
+            precio = Double.parseDouble(campoPrecio.getText());
+            
+            precioValidacion.setText("");
+        } catch(NumberFormatException e) {
+            precioValidacion.setText("Inserte un monto válido");
+            
+            return;
+        }
+        
+        categoria = campoCategoria.getText().toLowerCase();
+        tc = tcd.buscarTipoCama(cBoxTiposDeCama.getSelectedItem().toString().toLowerCase());
+        
+        th = new TipoHabitacion(categoria, cantPersonas, precio, tc);
+        
+        thd.modificarTipoHabitacion(categoria, th);
+        
+        setearContenidoDeTabla(thd.obtenerTipoHabitacion());
+    }//GEN-LAST:event_btnModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

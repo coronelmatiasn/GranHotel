@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -37,6 +39,23 @@ public class TipoHabitacionData {
            
         }  catch (SQLException ex) {
             System.out.println("Error al insertar tipo de habitacion: " + ex.getMessage());
+        }
+    }
+    
+    public void modificarTipoHabitacion(String categoria, TipoHabitacion tHabitacion) {
+        try {
+            String sql = "UPDATE `tipo_de_habitacion` SET `cantidad_maxima_personas` = ?, `precio_por_noche` = ?, `id_tipo_cama` = ? WHERE categoria_habitacion = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, tHabitacion.getCantidadMaxPersonas());
+            statement.setDouble(2, tHabitacion.getPrecioXNoche());
+            statement.setInt(3, tHabitacion.getTipoCama().getId_tipo_cama());
+            statement.setString(4, tHabitacion.getCategoria());
+            
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar tipo de habitacion: " + ex.getMessage());
         }
     }
  
@@ -190,6 +209,30 @@ public class TipoHabitacionData {
         TipoDeCamaData tc= new TipoDeCamaData(conexion);
         
         return tc.buscarTipoCama(id);    
+    }
+    
+    public boolean existeTipoHabitacion(String categoria) {
+        int total = 0;
+
+        try {
+            
+            String sql = "SELECT SUM(categoria_habitacion = ?) AS total FROM tipo_de_habitacion";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, categoria);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()) {
+                total = resultSet.getInt("total");
+            }
+            
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar tipo de habitacion: " + ex.getMessage());
+        }
+        
+        return total != 0;
     }
 }
 
