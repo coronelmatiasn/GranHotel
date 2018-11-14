@@ -59,47 +59,75 @@ public class TipoDeCamaData {
         return tiposDeCamas;
     }
 
+    public ArrayList<String> obtenerCategorias() {
+        ArrayList<String> categorias = new ArrayList<>();     
 
-public TipoDeCama buscarTipoCama(int id){
-    TipoDeCama tipodecama = null;
-    try {
-        String sql = "SELECT * FROM tipo_de_cama WHERE id_tipo_cama =?;";
+        try {
+            String sql = "SELECT categoria_cama FROM `tipo_de_cama`;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                categorias.add(resultSet.getString("categoria_cama"));
+            }
 
-        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, id);
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener lista de categorías: " + ex.getMessage());
+        }
+         
+        return categorias;
+    }
 
-        ResultSet resultSet=statement.executeQuery();
+    public TipoDeCama buscarTipoCama(int id){
+        TipoDeCama tipodecama = null;
+        try {
+            String sql = "SELECT * FROM tipo_de_cama WHERE id_tipo_cama =?;";
 
-        while(resultSet.next()){
-            tipodecama = new TipoDeCama();
-            tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
-            tipodecama.setCategoria(resultSet.getString("categoria_cama"));
-        }      
-        statement.close();
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
+
+            ResultSet resultSet=statement.executeQuery();
+
+            while(resultSet.next()){
+                tipodecama = new TipoDeCama();
+                tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
+                tipodecama.setCategoria(resultSet.getString("categoria_cama"));
+            }      
+            
+            statement.close();
 
         } catch (SQLException ex) {
             System.out.println("Error al ingresar tipo de cama : " + ex.getMessage());
         }
-        
+
         return tipodecama;
     }
-       public void cargarComboxConTipoCama(JComboBox comboxTipo){
-        String sql= "SELECT * FROM tipo_de_cama;";
-
+    
+    public TipoDeCama buscarTipoCama(String categoria){
+        TipoDeCama tipodecama = null;
+        
         try {
-           PreparedStatement statement = connection.prepareStatement(sql);
-           ResultSet resultSet = statement.executeQuery();
+            String sql = "SELECT * FROM tipo_de_cama WHERE categoria_cama = ?;";
 
-           while(resultSet.next()){
-                comboxTipo.addItem(resultSet.getString("categoria_cama"));
-           }
-           statement.close();
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, categoria);
 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        } 
+            ResultSet resultSet=statement.executeQuery();
 
+            while(resultSet.next()){
+                tipodecama = new TipoDeCama();
+                tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
+                tipodecama.setCategoria(resultSet.getString("categoria_cama"));
+            }      
+            
+            statement.close();
 
+        } catch (SQLException ex) {
+            System.out.println("Error al ingresar tipo de cama : " + ex.getMessage());
         }
-       }
 
+        return tipodecama;
+    }
+}

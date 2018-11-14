@@ -820,7 +820,7 @@ private ArrayList<Habitacion> habitaciones;
 
     private void btnTiposHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposHabitacionActionPerformed
         TiposDeHabitacionPanel tHPanel = new TiposDeHabitacionPanel();
-        JDialog dialog = crearJDialog(tHPanel, "Tipos De Habitacion", 525, 425);
+        JDialog dialog = crearJDialog(tHPanel, "Tipos De Habitacion", 525, 390);
         
         dialog.setVisible(true);
     }//GEN-LAST:event_btnTiposHabitacionActionPerformed
