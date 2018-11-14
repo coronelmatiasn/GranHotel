@@ -194,6 +194,7 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
             }
         ));
         tabla.setGridColor(new java.awt.Color(102, 204, 255));
+        tabla.getTableHeader().setReorderingAllowed(false);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);

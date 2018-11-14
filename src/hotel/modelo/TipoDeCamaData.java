@@ -34,19 +34,18 @@ public class TipoDeCamaData {
         }
     }      
     
-    public List <TipoDeCama> obtenerTipoDeCama(){
+    public ArrayList<TipoDeCama> obtenerTipoDeCama(){
         ArrayList <TipoDeCama> tiposDeCamas = new ArrayList<>();
             
-
         try {
-            String sql = "SELECT * FROM tipoDeCama;";
+            String sql = "SELECT * FROM tipo_de_cama;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             TipoDeCama tipodecama;
             while(resultSet.next()){
                 tipodecama = new TipoDeCama();
-                tipodecama.setId_tipo_cama(resultSet.getInt("id"));
-                tipodecama.setCategoria(resultSet.getString("categoria"));
+                tipodecama.setId_tipo_cama(resultSet.getInt("id_tipo_cama"));
+                tipodecama.setCategoria(resultSet.getString("categoria_cama"));
             
                 tiposDeCamas.add(tipodecama);
             }      

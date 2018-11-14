@@ -5,19 +5,78 @@
  */
 package hotel.vista;
 
+import hotel.Conexion;
+import hotel.modelo.TipoDeCama;
+import hotel.modelo.TipoDeCamaData;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fati
  */
 public class TipoDeCamaPanel extends javax.swing.JPanel {
-
+    private TipoDeCamaData tc;
+    private Conexion conexion;
     /**
      * Creates new form TipoDeCamaPanel
      */
     public TipoDeCamaPanel() {
+        try {
+            //se crea una conexion del tipo Conexion donde se especifica la base donde se va a conectar.
+            conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
+        } catch (Exception e) {  
+           JOptionPane.showMessageDialog(null, "se produjo un error al conectar con la base de datos: " + e);
+        } 
+        
+        tc = new TipoDeCamaData(conexion);
+        
         initComponents();
+        crearModeloDeTabla();
+        setearContenidoDeTabla(tc.obtenerTipoDeCama());
     }
 
+    private void crearModeloDeTabla() {
+        DefaultTableModel dataModel;
+        
+        //guarda los nombres de las columnas en un array
+        String col[] = {
+            "ID",
+            "Categoria"
+        };
+
+        //crea un modelo de tabla usando los nombres del array creado y 0 filas
+        //sobreescribe el metodo isCellEditable para que retorne false en todas las celdas y no se puedan editar
+        dataModel = new DefaultTableModel(col, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        //añade el modelo a la tabla
+        tabla.setModel(dataModel);
+    }
+
+    private void setearContenidoDeTabla(ArrayList<TipoDeCama> camas) {
+        DefaultTableModel dataModel = (DefaultTableModel) tabla.getModel();
+        //se elimina todo el contenido de la tabla si es que hay        
+        for(int i = dataModel.getRowCount(); i > 0; i--) {
+            dataModel.removeRow(i - 1);
+        }
+
+        //se inserta el contenido nuevo fila por fila
+        for(TipoDeCama c : camas) {
+            Object row[] = {
+                c.getId_tipo_cama(), 
+                c.getCategoria()
+            };
+
+            dataModel.addRow(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +168,7 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
             }
         ));
         tabla.setGridColor(new java.awt.Color(102, 204, 255));
+        tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
