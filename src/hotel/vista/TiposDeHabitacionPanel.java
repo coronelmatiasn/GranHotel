@@ -98,6 +98,11 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         return listaCategorias;
     }
 
+    private void limpiarCampos() {
+        campoCategoria.setText("");
+        campoCantPersonas.setText("");
+        campoPrecio.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -414,6 +419,12 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         String categoria = campoCategoria.getText().toLowerCase();
         
         thd.borrarTipoHabitacion(categoria);
+        
+        limpiarCampos();
+        
+        btnModificar.setEnabled(false);
+        btnBorrar.setEnabled(false);
+        btnAgregar.setEnabled(true);
         
         setearContenidoDeTabla(thd.obtenerTipoHabitacion());
     }//GEN-LAST:event_btnBorrarActionPerformed

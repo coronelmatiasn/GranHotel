@@ -832,7 +832,7 @@ private ArrayList<Habitacion> habitaciones;
 
     private void btnTiposCamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposCamaActionPerformed
         TipoDeCamaPanel tCPanel = new TipoDeCamaPanel();
-        JDialog dialog = crearJDialog(tCPanel, "Camas", 400, 280);
+        JDialog dialog = crearJDialog(tCPanel, "Camas", 455, 280);
         
         dialog.setVisible(true);
     }//GEN-LAST:event_btnTiposCamaActionPerformed

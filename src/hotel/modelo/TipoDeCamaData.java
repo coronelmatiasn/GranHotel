@@ -19,12 +19,12 @@ public class TipoDeCamaData {
         connection = conexion.getConexion();
     }
     
-    public void guardarTipoDeCama (TipoDeCama tipoDeCama) {
+    public void guardarTipoDeCama (String categoria) {
         try {
-            String sql = "INSERT INTO tipoDeCama (categoria) VALUES ( ? );";
+            String sql = "INSERT INTO tipo_de_cama (categoria_cama) VALUES ( ? );";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString (1, tipoDeCama.getCategoria());
+            statement.setString (1, categoria);
           
             statement.executeUpdate();
             statement.close();
@@ -32,7 +32,37 @@ public class TipoDeCamaData {
         }  catch (SQLException ex) {
             System.out.println("Error al insertar una cama: " + ex.getMessage());
         }
-    }      
+    }
+    
+     public void modificarTipoDeCama(int id, String categoria) {
+        try {
+            String sql = "UPDATE `tipo_de_cama` SET `categoria_cama` = ? WHERE id_tipo_cama = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, categoria);
+            statement.setInt(2, id);
+            
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar tipo de cama: " + ex.getMessage());
+        }
+    }
+    
+    public void borrarTipoDeCama(int id){
+        try {
+            String sql = "DELETE FROM tipo_de_cama WHERE id_tipo_cama = ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (SQLException ex) {
+           System.out.println("Error al borrar Tipo de cama: " + ex.getMessage());
+        }
+    }
     
     public ArrayList<TipoDeCama> obtenerTipoDeCama(){
         ArrayList <TipoDeCama> tiposDeCamas = new ArrayList<>();
@@ -128,5 +158,29 @@ public class TipoDeCamaData {
         }
 
         return tipodecama;
+    }
+    
+    public boolean existeTipoDeCama(String categoria) {
+        int total = 0;
+
+        try {
+            
+            String sql = "SELECT SUM(categoria_cama = ?) AS total FROM tipo_de_cama";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, categoria);
+            
+            ResultSet resultSet = statement.executeQuery();
+            
+            while(resultSet.next()) {
+                total = resultSet.getInt("total");
+            }
+            
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar tipo de cama: " + ex.getMessage());
+        }
+        
+        return total != 0;
     }
 }

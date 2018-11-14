@@ -11,6 +11,7 @@ import hotel.modelo.TipoDeCamaData;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  *
@@ -70,10 +71,27 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         for(TipoDeCama c : camas) {
             Object row[] = {
                 c.getId_tipo_cama(), 
-                c.getCategoria()
+                WordUtils.capitalizeFully(c.getCategoria())
             };
 
             dataModel.addRow(row);
+        }
+    }
+    
+    private void limpiarCampos() {
+        campoCategoria.setText("");
+        campoID.setText("");
+    }
+    
+    private void agregarEnabled(boolean b) {
+        if(b) {
+            btnModificar.setEnabled(false);
+            btnBorrar.setEnabled(false);
+            btnAgregar.setEnabled(true);
+        } else {
+            btnModificar.setEnabled(true);
+            btnBorrar.setEnabled(true);
+            btnAgregar.setEnabled(false);
         }
     }
     
@@ -97,6 +115,7 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         btnModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 0, 0));
@@ -136,6 +155,11 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         btnAgregar.setText("AGREGAR");
         btnAgregar.setBorder(null);
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -144,6 +168,11 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         btnBorrar.setBorder(null);
         btnBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBorrar.setEnabled(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setBackground(new java.awt.Color(255, 255, 255));
         btnModificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -152,6 +181,11 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         btnModificar.setBorder(null);
         btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         tabla.setBackground(new java.awt.Color(255, 255, 255));
         tabla.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -169,12 +203,30 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
         ));
         tabla.setGridColor(new java.awt.Color(102, 204, 255));
         tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
+
+        btnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(0, 0, 0));
+        btnLimpiar.setText("VACIAR CAMPOS");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -185,25 +237,22 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
                             .addComponent(campoID, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                             .addComponent(jSeparator1)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnAgregar)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnAgregar)
-                                .addGap(28, 28, 28)))
+                            .addComponent(btnModificar)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(btnModificar)
-                                .addGap(41, 41, 41)
-                                .addComponent(btnBorrar)))))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(25, 25, 25)
+                                .addComponent(btnBorrar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,16 +273,72 @@ public class TipoDeCamaPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
-                    .addComponent(btnBorrar))
+                    .addComponent(btnBorrar)
+                    .addComponent(btnLimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        String categoria = campoCategoria.getText().toLowerCase();
+        
+        tc.guardarTipoDeCama(categoria);
+        
+        campoID.setText(Integer.toString(tc.buscarTipoCama(categoria).getId_tipo_cama()));
+        
+        setearContenidoDeTabla(tc.obtenerTipoDeCama());
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int id = Integer.parseInt(campoID.getText());
+        String categoria = campoCategoria.getText().toLowerCase();
+        
+        tc.modificarTipoDeCama(id, categoria);
+        
+        setearContenidoDeTabla(tc.obtenerTipoDeCama());
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        int id = Integer.parseInt(campoID.getText());
+                
+        tc.borrarTipoDeCama(id);
+        
+        setearContenidoDeTabla(tc.obtenerTipoDeCama());
+        
+        limpiarCampos();
+        agregarEnabled(true);
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCampos();
+        agregarEnabled(true);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int id;
+        String categoria;
+        if(tabla.getSelectedRow() != -1) {
+            int row = tabla.getSelectedRow();
+            
+            id = (int) tabla.getValueAt(row, 0);
+            categoria = (String) tabla.getValueAt(row, 1);
+
+            campoCategoria.setText(categoria);
+            campoID.setText(Integer.toString(id));   
+
+            agregarEnabled(false);
+        } else {
+            limpiarCampos();
+            agregarEnabled(true);
+        }
+    }//GEN-LAST:event_tablaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JTextField campoCategoria;
     private javax.swing.JTextField campoID;
