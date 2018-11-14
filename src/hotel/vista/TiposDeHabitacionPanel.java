@@ -193,6 +193,11 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
             }
         ));
         tabla.setGridColor(new java.awt.Color(102, 204, 255));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
@@ -410,6 +415,34 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         
         setearContenidoDeTabla(thd.obtenerTipoHabitacion());
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int cantPersonas;
+        String categoria, cama;
+        double precio;
+        if(tabla.getSelectedRow() != -1) {
+            int row = tabla.getSelectedRow();
+            
+            categoria = (String) tabla.getValueAt(row, 0);
+            cantPersonas = (int) tabla.getValueAt(row, 1);
+            precio = (double) tabla.getValueAt(row, 2);
+            cama = (String) tabla.getValueAt(row, 3);
+            
+
+            campoCategoria.setText(categoria);
+            campoCantPersonas.setText(Integer.toString(cantPersonas));
+            campoPrecio.setText(Double.toString(precio));
+            cBoxTiposDeCama.setSelectedItem(WordUtils.capitalizeFully(cama));
+
+            btnModificar.setEnabled(true);
+            btnBorrar.setEnabled(true);
+            btnAgregar.setEnabled(false);
+        } else {
+            btnModificar.setEnabled(false);
+            btnBorrar.setEnabled(false);
+            btnAgregar.setEnabled(true);
+        }
+    }//GEN-LAST:event_tablaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
