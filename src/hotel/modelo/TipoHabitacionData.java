@@ -55,6 +55,7 @@ public class TipoHabitacionData {
                 tipoHabitacion.setCantidadMaxPersonas(resultSet.getInt("cantidad_maxima_personas"));
                 tipoHabitacion.setPrecioXNoche(resultSet.getDouble("precio_por_noche"));
                 TipoDeCama tc = buscarTipoCama(resultSet.getInt("id_tipo_cama"));
+                tipoHabitacion.setTipoCama(tc);
                 tipoHabitaciones.add(tipoHabitacion);
             }      
             statement.close();

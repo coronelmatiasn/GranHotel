@@ -14,8 +14,11 @@ import hotel.modelo.Habitacion;
 import hotel.modelo.HabitacionData;
 import hotel.modelo.TipoHabitacion;
 import hotel.modelo.TipoHabitacionData;
+import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -56,6 +59,18 @@ private ArrayList<Habitacion> habitaciones;
         MoveMouseListener mml = new MoveMouseListener(jPanel1);
         jPanel1.addMouseListener(mml);
         jPanel1.addMouseMotionListener(mml);
+    }
+    
+    private JDialog crearJDialog(JPanel panel, String titulo, int w, int h) {
+            JDialog dialog = new JDialog(this, titulo, Dialog.ModalityType.DOCUMENT_MODAL); 
+            
+            dialog.setSize(w, h);
+            dialog.setResizable(false);
+            dialog.setLocationRelativeTo(this);
+            
+            dialog.add(panel);
+            
+            return dialog;
     }
     
     private void crearModeloDeTabla() {
@@ -204,6 +219,8 @@ private ArrayList<Habitacion> habitaciones;
         nHabValidacion = new javax.swing.JLabel();
         btnBorrarHabitacion = new javax.swing.JButton();
         btnModificarHabitacion = new javax.swing.JButton();
+        btnTiposCama = new javax.swing.JButton();
+        btnTiposHabitacion = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -297,7 +314,7 @@ private ArrayList<Habitacion> habitaciones;
         });
         jScrollPane1.setViewportView(jTableHabitaciones);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 700, 170));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 700, 170));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
         jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -395,9 +412,10 @@ private ArrayList<Habitacion> habitaciones;
         jPanel2.add(btnAgregarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
         filterField.setBackground(new java.awt.Color(255, 255, 255));
+        filterField.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         filterField.setForeground(new java.awt.Color(0, 0, 0));
         filterField.setBorder(null);
-        jPanel2.add(filterField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 70, -1));
+        jPanel2.add(filterField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 70, -1));
         filterField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
                 filtrarHabitaciones();
@@ -412,13 +430,13 @@ private ArrayList<Habitacion> habitaciones;
 
         jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 70, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 70, 10));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("FILTRAR:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         rBPiso.setBackground(new java.awt.Color(255, 255, 255));
         filterGroup.add(rBPiso);
@@ -432,7 +450,7 @@ private ArrayList<Habitacion> habitaciones;
                 rBPisoActionPerformed(evt);
             }
         });
-        jPanel2.add(rBPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
+        jPanel2.add(rBPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
 
         rBPrecio1.setBackground(new java.awt.Color(255, 255, 255));
         filterGroup.add(rBPrecio1);
@@ -446,7 +464,7 @@ private ArrayList<Habitacion> habitaciones;
                 rBPrecio1ActionPerformed(evt);
             }
         });
-        jPanel2.add(rBPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        jPanel2.add(rBPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
         rBCategoria1.setBackground(new java.awt.Color(255, 255, 255));
         filterGroup.add(rBCategoria1);
@@ -460,7 +478,7 @@ private ArrayList<Habitacion> habitaciones;
                 rBCategoria1ActionPerformed(evt);
             }
         });
-        jPanel2.add(rBCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        jPanel2.add(rBCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         rBNumero1.setBackground(new java.awt.Color(255, 255, 255));
         filterGroup.add(rBNumero1);
@@ -474,7 +492,7 @@ private ArrayList<Habitacion> habitaciones;
                 rBNumero1ActionPerformed(evt);
             }
         });
-        jPanel2.add(rBNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+        jPanel2.add(rBNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
 
         comboBoxEstado.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxEstado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -485,7 +503,7 @@ private ArrayList<Habitacion> habitaciones;
                 comboBoxEstadoActionPerformed(evt);
             }
         });
-        jPanel2.add(comboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 120, -1));
+        jPanel2.add(comboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 120, -1));
 
         pisoValidacion.setBackground(new java.awt.Color(255, 255, 255));
         pisoValidacion.setForeground(new java.awt.Color(255, 0, 0));
@@ -522,6 +540,27 @@ private ArrayList<Habitacion> habitaciones;
             }
         });
         jPanel2.add(btnModificarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+
+        btnTiposCama.setBackground(new java.awt.Color(255, 255, 255));
+        btnTiposCama.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnTiposCama.setForeground(new java.awt.Color(0, 0, 0));
+        btnTiposCama.setText("CAMAS");
+        btnTiposCama.setBorder(null);
+        btnTiposCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(btnTiposCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, -1, 20));
+
+        btnTiposHabitacion.setBackground(new java.awt.Color(255, 255, 255));
+        btnTiposHabitacion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnTiposHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        btnTiposHabitacion.setText("TIPOS DE HABITACION");
+        btnTiposHabitacion.setBorder(null);
+        btnTiposHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTiposHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiposHabitacionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTiposHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
@@ -779,6 +818,13 @@ private ArrayList<Habitacion> habitaciones;
         
     }//GEN-LAST:event_jTableHabitacionesMouseClicked
 
+    private void btnTiposHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposHabitacionActionPerformed
+        TiposDeHabitacionPanel tHPanel = new TiposDeHabitacionPanel();
+        JDialog dialog = crearJDialog(tHPanel, "Tipos De Habitacion", 525, 425);
+        
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnTiposHabitacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -821,6 +867,8 @@ private ArrayList<Habitacion> habitaciones;
     private javax.swing.JButton btnAgregarHabitacion;
     private javax.swing.JButton btnBorrarHabitacion;
     private javax.swing.JButton btnModificarHabitacion;
+    private javax.swing.JButton btnTiposCama;
+    private javax.swing.JButton btnTiposHabitacion;
     private javax.swing.JComboBox<String> comboBoxEstado;
     private javax.swing.JTextField filterField;
     private javax.swing.ButtonGroup filterGroup;
