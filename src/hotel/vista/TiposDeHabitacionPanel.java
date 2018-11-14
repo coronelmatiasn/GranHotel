@@ -212,6 +212,11 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         btnBorrar.setText("BORRAR");
         btnBorrar.setBorder(null);
         btnBorrar.setEnabled(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setBackground(new java.awt.Color(255, 255, 255));
         btnModificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -397,6 +402,14 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         
         setearContenidoDeTabla(thd.obtenerTipoHabitacion());
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String categoria = campoCategoria.getText().toLowerCase();
+        
+        thd.borrarTipoHabitacion(categoria);
+        
+        setearContenidoDeTabla(thd.obtenerTipoHabitacion());
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -58,6 +58,21 @@ public class TipoHabitacionData {
             System.out.println("Error al modificar tipo de habitacion: " + ex.getMessage());
         }
     }
+    
+    public void borrarTipoHabitacion(String categoria){
+        try {
+            String sql = "DELETE FROM tipo_de_habitacion WHERE categoria_habitacion = ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, categoria);
+
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (SQLException ex) {
+           System.out.println("Error al borrar Tipo de Habitacion: " + ex.getMessage());
+        }
+    }
  
     public ArrayList <TipoHabitacion> obtenerTipoHabitacion(){
         ArrayList <TipoHabitacion> tipoHabitaciones = new ArrayList<>();     
