@@ -547,6 +547,11 @@ private ArrayList<Habitacion> habitaciones;
         btnTiposCama.setText("CAMAS");
         btnTiposCama.setBorder(null);
         btnTiposCama.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTiposCama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiposCamaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnTiposCama, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, -1, 20));
 
         btnTiposHabitacion.setBackground(new java.awt.Color(255, 255, 255));
@@ -824,6 +829,13 @@ private ArrayList<Habitacion> habitaciones;
         
         dialog.setVisible(true);
     }//GEN-LAST:event_btnTiposHabitacionActionPerformed
+
+    private void btnTiposCamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposCamaActionPerformed
+        TipoDeCamaPanel tCPanel = new TipoDeCamaPanel();
+        JDialog dialog = crearJDialog(tCPanel, "Camas", 400, 280);
+        
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnTiposCamaActionPerformed
 
     /**
      * @param args the command line arguments

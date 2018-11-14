@@ -180,6 +180,7 @@ public class TiposDeHabitacionPanel extends javax.swing.JPanel {
         cBoxTiposDeCama.setForeground(new java.awt.Color(0, 0, 0));
 
         tabla.setBackground(new java.awt.Color(255, 255, 255));
+        tabla.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
