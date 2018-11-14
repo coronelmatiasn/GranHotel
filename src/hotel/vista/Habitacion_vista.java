@@ -828,6 +828,8 @@ private ArrayList<Habitacion> habitaciones;
         JDialog dialog = crearJDialog(tHPanel, "Tipos De Habitacion", 525, 390);
         
         dialog.setVisible(true);
+        
+        filtrarHabitaciones(); 
     }//GEN-LAST:event_btnTiposHabitacionActionPerformed
 
     private void btnTiposCamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposCamaActionPerformed
@@ -835,6 +837,8 @@ private ArrayList<Habitacion> habitaciones;
         JDialog dialog = crearJDialog(tCPanel, "Camas", 455, 280);
         
         dialog.setVisible(true);
+        
+        filtrarHabitaciones(); 
     }//GEN-LAST:event_btnTiposCamaActionPerformed
 
     /**
