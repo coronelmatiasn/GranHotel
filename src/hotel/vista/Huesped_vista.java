@@ -562,6 +562,12 @@ private  ArrayList <Huesped> listahuesped;
         
         huespeddata.borrarHuesped(dni);
         
+        campoDNI.setText(Integer.toString(dni));
+        campoNombreYApellido.setText("");
+        campoDomicilio.setText("");
+        campoCelular.setText("");
+        campoCorreo.setText("");   
+        
         listahuesped = (ArrayList)huespeddata.obtenerHuesped();
         setearContenidoDeTabla(listahuesped);
     }//GEN-LAST:event_btnEliminarActionPerformed
