@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.text.WordUtils;
 public class Huesped_vista extends javax.swing.JFrame {
 
 private HuespedData huespeddata;
@@ -120,7 +121,7 @@ private  ArrayList <Huesped> listahuesped;
         campoCorreo = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         btnModificar = new javax.swing.JButton();
-        btnElminar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         validacionCampoDNI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,6 +189,11 @@ private  ArrayList <Huesped> listahuesped;
         campoDNI.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         campoDNI.setForeground(new java.awt.Color(0, 0, 0));
         campoDNI.setBorder(null);
+        campoDNI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoDNIFocusLost(evt);
+            }
+        });
         campoDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoDNIActionPerformed(evt);
@@ -210,6 +216,12 @@ private  ArrayList <Huesped> listahuesped;
             }
         ));
         tabla.setGridColor(new java.awt.Color(51, 153, 255));
+        tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 700, 130));
@@ -359,12 +371,17 @@ private  ArrayList <Huesped> listahuesped;
         });
         jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
 
-        btnElminar.setBackground(new java.awt.Color(255, 255, 255));
-        btnElminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnElminar.setForeground(new java.awt.Color(0, 0, 0));
-        btnElminar.setText("ELIMINAR");
-        btnElminar.setBorder(null);
-        jPanel2.add(btnElminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setBorder(null);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
 
         validacionCampoDNI.setBackground(new java.awt.Color(255, 255, 255));
         validacionCampoDNI.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -530,6 +547,82 @@ private  ArrayList <Huesped> listahuesped;
         setearContenidoDeTabla(listahuesped);
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int dni;
+        
+        try {
+            dni = Integer.parseInt(campoDNI.getText());
+            
+            validacionCampoDNI.setText("");
+        } catch(NumberFormatException e) {
+            validacionCampoDNI.setText("Inserte un numero de DNI válido"); 
+            
+            return;
+        }
+        
+        huespeddata.borrarHuesped(dni);
+        
+        listahuesped = (ArrayList)huespeddata.obtenerHuesped();
+        setearContenidoDeTabla(listahuesped);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMousePressed
+        int dni;
+        String nombre, celular, domicilio, correo;
+        if(tabla.getSelectedRow() != -1) {
+            int row = tabla.getSelectedRow();
+        
+            dni = (int) tabla.getValueAt(row, 0);
+            nombre = (String) tabla.getValueAt(row, 1);
+            domicilio = (String) tabla.getValueAt(row, 2);
+            celular = (String) tabla.getValueAt(row, 3);
+            correo = (String) tabla.getValueAt(row, 4);
+            
+            campoDNI.setText(Integer.toString(dni));
+            campoNombreYApellido.setText(nombre);
+            campoDomicilio.setText(domicilio);
+            campoCelular.setText(celular);
+            campoCorreo.setText(correo);    
+            
+            btnModificar.setEnabled(true);
+            btnEliminar.setEnabled(true);
+        } else {
+            btnModificar.setEnabled(false);
+            btnEliminar.setEnabled(false);
+        }
+    }//GEN-LAST:event_tablaMousePressed
+
+    private void campoDNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDNIFocusLost
+        int dni;
+        
+        //si el campo de dni contiene algun texto, el bloque de codigo dentro del if se ejecuta
+        if(!campoDNI.getText().equals("")){
+            //validacion del campo de dni
+            try {
+                dni = Integer.parseInt(campoDNI.getText());
+            } catch(NumberFormatException e) {
+                return;
+            }
+            
+            
+            //si el huesped existe se rellenan los campos relacionados a datos del huesped automaticamente
+            if(huespeddata.existeHuesped(dni)) {
+                Huesped huesped = huespeddata.buscarHuesped(dni);
+                
+                campoNombreYApellido.setText(huesped.getNombre());
+                campoCelular.setText(huesped.getCelular());
+                campoCorreo.setText(huesped.getCorreo());
+                campoDomicilio.setText(huesped.getDomicilio());
+                
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+            } else {
+                btnModificar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_campoDNIFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -567,7 +660,7 @@ private  ArrayList <Huesped> listahuesped;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnElminar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JTextField campoCelular;
     private javax.swing.JTextField campoCorreo;
