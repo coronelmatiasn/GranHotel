@@ -6,7 +6,7 @@ public class Huesped {
     private String domicilio;
     private String celular;
     private String correo;
-
+    
     public Huesped(int dni, String nombre, String domicilio, String celular, String correo) {
         this.dni = dni;
         this.nombre = nombre;

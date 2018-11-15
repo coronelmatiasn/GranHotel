@@ -97,10 +97,10 @@ public class HuespedData {
             statement.setString(1,huesped.getNombre());
             statement.setString(2, huesped.getDomicilio());
             statement.setString(3, huesped.getCelular());
-            statement.setInt(4, huesped.getDni());
+            statement.setString(4, huesped.getCorreo());
+            statement.setInt(5, huesped.getDni());
             statement.executeUpdate();
-            
-          
+
             statement.close();
     
         } catch (SQLException ex) {

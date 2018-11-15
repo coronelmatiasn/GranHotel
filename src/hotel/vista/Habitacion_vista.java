@@ -829,6 +829,7 @@ private ArrayList<Habitacion> habitaciones;
         
         dialog.setVisible(true);
         
+        habitaciones = habitaciondata.obtenerHabitaciones();
         filtrarHabitaciones(); 
     }//GEN-LAST:event_btnTiposHabitacionActionPerformed
 
@@ -838,6 +839,7 @@ private ArrayList<Habitacion> habitaciones;
         
         dialog.setVisible(true);
         
+        habitaciones = habitaciondata.obtenerHabitaciones();
         filtrarHabitaciones(); 
     }//GEN-LAST:event_btnTiposCamaActionPerformed
 

@@ -21,64 +21,65 @@ public class Huesped_vista extends javax.swing.JFrame {
 
 private HuespedData huespeddata;
 private Conexion conexion;
-private DefaultTableModel modelo;
+private DefaultTableModel dataModel;
 private  ArrayList <Huesped> listahuesped;
 
     public Huesped_vista() {
         initComponents();
         this.setLocationRelativeTo(null);
         conexion = new Conexion("jdbc:mysql://localhost/hotel", "root", "");
-        modelo=new DefaultTableModel();
-        huespeddata=new HuespedData(conexion);
-        listahuesped=(ArrayList)huespeddata.obtenerHuesped();
-        armaCabeceraTabla();
+        huespeddata = new HuespedData(conexion);
+        listahuesped = (ArrayList)huespeddata.obtenerHuesped();
+        
+        crearModeloDeTabla();
+        setearContenidoDeTabla(listahuesped);
 
         MoveMouseListener mml = new MoveMouseListener(jPanel1);
         jPanel1.addMouseListener(mml);
         jPanel1.addMouseMotionListener(mml);
     }
     
-     public void armaCabeceraTabla(){
-    
-        //Titulos de Columnas
-        ArrayList<Object> columnas=new ArrayList<Object>();
-        columnas.add("DNI");
-        columnas.add("Nombre y Apellido");
-        columnas.add("Domicilio");
-        columnas.add("Celular");
-        columnas.add("Correo");
-        for(Object it:columnas){
-        
-            modelo.addColumn(it);
-        }
-       jTableHuesped.setModel(modelo);
-  }
-     
-     public void borraFilasTabla(){
+    private void crearModeloDeTabla() {
+        //guarda los nombres de las columnas en un array
+        String col[] = {
+            "DNI", 
+            "Nombre", 
+            "Domicilio", 
+            "Celular", 
+            "Correo"
+        };
 
-            int a =modelo.getRowCount()-1;
-            System.out.println("Tabla "+a);
-            for(int i=a;i>=0;i--){
-                modelo.removeRow(i );
-                System.out.println("Tabla "+i);
+        //crea un modelo de tabla usando los nombres del array creado y 0 filas
+        //sobreescribe el metodo isCellEditable para que retorne false en todas las celdas y no se puedan editar
+        dataModel = new DefaultTableModel(col, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-      }
-     
-     
-      public void cargaDatos(){
-            borraFilasTabla();
-        
-        
-         //Obtengo el dni del huesped
-            int dni=Integer.parseInt(jTextFieldDNI.getText());
-            
-        //Llenar filas
-        for(Huesped h:listahuesped){
-        
-            if(h.getDni()==dni){ 
-           modelo.addRow(new Object[]{h.getDni(),h.getNombre(),h.getDomicilio(),h.getCelular(),h.getCorreo()});
-                    
-        }}
+        };
+
+        //añade el modelo a la tabla
+        tabla.setModel(dataModel);
+    }
+
+    private void setearContenidoDeTabla(ArrayList<Huesped> huespedes) {
+        //se elimina todo el contenido de la tabla si es que hay
+        for(int i = dataModel.getRowCount(); i > 0; i--) {
+            dataModel.removeRow(i - 1);
+        }
+
+        //se inserta el contenido nuevo fila por fila
+        for(Huesped h : listahuesped) {
+            Object row[] = {
+                h.getDni(), 
+                h.getNombre(), 
+                h.getDomicilio(),
+                h.getCelular(),
+                h.getCorreo()
+            };
+
+            dataModel.addRow(row);
+        }
     }
     
      
@@ -99,14 +100,28 @@ private  ArrayList <Huesped> listahuesped;
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldDNI = new javax.swing.JTextField();
+        campoDNI = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableHuesped = new javax.swing.JTable();
-        jLabelBuscarHuesped = new javax.swing.JLabel();
+        tabla = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelMenu = new javax.swing.JLabel();
         jLabelHabitacion = new javax.swing.JLabel();
         jLabelReserva = new javax.swing.JLabel();
+        campoNombreYApellido = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        campoDomicilio = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        campoCelular = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        campoCorreo = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        btnModificar = new javax.swing.JButton();
+        btnElminar = new javax.swing.JButton();
+        validacionCampoDNI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -163,20 +178,27 @@ private  ArrayList <Huesped> listahuesped;
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel4.setText("D.N.I  Del Huesped");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, -1));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("DNI");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 40, -1));
 
-        jTextFieldDNI.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextFieldDNI.setBorder(null);
-        jTextFieldDNI.addActionListener(new java.awt.event.ActionListener() {
+        campoDNI.setBackground(new java.awt.Color(255, 255, 255));
+        campoDNI.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        campoDNI.setForeground(new java.awt.Color(0, 0, 0));
+        campoDNI.setBorder(null);
+        campoDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDNIActionPerformed(evt);
+                campoDNIActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 190, -1));
+        jPanel2.add(campoDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 150, -1));
 
-        jTableHuesped.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setBackground(new java.awt.Color(255, 255, 255));
+        tabla.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -187,29 +209,14 @@ private  ArrayList <Huesped> listahuesped;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableHuesped);
+        tabla.setGridColor(new java.awt.Color(51, 153, 255));
+        jScrollPane1.setViewportView(tabla);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 700, 230));
-
-        jLabelBuscarHuesped.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabelBuscarHuesped.setText("BUSCAR");
-        jLabelBuscarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelBuscarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelBuscarHuespedMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabelBuscarHuespedMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabelBuscarHuespedMouseReleased(evt);
-            }
-        });
-        jPanel2.add(jLabelBuscarHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 70, -1));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 700, 130));
 
         jSeparator1.setBackground(new java.awt.Color(102, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 204, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 190, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 150, 10));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
         jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -256,14 +263,122 @@ private  ArrayList <Huesped> listahuesped;
         });
         jPanel2.add(jLabelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 100, -1, 40));
 
+        campoNombreYApellido.setBackground(new java.awt.Color(255, 255, 255));
+        campoNombreYApellido.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        campoNombreYApellido.setForeground(new java.awt.Color(0, 0, 0));
+        campoNombreYApellido.setBorder(null);
+        campoNombreYApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNombreYApellidoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(campoNombreYApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 220, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 220, 10));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Nombre y Apellido");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 130, -1));
+
+        campoDomicilio.setBackground(new java.awt.Color(255, 255, 255));
+        campoDomicilio.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        campoDomicilio.setForeground(new java.awt.Color(0, 0, 0));
+        campoDomicilio.setBorder(null);
+        campoDomicilio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDomicilioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(campoDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 290, -1));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Domicilio");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 70, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator3.setForeground(new java.awt.Color(102, 204, 255));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 290, 10));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Celular");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 50, -1));
+
+        campoCelular.setBackground(new java.awt.Color(255, 255, 255));
+        campoCelular.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        campoCelular.setForeground(new java.awt.Color(0, 0, 0));
+        campoCelular.setBorder(null);
+        campoCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCelularActionPerformed(evt);
+            }
+        });
+        jPanel2.add(campoCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 290, -1));
+
+        jSeparator4.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator4.setForeground(new java.awt.Color(102, 204, 255));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 290, 10));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Correo");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 50, -1));
+
+        campoCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        campoCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        campoCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        campoCorreo.setBorder(null);
+        campoCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCorreoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(campoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 290, -1));
+
+        jSeparator5.setBackground(new java.awt.Color(102, 204, 255));
+        jSeparator5.setForeground(new java.awt.Color(102, 204, 255));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 290, 10));
+
+        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificar.setText("MODIFICAR");
+        btnModificar.setBorder(null);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+
+        btnElminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnElminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnElminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnElminar.setText("ELIMINAR");
+        btnElminar.setBorder(null);
+        jPanel2.add(btnElminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+
+        validacionCampoDNI.setBackground(new java.awt.Color(255, 255, 255));
+        validacionCampoDNI.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        validacionCampoDNI.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel2.add(validacionCampoDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 190, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDNIActionPerformed
+    private void campoDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDNIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDNIActionPerformed
+    }//GEN-LAST:event_campoDNIActionPerformed
 
     private void jLabelOpcionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelOpcionesMousePressed
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_in.png")));
@@ -294,13 +409,13 @@ private  ArrayList <Huesped> listahuesped;
        menuu.jLabelXLeft(10, -40, 10, 5, jLabelHabitacion);
 
        
-      //mueve el icono reserva a la izquieda
+        //mueve el icono reserva a la izquieda
         AnimationClass reservaaa = new AnimationClass();
-      reservaaa.jLabelXRight(-40, 10, 10, 5, jLabelReserva);
+        reservaaa.jLabelXRight(-40, 10, 10, 5, jLabelReserva);
        
        //mueve el icono reserva a la derecha 
        AnimationClass reservaa = new AnimationClass();
-      reservaa.jLabelXLeft(10, -40,10,5, jLabelReserva);
+        reservaa.jLabelXLeft(10, -40,10,5, jLabelReserva);
     }//GEN-LAST:event_jLabelOpcionesMouseClicked
 
     private void jLabelMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMenuMousePressed
@@ -359,14 +474,6 @@ private  ArrayList <Huesped> listahuesped;
        }       
     }//GEN-LAST:event_jLabelCancelarMouseClicked
 
-    private void jLabelBuscarHuespedMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarHuespedMousePressed
-        jLabelBuscarHuesped.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelBuscarHuespedMousePressed
-
-    private void jLabelBuscarHuespedMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarHuespedMouseReleased
-         jLabelBuscarHuesped.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabelBuscarHuespedMouseReleased
-
     private void jLabelHabitacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHabitacionMouseClicked
           
         Habitacion_vista habitacion =new Habitacion_vista();
@@ -380,11 +487,48 @@ private  ArrayList <Huesped> listahuesped;
      dispose();
     }//GEN-LAST:event_jLabelReservaMouseClicked
 
-    private void jLabelBuscarHuespedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarHuespedMouseClicked
-       
-        cargaDatos();
+    private void campoNombreYApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreYApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNombreYApellidoActionPerformed
+
+    private void campoDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDomicilioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDomicilioActionPerformed
+
+    private void campoCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCelularActionPerformed
+
+    private void campoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCorreoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int dni;
+        String nombre, direccion, celular, correo;
         
-    }//GEN-LAST:event_jLabelBuscarHuespedMouseClicked
+        try {
+            dni = Integer.parseInt(campoDNI.getText());
+            
+            validacionCampoDNI.setText("");
+        } catch(NumberFormatException e) {
+            validacionCampoDNI.setText("Inserte un numero de DNI válido"); 
+            
+            return;
+        }
+        
+        nombre = campoNombreYApellido.getText();
+        direccion = campoDomicilio.getText();
+        celular = campoCelular.getText();
+        correo = campoCorreo.getText();
+        
+        Huesped h = new Huesped(dni, nombre, direccion, celular, correo);
+        
+        huespeddata.actualizarHuesped(h);
+            
+        listahuesped = (ArrayList)huespeddata.obtenerHuesped();
+        setearContenidoDeTabla(listahuesped);
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,9 +567,19 @@ private  ArrayList <Huesped> listahuesped;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnElminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JTextField campoCelular;
+    private javax.swing.JTextField campoCorreo;
+    private javax.swing.JTextField campoDNI;
+    private javax.swing.JTextField campoDomicilio;
+    private javax.swing.JTextField campoNombreYApellido;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelBuscarHuesped;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCancelar;
     private javax.swing.JLabel jLabelHabitacion;
     private javax.swing.JLabel jLabelMenu;
@@ -436,7 +590,11 @@ private  ArrayList <Huesped> listahuesped;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTableHuesped;
-    private javax.swing.JTextField jTextFieldDNI;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTable tabla;
+    private javax.swing.JLabel validacionCampoDNI;
     // End of variables declaration//GEN-END:variables
 }
