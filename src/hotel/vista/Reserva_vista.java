@@ -572,7 +572,7 @@ HuespedData huespedD;
             int nroHabitacion;
             double precioXNoche;
             String nombre, domicilio, correo, celular, categoria;
-            LocalDate fechaEntrada, fechaSalida;
+            LocalDate fechaEntrada, fechaSalida, actual;
             HabitacionPanel panel;
             JDialog dialog;
         
@@ -604,14 +604,23 @@ HuespedData huespedD;
             try {
                 //se trata de convertir los campos de fechas a LocalDate
                 //usando el patron "dd/MM/yyyy" (d = dia, M = mes, y = año)
+                actual = LocalDate.now();
                 fechaEntrada = LocalDate.parse(jTextFieldFechaEntrada.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 fechaSalida = LocalDate.parse(jTextFieldFechaSalida.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+                
+                if(actual.isAfter(fechaEntrada)) {
+                    validationTextFecha.setText("No puede insertar una fecha pasada");
+                    return;
+                } else if(fechaEntrada.isAfter(fechaSalida)) {
+                    validationTextFecha.setText("La fecha de salida es anterior a la fecha de entrada");
+                    return;
+                }
                 
                 validationTextFecha.setText("");
                 
             } catch(DateTimeParseException ex) {
                 //si no es posible se le pide al usuario que ingrese una fecha valida
-                validationTextFecha.setText("Inserte una fecha con formato DD/MM/AAAA");
+                validationTextFecha.setText("Inserte una fecha con formato DIA/MES/AÑO");
                 
                 return;
             }         
