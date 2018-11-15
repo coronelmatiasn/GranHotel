@@ -232,7 +232,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelOpciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelOpcionesMouseClicked(evt);
@@ -247,7 +247,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel1.add(jLabelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 30));
 
         jLabelMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimize_1.png"))); // NOI18N
-        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMinimizarMouseClicked(evt);
@@ -256,7 +256,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel1.add(jLabelMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         jLabelCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancel.png"))); // NOI18N
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCancelarMouseClicked(evt);
@@ -317,7 +317,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 700, 170));
 
         jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo_ventana.png"))); // NOI18N
-        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelMenuMouseClicked(evt);
@@ -332,7 +332,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel2.add(jLabelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 10, 40, 30));
 
         jLabelHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guest_ventana.png"))); // NOI18N
-        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelHuespedMouseClicked(evt);
@@ -347,7 +347,7 @@ private ArrayList<Habitacion> habitaciones;
         jPanel2.add(jLabelHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 50, 30, 40));
 
         jLabelReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/online-booking_ventana.png"))); // NOI18N
-        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelReservaMouseClicked(evt);
@@ -403,7 +403,7 @@ private ArrayList<Habitacion> habitaciones;
         btnAgregarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarHabitacion.setText("AGREGAR HABITACION");
         btnAgregarHabitacion.setBorder(null);
-        btnAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregarHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarHabitacionActionPerformed(evt);
@@ -445,6 +445,7 @@ private ArrayList<Habitacion> habitaciones;
         rBPiso.setText("Piso");
         rBPiso.setToolTipText("");
         rBPiso.setActionCommand(rBPiso.getText());
+        rBPiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rBPiso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rBPisoActionPerformed(evt);
@@ -459,6 +460,7 @@ private ArrayList<Habitacion> habitaciones;
         rBPrecio1.setSelected(true);
         rBPrecio1.setText("Precio");
         rBPrecio1.setActionCommand(rBPrecio1.getText());
+        rBPrecio1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rBPrecio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rBPrecio1ActionPerformed(evt);
@@ -473,6 +475,7 @@ private ArrayList<Habitacion> habitaciones;
         rBCategoria1.setText("Categoria");
         rBCategoria1.setToolTipText("");
         rBCategoria1.setActionCommand(rBCategoria1.getText());
+        rBCategoria1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rBCategoria1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rBCategoria1ActionPerformed(evt);
@@ -487,6 +490,7 @@ private ArrayList<Habitacion> habitaciones;
         rBNumero1.setText("Numero");
         rBNumero1.setToolTipText("");
         rBNumero1.setActionCommand(rBNumero1.getText());
+        rBNumero1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rBNumero1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rBNumero1ActionPerformed(evt);
@@ -518,7 +522,7 @@ private ArrayList<Habitacion> habitaciones;
         btnBorrarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarHabitacion.setText("BORRAR HABITACION");
         btnBorrarHabitacion.setBorder(null);
-        btnBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBorrarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBorrarHabitacion.setEnabled(false);
         btnBorrarHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -532,7 +536,7 @@ private ArrayList<Habitacion> habitaciones;
         btnModificarHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         btnModificarHabitacion.setText("MODIFICAR HABITACION");
         btnModificarHabitacion.setBorder(null);
-        btnModificarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificarHabitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificarHabitacion.setEnabled(false);
         btnModificarHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

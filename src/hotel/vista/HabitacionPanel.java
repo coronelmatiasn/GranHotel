@@ -63,6 +63,7 @@ public class HabitacionPanel extends javax.swing.JPanel {
         confirmar.setText("CONFIRMAR");
         confirmar.setAlignmentX(0.5F);
         confirmar.setBorder(null);
+        confirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confirmar.setEnabled(false);
         confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

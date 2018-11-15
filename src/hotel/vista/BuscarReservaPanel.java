@@ -31,6 +31,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         botonTerminarReserva = new javax.swing.JButton();
 
         botonBusqueda.setText("Buscar");
+        botonBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBusquedaActionPerformed(evt);
@@ -51,6 +52,7 @@ public class BuscarReservaPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table);
 
         botonTerminarReserva.setText("TERMINAR RESERVA");
+        botonTerminarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonTerminarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonTerminarReservaActionPerformed(evt);
